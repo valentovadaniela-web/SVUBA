@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nová služba: Rozbory akváriovej vody – VPÚ v Bratislave – ŠVPÚ</title>
+<meta name="description" content="VPÚ v Bratislave spúšťa analytické balíčky pre akvaristov — rozbory vody z akvária, krevetkária alebo morskej nádrže. Diagnostika kvality vody pre zdravie rýb.">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ===== Štýly článku aktuality ===== */
+  .article-wrap {
+    background: #fff;
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  /* Meta lišta nad nadpisom */
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 14px 26px 0;
+  }
+  .article-img {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 22px;
+  background: #ddeaf5;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  color: #b0c8df;
+  overflow: hidden;
+}
+.article-img img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+  .article-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    background: var(--navy-light);
+    color: var(--navy);
+  }
+  .article-tag.tag-new {
+    background: #E8F5E9;
+    color: #2E7D32;
+  }
+  .article-date {
+    font-size: 13px;
+    color: var(--grey4);
+  }
+  .article-source {
+    font-size: 13px;
+    color: var(--grey4);
+  }
+  .article-source strong {
+    color: var(--black);
+  }
+
+  /* Nadpis článku */
+  .article-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+    padding: 14px 26px 6px;
+    border-bottom: none;
+  }
+  .article-lead {
+    font-size: 16px;
+    color: var(--grey4);
+    line-height: 1.65;
+    padding: 0 26px 18px;
+    border-bottom: 1px solid var(--grey2);
+    font-style: italic;
+  }
+
+  /* Telo článku */
+  .article-body {
+    padding: 24px 26px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--black);
+    max-width: 800px;
+  }
+  .article-body h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 28px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--grey2);
+  }
+  .article-body h2:first-child { margin-top: 0; }
+  .article-body p { margin-bottom: 14px; }
+  .article-body p:last-child { margin-bottom: 0; }
+  .article-body strong { color: var(--black); }
+  .article-body a { color: var(--navy-mid); }
+
+  /* Zvýraznený citát / callout */
+  .article-callout {
+    background: var(--navy-light);
+    border-left: 4px solid var(--navy);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--navy-dark);
+    line-height: 1.65;
+  }
+
+  /* Tabuľka balíčkov v článku */
+  .pkg-overview {
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .pkg-overview-hdr {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 12px;
+  }
+  .pkg-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--grey2);
+    align-items: start;
+    font-size: 14px;
+  }
+  .pkg-row:last-child { border-bottom: none; }
+  .pkg-row:hover { background: var(--grey1); }
+  .pkg-row-name {
+    font-weight: 700;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .pkg-row-cat {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cat-b { background: var(--navy-light); color: var(--navy); }
+  .cat-p { background: #E8F5E9; color: #2E7D32; }
+  .cat-s { background: #E0F2F1; color: #00695C; }
+  .cat-v { background: var(--gold-light); color: #7C5200; }
+  .cat-pr { background: #FFEBEE; color: #B71C1C; }
+  .cat-m { background: #E3F2FD; color: #1565C0; }
+  .pkg-row-desc {
+    font-size: 13px;
+    color: var(--grey4);
+    line-height: 1.55;
+  }
+
+  /* CTA box */
+  .article-cta {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin: 24px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .article-cta-text {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .article-cta-text strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 4px;
+    color: #fff;
+  }
+  .article-cta-text span {
+    opacity: .8;
+  }
+  .article-cta-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  /* Súvisiace aktuality sidebar box */
+  .side-related a {
+    display: block;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--grey1);
+    line-height: 1.45;
+    transition: background .12s;
+  }
+  .side-related a:last-child { border-bottom: none; }
+  .side-related a:hover { background: var(--navy-light); color: var(--navy); }
+  .side-related .sr-date { font-size: 11px; color: var(--grey3); display: block; margin-top: 2px; }
+
+  /* Zdieľanie */
+  .article-share {
+    padding: 16px 26px;
+    border-top: 1px solid var(--grey2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--grey4);
+    flex-wrap: wrap;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--grey4);
+    background: #fff;
+    cursor: pointer;
+    font-family: var(--font);
+    text-decoration: none;
+    transition: border-color .12s, color .12s;
+  }
+  .share-btn:hover { border-color: var(--navy); color: var(--navy); }
+
+  @media (max-width: 640px) {
+    .article-title { font-size: 20px; padding: 14px 18px 6px; }
+    .article-lead { padding: 0 18px 16px; font-size: 14px; }
+    .article-body { padding: 18px; font-size: 14px; }
+    .article-meta { padding: 12px 18px 0; }
+    .article-cta { padding: 18px; }
+    .pkg-overview-hdr, .pkg-row { grid-template-columns: 1fr; }
+    .pkg-overview-hdr span:last-child { display: none; }
+    .article-share { padding: 14px 18px; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+
+<div class="sec-nav">
+  <div class="inner">
+    <div class="egov">
+      <span class="sk-badge">SK</span>
+      <span>Oficiálna stránka</span>
+      <button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn" aria-controls="gov-info">
+        <strong>e-Gov verejnej správy</strong> ▾
+      </button>
+    </div>
+    <div class="lang-wrap">
+      <a href="#" class="active">Slovenčina</a>
+      <a href="#">English</a>
+    </div>
+  </div>
+</div>
+<div class="gov-info" id="gov-info" role="region" aria-label="Informácie o stránke">
+  <div class="inner">
+    <div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR. Officiálne stránky využívajú najmä doménu gov.sk. <a href="https://www.slovensko.sk/sk/agendy/agenda/_organy-verejnej-moci" target="_blank" rel="noopener">Zoznam orgánov verejnej moci.</a></p></div>
+    <div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény webového sídla.</p></div>
+  </div>
+</div>
+
+<header class="site-hdr" role="banner">
+  <div class="hdr-inner">
+    <div class="hdr-main">
+      <a href="index.html" class="logo" aria-label="Štátny veterinárny a potravinový ústav – domovská stránka">
+        <img src="logo.jpg" class="logo-img" alt="Logo Štátny veterinárny a potravinový ústav">
+        <div class="logo-text">
+          <strong>Štátny veterinárny a potravinový ústav</strong>
+          <small>svpu.sk</small>
+        </div>
+      </a>
+      <div class="hdr-search" role="search" aria-label="Vyhľadávanie na stránke">
+        <input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie">
+        <button aria-label="Vyhľadať">🔍 Hľadať</button>
+      </div>
+    </div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia">
+    <div class="inner"><ul>
+      <li><a href="org.html">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ vo Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li>
+      <li><a href="aktuality.html" class="active">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="aktuality.html#ba">Aktuality z VPÚ v Bratislave</a><a href="aktuality.html#dk">Aktuality z VPÚ v Dolnom Kubíne</a><a href="aktuality.html#ke">Aktuality z VPÚ v Košiciach</a><a href="aktuality.html#zv">Aktuality z VÚ v Zvolene</a></div></li>
+      <li><a href="o-nas.html">O nás</a></li>
+      <li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li>
+    </ul></div>
+  </nav>
+</header>
+
+<div class="hero-banner hero-slim" role="img" aria-label="Laboratórna diagnostika ŠVPÚ">
+  <img src="hero.jpg" alt="">
+  <div class="hero-overlay"></div>
+</div>
+
+<nav class="breadcrumb" aria-label="Ste tu">
+  <ol>
+    <li><a href="index.html">Domov</a></li>
+    <li><a href="aktuality.html">Aktuality</a></li>
+    <li><a href="aktuality.html#ba">VPÚ v Bratislave</a></li>
+    <li><span class="cur" aria-current="page">Rozbory akváriovej vody</span></li>
+  </ol>
+</nav>
+
+<div class="page-bg"><div class="page-inner">
+
+  <aside class="sidebar">
+    <div class="side-box side-nav">
+      <div class="side-box-title">Aktuality</div>
+      <ul>
+        <li><a href="aktuality.html">Všetky aktuality</a></li>
+        <li><a href="aktuality.html#ba" class="active">VPÚ v Bratislave</a></li>
+        <li><a href="aktuality.html#dk">VPÚ v Dolnom Kubíne</a></li>
+        <li><a href="aktuality.html#ke">VPÚ v Košiciach</a></li>
+        <li><a href="aktuality.html#zv">VÚ vo Zvolene</a></li>
+      </ul>
+    </div>
+
+    <div class="side-box side-related">
+      <div class="side-box-title">Ďalšie aktuality z BA</div>
+      <a href="aktualita-giardioza.html">
+        Giardia u psov — nová metodika odberu
+        <span class="sr-date">15. 3. 2026</span>
+      </a>
+      <a href="aktualita-MIC.html">
+        Otvorenie nového MIC laboratória
+        <span class="sr-date">2. 2. 2026</span>
+      </a>
+    </div>
+
+    <div class="side-box">
+      <div class="side-box-title">Súvisiace služby</div>
+      <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+        <a class="btn-gold" href="animal-ba-ryby.html" style="font-size:13px;padding:7px 14px;justify-content:center;">🐟 Vyšetrenia rýb</a>
+        <a class="btn-secondary" href="voda-ba.html" style="font-size:13px;padding:7px 14px;justify-content:center;">💧 Analýzy vody</a>
+        <a class="btn-secondary" href="https://eziadanky.svpu.sk:4433" target="_blank" rel="noopener" style="font-size:13px;padding:7px 14px;justify-content:center;">📋 E-žiadanka</a>
+      </div>
+    </div>
+
+    <div class="side-box">
+      <div class="side-box-title">Kontakt VPÚ Bratislava</div>
+      <div class="side-contact">
+        <strong>Botanická 15, 842 52 Bratislava</strong><br>
+        Tel: <a href="tel:+421238108212">+421 2 38 108 212</a><br>
+        <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a><br><br>
+        <strong>Otváracie hodiny</strong><br>
+        Pondelok – Piatok<br>8:00 – 15:00
+      </div>
+    </div>
+  </aside>
+
+  
+  <!-- MAIN -->
+  <main id="main" class="content" tabindex="-1">
+
+    <div class="article-img">
+      <img src="akva.png" alt="Akvárium"
+           onerror="this.parentElement.innerHTML='🐟'">
+    </div>
+
+  <main id="main" class="content" tabindex="-1">
+    <article class="article-wrap">
+
+      <div class="article-meta">
+        <span class="article-tag tag-new">🆕 Nová služba</span>
+        <span class="article-tag">🐟 Akvaristika</span>
+        <span class="article-date">28. marca 2026</span>
+        <span class="article-source">Zdroj: <strong>VPÚ v Bratislave</strong></span>
+      </div>
+
+      <h1 class="article-title">Viete, čo skutočne zabíja vaše ryby? Spúšťame laboratórne rozbory akváriovej vody</h1>
+
+      <p class="article-lead">VPÚ v Bratislave rozširuje svoju ponuku o špecializované analytické balíčky pre akvaristov. Prvýkrát na Slovensku môžete dať vodu z akvária, krevetkária alebo morskej nádrže vyšetriť v akreditovanom veterinárnom laboratóriu — rovnakým spôsobom, ako sa testuje pitná voda.</p>
+
+      <div class="article-body">
+
+        <h2>Väčšina úhynov rýb nemá infekčnú príčinu</h2>
+
+        <p>Ak vám hynú ryby a veterinár nenašiel parazity ani baktérie, príčina je pravdepodobne vo vode. <strong>Toxický amoniak, nulový kyslík, neviditeľná meď alebo premnožené baktérie</strong> zabíjajú ticho a rýchlo — bez viditeľných príznakov, na ktoré by ste mohli včas zareagovať.</p>
+
+        <p>Bežné akvaristické testy z obchodu merajú len to, čo výrobca do prúžku naprogramoval. Nedokážu rozlíšiť voľný amoniak od amónia, nezmeria stopové kovy, nepovedia vám, koľko baktérií sa vo vašej vode množí. <strong>Laboratórna analýza ide hlbšie</strong> — použijeme rovnaké prístroje a metódy, aké platia pre pitné vody a veterinárnu diagnostiku.</p>
+
+        <div class="article-callout">
+          „Vo väčšine prípadov, keď k nám chovateľ prinesie uhynuté ryby, ukáže sa, že primárnym problémom nebola choroba, ale zlá voda. Amoniak, nedostatok kyslíka alebo stopové množstvo medi — to sú veci, ktoré bežným testom nezistíte."
+        </div>
+
+        <h2>Deväť balíčkov pre každý typ nádrže</h2>
+
+        <p>Zostavili sme balíčky tak, aby každý akvarista našiel presne to, čo potrebuje — či chová bežné tropické ryby, náročné krevety Caridina, rastlinné aquascape nádrže s CO₂, alebo morské akvárium s koralmi.</p>
+
+        <div class="pkg-overview">
+          <div class="pkg-overview-hdr">
+            <span>Balíček</span>
+            <span>Pre koho je určený</span>
+          </div>
+
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-b">Základný</span> Start-Up</div>
+            <div class="pkg-row-desc">Nové akvárium — overenie, či je voda bezpečná pred vpustením rýb. Kontrola nitrifikačného cyklu (NH₃, NO₂, NO₃, pH, KH, GH).</div>
+          </div>
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-b">Základný</span> Routine Monitoring</div>
+            <div class="pkg-row-desc">Pravidelná kontrola bežného akvária. Pomôže nastaviť správnu frekvenciu výmeny vody a odhaliť skrytú záťaž (NO₃, PO₄, pH, EC).</div>
+          </div>
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-p">Rastliny</span> Aquascaper Pro</div>
+            <div class="pkg-row-desc">High-tech nádrže s CO₂. Výpočet Redfieldovho pomeru NO₃:PO₄, deficit Fe, K, Mg — príčiny stagnovania rastlín a rastu rias.</div>
+          </div>
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-p">Rastliny</span> Problémové rastliny</div>
+            <div class="pkg-row-desc">Chloróza, diery v listoch, rozpad okrajov — presná diagnóza deficitu K, Fe, Mg alebo Mn bez dohadovania sa.</div>
+          </div>
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-p">Rastliny</span> Stop Riasam</div>
+            <div class="pkg-row-desc">Premnoženie rias a siníc — identifikácia príčiny: prebytok fosfátov, kremičitanov alebo deficit draslíka, za ktorý môžu sinice.</div>
+          </div>
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-s">Krevety</span> Shrimp Expert</div>
+            <div class="pkg-row-desc">Caridina a Neocaridina — meranie medi (smrteľná nad 0,03 mg/l), minerálnej stability pre zvliekanie (GH, KH, EC, pH).</div>
+          </div>
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-v">Veterinárny</span> Healthy Fish</div>
+            <div class="pkg-row-desc">Choré alebo apatické ryby — rozlíšenie environmentálneho stresu od bakteriálnej infekcie. Chémia + mikrobiológia vody (NH₃, NO₂, O₂, CPM).</div>
+          </div>
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-pr">Prémiový</span> Vet-Extended</div>
+            <div class="pkg-row-desc">Kultivácia patogénov (Aeromonas, Pseudomonas) a antibiogram. Pre drahé ryby — Diskusy, KOI, L-sumce a vzácne druhy.</div>
+          </div>
+          <div class="pkg-row">
+            <div class="pkg-row-name"><span class="pkg-row-cat cat-m">Morská voda</span> Marine Reef ICP</div>
+            <div class="pkg-row-desc">ICP-OES analýza 30+ stopových prvkov morskej vody. Vápnik, horčík, KH a stopové prvky kľúčové pre rast koralov.</div>
+          </div>
+        </div>
+
+        <h2>Ako to funguje</h2>
+
+        <p>Postup je jednoduchý. Odoberiete vzorku vody z vašej nádrže do čistej fľaše (min. 1 liter), vyplníte e-žiadanku online a doručíte vzorku do nášho laboratória na Botanickej 15 v Bratislave — osobne, poštou alebo cez niektorú z pravidelných zvozných liniek. <strong>Výsledky dostanete e-mailom spravidla do 3–5 pracovných dní.</strong></p>
+
+        <p>Ku každému výsledku dostanete aj interpretáciu — nie len stĺpec čísel, ale vysvetlenie, čo konkrétna hodnota znamená pre vaše ryby a čo odporúčame urobiť. Ak ide o veterinárny balíček Healthy Fish alebo Vet-Extended, výsledok obsahuje aj konkrétne odporúčanie liečby.</p>
+
+        <h2>Prečo práve akreditované laboratórium?</h2>
+
+        <p>VPÚ v Bratislave je akreditované laboratórium podľa normy ISO/IEC 17025. To znamená, že naše výsledky sú overiteľné, reprodukovateľné a majú oveľa vyššiu výpovednú hodnotu ako testy z akvaristického obchodu. Používame certifikované referenčné štandardy, kalibrované prístroje a overené analytické metódy — rovnaké, aké sa používajú pri kontrole pitnej vody.</p>
+
+        <p>Pre chovateľov komerčných rýb, prevádzkovateľov akvaristických predajní alebo chovných zariadení navyše vieme vystaviť <strong>protokol o rozbore vody</strong>, ktorý môže slúžiť ako doklad o kvalite vody pri predaji rýb.</p>
+
+        <div class="article-cta">
+          <div class="article-cta-text">
+            <strong>Dajte si vodu vyšetriť</strong>
+            <span>Vyberte balíček, odoberte vzorku a podajte e-žiadanku online. Výsledky do 3–5 dní.</span>
+          </div>
+          <div class="article-cta-btns">
+            <a class="btn-gold" href="voda-ba.html#aqualab-akvarium">🧪 Pozrieť balíčky</a>
+            <a class="btn-secondary" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.5);" href="https://eziadanky.svpu.sk:4433" target="_blank" rel="noopener">📋 E-žiadanka</a>
+          </div>
+        </div>
+
+      </div><!-- /.article-body -->
+
+      <div class="article-share">
+        <span>Zdieľať:</span>
+        <a class="share-btn" href="mailto:?subject=VPÚ Bratislava: Rozbory akváriovej vody&body=Nová služba VPÚ v Bratislave — laboratórne rozbory vody z akvária pre akvaristov. https://svpu.sk/aktualita-akvarium.html">✉ E-mail</a>
+        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://svpu.sk/aktualita-akvarium.html" target="_blank" rel="noopener">Facebook</a>
+        <a class="share-btn" href="#" onclick="navigator.clipboard&&navigator.clipboard.writeText(location.href);this.textContent='✓ Skopírované';setTimeout(()=>this.textContent='🔗 Kopírovať odkaz',2000);return false;">🔗 Kopírovať odkaz</a>
+      </div>
+
+    </article>
+
+    <!-- Navigácia medzi článkami -->
+    <div style="display:flex;justify-content:flex-start;gap:10px;flex-wrap:wrap;">
+      <a class="btn-secondary" href="aktuality.html#ba">← Všetky aktuality VPÚ Bratislava</a>
+    </div>
+
+  </main>
+</div></div>
+
+<div class="feedback-bar" role="complementary" aria-label="Hodnotenie stránky">
+  <div class="inner">
+    <p>Pomohla vám táto stránka?</p>
+    <div class="feedback-btns">
+      <button class="fb-btn" aria-label="Stránka mi pomohla">👍 Áno, pomohla</button>
+      <button class="fb-btn" aria-label="Stránka mi nepomohla">👎 Nie, nepomohla</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="inner">
+      <div>
+        <h4>Štátny veterinárny a potravinový ústav</h4>
+        <p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>
+        IČO: 42355613<br>
+        E-mail: <a href="mailto:info@svpu.sk">info@svpu.sk</a></p>
+        <p style="margin-top:10px;">Zriadený Ministerstvom pôdohospodárstva a rozvoja vidieka SR.</p>
+        <div class="footer-logos">
+          <div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div>
+        </div>
+      </div>
+      <div>
+        <h4>Pracoviská</h4>
+        <ul>
+          <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+          <li><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a></li>
+          <li><a href="vpu-ke.html">VPÚ v Košiciach</a></li>
+          <li><a href="vpu-zv.html">VÚ v Zvolene</a></li>
+          <li><a href="gr.html">Generálne riaditeľstvo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Služby</h4>
+        <ul>
+          <li><a href="vysetrenia-ba.html">Vyšetrenia zvierat</a></li>
+          <li><a href="potraviny-ba.html">Analýzy potravín</a></li>
+          <li><a href="krmiva-ba.html">Analýzy krmív</a></li>
+          <li><a href="voda-ba.html">Analýzy vody</a></li>
+          <li><a href="certifikacia-ba.html">Certifikácia osôb</a></li>
+          <li><a href="cennik-ba.html">Cenník a ponuka</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Povinné zverejňovanie</h4>
+        <ul>
+          <li><a href="#">Povinne zverejňované dokumenty</a></li>
+          <li><a href="#">Prístupnosť webu</a></li>
+          <li><a href="#">Ochrana osobných údajov</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Slobodný prístup k informáciám</a></li>
+          <li><a href="#">Sťažnosti a podnety</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="inner">
+      <span>© 2026 Štátny veterinárny a potravinový ústav. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span>
+      <span>🇸🇰 gov.sk</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

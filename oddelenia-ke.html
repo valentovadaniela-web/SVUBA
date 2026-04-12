@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oddelenia a laboratóriá – VPÚ v Košiciach – ŠVPÚ</title>
+<meta name="description" content="Adresár oddelení a laboratórií VPÚ v Košiciach. Kontakty na vedúcich pracovníkov.">
+<link rel="stylesheet" href="style.css">
+
+<style>
+.dept-search-wrap{margin-bottom:18px;}
+.dept-search-wrap .input-row{display:flex;align-items:stretch;border:2px solid #1D1D1B;border-radius:4px;overflow:hidden;max-width:420px;background:#fff;}
+.dept-search-wrap input{flex:1;border:none;outline:none;padding:9px 12px;font-size:15px;font-family:inherit;}
+.dept-search-wrap input:focus{background:#FFFDE7;}
+.dept-search-wrap button{background:#1A3C6B;color:#fff;border:none;padding:9px 14px;cursor:pointer;font-size:14px;}
+
+.dept-section{margin-bottom:28px;}
+.dept-section-title{font-size:16px;font-weight:700;color:#1A3C6B;padding:10px 0 8px;border-bottom:2px solid #1A3C6B;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+
+.dept-table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid #E0E0E0;border-radius:4px;overflow:hidden;}
+.dept-table thead tr{background:#1A3C6B;}
+.dept-table thead th{color:#fff;padding:10px 14px;text-align:left;font-size:13px;font-weight:600;}
+.dept-table tbody tr{border-bottom:1px solid #F0F0F0;transition:background .1s;}
+.dept-table tbody tr:last-child{border-bottom:none;}
+.dept-table tbody tr:hover{background:#F0F4FB;}
+.dept-table td{padding:11px 14px;vertical-align:top;color:#1D1D1B;}
+.dept-table td.name{font-weight:600;}
+.dept-table td.role{color:#616161;font-size:13px;}
+.dept-table td a{color:#1A3C6B;text-decoration:none;}
+.dept-table td a:hover{text-decoration:underline;}
+.dept-table td .tel{display:flex;align-items:center;gap:5px;margin-bottom:3px;font-size:13px;}
+.dept-table td .mail{display:flex;align-items:center;gap:5px;font-size:13px;}
+.dept-table td .ico-sm{font-size:13px;}
+
+.dept-note{font-size:13px;color:#616161;font-style:italic;padding:8px 14px;background:#F5F5F5;border-radius:4px;margin-top:6px;}
+
+.dept-hidden{display:none;}
+
+@media(max-width:700px){
+  .dept-table thead th:nth-child(4){display:none;}
+  .dept-table td:nth-child(4){display:none;}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+<div class="sec-nav"><div class="inner"><div class="egov"><span class="sk-badge">SK</span><span>Oficiálna stránka</span><button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn"><strong>e-Gov verejnej správy</strong> ▾</button></div><div class="lang-wrap"><a href="#" class="active">Slovenčina</a><a href="#">English</a></div></div></div>
+<div class="gov-info" id="gov-info"><div class="inner"><div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR.</p></div><div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény.</p></div></div></div>
+<header class="site-hdr" role="banner"><div class="hdr-inner">
+  <div class="hdr-main">
+    <a href="index.html" class="logo"><img src="logo.jpg" class="logo-img" alt="Logo ŠVPÚ"><div class="logo-text"><strong>Štátny veterinárny a potravinový ústav</strong><small>svpu.sk</small></div></a>
+    <div class="hdr-search" role="search"><input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie"><button aria-label="Vyhľadať">🔍 Hľadať</button></div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia"><div class="inner"><ul>
+    <li><a href="org.html" class="active">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ vo Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li>
+    <li><a href="aktuality.html">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="vpu-ba.html#aktuality">Aktuality z VPÚ Bratislava</a><a href="vpu-dk.html#aktuality">Aktuality z VPÚ Dolný Kubín</a><a href="vpu-ke.html#aktuality">Aktuality z VPÚ Košice</a><a href="vpu-zv.html#aktuality">Aktuality z VÚ Zvolen</a></div></li>
+    <li><a href="o-nas.html">O nás</a></li>
+    <li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li>
+  </ul></div></nav>
+</div></header>
+<div class="hero-banner hero-slim" role="img" aria-label="Laboratórna diagnostika ŠVPÚ"><img src="hero.jpg" alt=""><div class="hero-overlay"></div></div>
+<nav class="breadcrumb" aria-label="Ste tu"><ol><li><a href="index.html">Domov</a></li><li><a href="org.html">Organizačné zložky</a></li><li><a href="vpu-ke.html">VPÚ v Košiciach</a></li><li><span class="cur" aria-current="page">Oddelenia a laboratóriá</span></li></ol></nav>
+<div class="page-bg"><div class="page-inner">
+  <aside class="sidebar"><div class="side-box side-nav"><div class="side-box-title">VPÚ v Košiciach</div><ul><li><a href="vysetrenia-ke.html">🐾 Vyšetrenia zvierat</a></li><li><a href="#">🥩 Analýzy potravín</a></li><li><a href="#">🌾 Analýzy krmív</a></li><li><a href="#">💧 Analýzy vody</a></li><li><a href="#">💳 Cenník a ponuka</a></li><li><a href="oddelenia-ke.html"  class="active">📂 Oddelenia a laboratóriá</a></li><li><a href="#">🏅 Akreditácia</a></li></ul></div><div class="side-box"><div class="side-box-title">Kontakt</div>
+<div class="side-contact">
+  <strong>Hlinkova 1/C, 040 01 Košice</strong>
+  Tel: <a href="tel:+421435837143">+421 435 837 143</a><br>
+  <a href="mailto:ke@svpu.sk">ke@svpu.sk</a><br><br>
+  <strong>Otváracie hodiny</strong><br>Pondelok – Piatok<br>8:00 – 15:00
+</div></div></aside>
+  <main id="main" class="content" tabindex="-1">
+    <div class="pg-title">
+      <h1>📂 Oddelenia a laboratóriá</h1>
+      <p>Adresár oddelení a laboratórií VPÚ v Košiciach. Obsahuje kontaktné informácie vedúcich a kľúčových pracovníkov. Mená pracovníkov doplňte podľa aktuálneho stavu.</p>
+    </div>
+    <div class="infobox">
+      <span class="ico">ℹ️</span>
+      <div>Všeobecná recepcia / príjem vzoriek: <strong><a href="tel:+421435837143">+421 435 837 143</a></strong> &nbsp;·&nbsp; <a href="mailto:ke@svpu.sk">ke@svpu.sk</a></div>
+    </div>
+    <div class="infobox infobox-warn" style="margin-bottom:16px;">
+      <span class="ico">✏️</span>
+      <div>Mená pracovníkov označené <strong>[Meno priezvisko]</strong> sú vzorové — doplňte skutočné mená, telefóny a e-maily podľa aktuálneho stavu.</div>
+    </div>
+
+    <div class="dept-search-wrap">
+      <label for="dept-search" style="display:block;font-size:14px;font-weight:600;margin-bottom:5px;">Vyhľadať oddelenie alebo pracovníka:</label>
+      <div class="input-row">
+        <input type="search" id="dept-search" placeholder="Napr. virológia, príjem vzoriek..." oninput="filterDept(this.value)" aria-label="Vyhľadávanie v adresári">
+        <button aria-label="Hľadať">🔍</button>
+      </div>
+    </div>
+
+<div class="dept-section">
+<div class="dept-section-title">🏢 Vedenie</div>
+<table class="dept-table" role="table" aria-label="Adresár oddelení">
+<thead><tr>
+  <th>Oddelenie / laboratórium · Kontaktná osoba</th>
+  <th>Telefón · E-mail</th>
+  <th>Stručná náplň činnosti</th>
+</tr></thead>
+<tbody><tr class="dept-row" data-search="riaditeľ ústavu [meno priezvisko] riadenie ústavu, zastupovanie navonok">
+  <td class="name">Riaditeľ ústavu<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837143">+421 435 837 143</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:riaditel.ke@svpu.sk">riaditel.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Riadenie ústavu, zastupovanie navonok</td>
+</tr><tr class="dept-row" data-search="sekretariát [meno priezvisko] administratíva, koordinácia vedenia">
+  <td class="name">Sekretariát<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837144">+421 435 837 144</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:sekretariat.ke@svpu.sk">sekretariat.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Administratíva, koordinácia vedenia</td>
+</tr></tbody></table>
+</div>
+<div class="dept-section">
+<div class="dept-section-title">🔬 Oddelenie diagnostiky chorôb zvierat</div>
+<table class="dept-table" role="table" aria-label="Adresár oddelení">
+<thead><tr>
+  <th>Oddelenie / laboratórium · Kontaktná osoba</th>
+  <th>Telefón · E-mail</th>
+  <th>Stručná náplň činnosti</th>
+</tr></thead>
+<tbody><tr class="dept-row" data-search="vedúci oddelenia [meno priezvisko] riadenie oddelenia, diagnostika chorôb zvierat pre región vč">
+  <td class="name">Vedúci oddelenia<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837150">+421 435 837 150</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:diagnostika.ke@svpu.sk">diagnostika.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Riadenie oddelenia, diagnostika chorôb zvierat pre región VČ</td>
+</tr><tr class="dept-row" data-search="laboratórium virológie [meno priezvisko] vírusová diagnostika vrátane vtáčích chorôb">
+  <td class="name">Laboratórium virológie<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837151">+421 435 837 151</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:virologia.ke@svpu.sk">virologia.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Vírusová diagnostika vrátane vtáčích chorôb</td>
+</tr><tr class="dept-row" data-search="laboratórium bakteriológie [meno priezvisko] kultivácia a identifikácia baktérií">
+  <td class="name">Laboratórium bakteriológie<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837152">+421 435 837 152</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:bakterio.ke@svpu.sk">bakterio.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Kultivácia a identifikácia baktérií</td>
+</tr><tr class="dept-row" data-search="laboratórium parazitológie [meno priezvisko] koprológia, sérologická diagnostika parazitóz">
+  <td class="name">Laboratórium parazitológie<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837153">+421 435 837 153</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:parazito.ke@svpu.sk">parazito.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Koprológia, sérologická diagnostika parazitóz</td>
+</tr><tr class="dept-row" data-search="laboratórium molekulárnej biológie [meno priezvisko] pcr diagnostika">
+  <td class="name">Laboratórium molekulárnej biológie<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837154">+421 435 837 154</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:pcr.ke@svpu.sk">pcr.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">PCR diagnostika</td>
+</tr></tbody></table>
+</div>
+<div class="dept-section">
+<div class="dept-section-title">🥩 Oddelenie kontroly potravín a krmív</div>
+<table class="dept-table" role="table" aria-label="Adresár oddelení">
+<thead><tr>
+  <th>Oddelenie / laboratórium · Kontaktná osoba</th>
+  <th>Telefón · E-mail</th>
+  <th>Stručná náplň činnosti</th>
+</tr></thead>
+<tbody><tr class="dept-row" data-search="vedúci oddelenia [meno priezvisko] skúšanie potravín, krmív a vody pre región východného slovenska">
+  <td class="name">Vedúci oddelenia<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837160">+421 435 837 160</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:potraviny.ke@svpu.sk">potraviny.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Skúšanie potravín, krmív a vody pre región východného Slovenska</td>
+</tr><tr class="dept-row" data-search="laboratórium mikrobiológie [meno priezvisko] mikrobiologické skúšanie potravín">
+  <td class="name">Laboratórium mikrobiológie<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837161">+421 435 837 161</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:mikrobio.ke@svpu.sk">mikrobio.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Mikrobiologické skúšanie potravín</td>
+</tr><tr class="dept-row" data-search="laboratórium chémie [meno priezvisko] chemické skúšanie potravín a vody">
+  <td class="name">Laboratórium chémie<br><span class="role">[Meno priezvisko]</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837162">+421 435 837 162</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:chemia.ke@svpu.sk">chemia.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Chemické skúšanie potravín a vody</td>
+</tr></tbody></table>
+</div>
+<div class="dept-section">
+<div class="dept-section-title">📋 Príjem vzoriek</div>
+<table class="dept-table" role="table" aria-label="Adresár oddelení">
+<thead><tr>
+  <th>Oddelenie / laboratórium · Kontaktná osoba</th>
+  <th>Telefón · E-mail</th>
+  <th>Stručná náplň činnosti</th>
+</tr></thead>
+<tbody><tr class="dept-row" data-search="príjem vzoriek – recepcia — príjem vzoriek, výdaj výsledkov, informácie pre zákazníkov">
+  <td class="name">Príjem vzoriek – recepcia<br><span class="role">—</span></td>
+  <td><div class="tel"><span class="ico-sm">📞</span><a href="tel:+421435837143">+421 435 837 143</a></div><div class="mail"><span class="ico-sm">✉️</span><a href="mailto:prijem.ke@svpu.sk">prijem.ke@svpu.sk</a></div></td>
+  <td style="font-size:13px;color:#616161;">Príjem vzoriek, výdaj výsledkov, informácie pre zákazníkov</td>
+</tr></tbody></table>
+</div>
+
+  </main>
+</div></div>
+<div class="feedback-bar"><div class="inner"><p>Pomohla vám táto stránka?</p><div class="feedback-btns"><button class="fb-btn">👍 Áno, pomohla</button><button class="fb-btn">👎 Nie, nepomohla</button></div></div></div>
+<footer class="site-footer"><div class="footer-top"><div class="inner">
+  <div><h4>Štátny veterinárny a potravinový ústav</h4><p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>IČO: 42355613<br><a href="mailto:info@svpu.sk">info@svpu.sk</a></p><div class="footer-logos"><div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div></div></div>
+  <div><h4>Pracoviská</h4><ul><li><a href="vpu-ba.html">VPÚ Bratislava</a></li><li><a href="vpu-dk.html">VPÚ Dolný Kubín</a></li><li><a href="vpu-ke.html">VPÚ Košice</a></li><li><a href="vpu-zv.html">VÚ Zvolen</a></li></ul></div>
+  <div><h4>Informácie</h4><ul><li><a href="o-nas.html">O nás</a></li><li><a href="aktuality.html">Aktuality</a></li><li><a href="kontakt.html">Kontakty</a></li></ul></div>
+  <div><h4>Povinné zverejňovanie</h4><ul><li><a href="#">Prístupnosť webu</a></li><li><a href="#">Ochrana osobných údajov</a></li><li><a href="#">Cookies</a></li></ul></div>
+</div></div><div class="footer-bottom"><div class="inner"><span>© 2026 Štátny veterinárny a potravinový ústav. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span><span>🇸🇰 gov.sk</span></div></div></footer>
+<script src="main.js"></script>
+<script>
+function filterDept(q) {
+  var ql = q.toLowerCase();
+  document.querySelectorAll('.dept-row').forEach(function(row) {
+    row.style.display = row.dataset.search.includes(ql) ? '' : 'none';
+  });
+  // Skry prázdne sekcie
+  document.querySelectorAll('.dept-section').forEach(function(sec) {
+    var visible = Array.from(sec.querySelectorAll('.dept-row')).some(function(r){return r.style.display !== 'none';});
+    sec.style.display = visible ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

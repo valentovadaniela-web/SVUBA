@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oddelenia a laboratóriá – VPÚ v Bratislave – ŠVPÚ</title>
+<meta name="description" content="Adresár oddelení a laboratórií VPÚ v Bratislave. Kontakty na vedúcich a pracovníkov.">
+<link rel="stylesheet" href="style.css">
+<style>
+.dept-search-wrap{margin-bottom:18px;}
+.dept-search-wrap .input-row{display:flex;align-items:stretch;border:2px solid #1D1D1B;border-radius:4px;overflow:hidden;max-width:420px;background:#fff;}
+.dept-search-wrap input{flex:1;border:none;outline:none;padding:9px 12px;font-size:15px;font-family:inherit;}
+.dept-search-wrap input:focus{background:#FFFDE7;}
+.dept-search-wrap button{background:#1A3C6B;color:#fff;border:none;padding:9px 14px;cursor:pointer;font-size:14px;}
+.dept-section{margin-bottom:28px;}
+.dept-section-title{font-size:16px;font-weight:700;color:#fff;background:#1A3C6B;padding:10px 14px;border-radius:4px 4px 0 0;display:flex;align-items:center;gap:8px;margin-bottom:0;}
+.dept-table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid #E0E0E0;border-top:none;border-radius:0 0 4px 4px;overflow:hidden;margin-bottom:0;}
+.dept-table thead tr{background:#E8EFF8;}
+.dept-table thead th{color:#1A3C6B;padding:8px 14px;text-align:left;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #C8D8F0;}
+.dept-table tbody tr{border-bottom:1px solid #F0F0F0;transition:background .1s;}
+.dept-table tbody tr:last-child{border-bottom:none;}
+.dept-table tbody tr:hover{background:#F0F4FB;}
+.dept-table td{padding:10px 14px;vertical-align:top;}
+.dept-table td.nazov{font-weight:600;color:#1D1D1B;min-width:200px;}
+.dept-table td.osoba{color:#616161;font-size:13px;min-width:160px;}
+.dept-table .contact-cell{min-width:180px;}
+.dept-table .tel{display:flex;align-items:center;gap:5px;margin-bottom:3px;font-size:13px;color:#1D1D1B;}
+.dept-table .mail{display:flex;align-items:center;gap:5px;font-size:13px;}
+.dept-table a{color:#1A3C6B;text-decoration:none;}
+.dept-table a:hover{text-decoration:underline;}
+.no-results{padding:14px;font-size:14px;color:#616161;font-style:italic;display:none;}
+@media(max-width:700px){
+  .dept-table thead{display:none;}
+  .dept-table td{display:block;padding:6px 14px;}
+  .dept-table tr{border-bottom:2px solid #E0E0E0;display:block;padding:8px 0;}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+
+<div class="sec-nav"><div class="inner"><div class="egov"><span class="sk-badge">SK</span><span>Oficiálna stránka</span><button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn"><strong>e-Gov verejnej správy</strong> ▾</button></div><div class="lang-wrap"><a href="#" class="active">Slovenčina</a><a href="#">English</a></div></div></div>
+<div class="gov-info" id="gov-info"><div class="inner"><div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR.</p></div><div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény.</p></div></div></div>
+
+<header class="site-hdr" role="banner"><div class="hdr-inner">
+  <div class="hdr-main">
+    <a href="index.html" class="logo"><img src="logo.jpg" class="logo-img" alt="Logo ŠVPÚ"><div class="logo-text"><strong>Štátny veterinárny a potravinový ústav</strong><small>svpu.sk</small></div></a>
+    <div class="hdr-search" role="search"><input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie"><button aria-label="Vyhľadať">🔍 Hľadať</button></div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia"><div class="inner"><ul>
+    <li><a href="org.html" class="active">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ v Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li>
+    <li><a href="aktuality.html">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="vpu-ba.html#aktuality">Aktuality z VPÚ v Bratislave</a><a href="vpu-dk.html#aktuality">Aktuality z VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html#aktuality">Aktuality z VPÚ v Košiciach</a><a href="vpu-zv.html#aktuality">Aktuality z VÚ v Zvolene</a></div></li>
+    <li><a href="o-nas.html">O nás</a></li>
+    <li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li>
+  </ul></div></nav>
+</div></header>
+
+<div class="hero-banner hero-slim" role="img" aria-label="Laboratórna diagnostika ŠVPÚ"><img src="hero.jpg" alt=""><div class="hero-overlay"></div></div>
+
+<nav class="breadcrumb" aria-label="Ste tu"><ol>
+  <li><a href="index.html">Domov</a></li>
+  <li><a href="org.html">Organizačné zložky</a></li>
+  <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+  <li><span class="cur" aria-current="page">Oddelenia a laboratóriá</span></li>
+</ol></nav>
+
+<div class="page-bg"><div class="page-inner">
+  <aside class="sidebar">
+    <div class="side-box side-nav">
+      <div class="side-box-title">VPÚ v Bratislave</div>
+      <ul>
+        <li><a href="vysetrenia-ba.html">🐾 Vyšetrenia zvierat</a></li>
+        <li><a href="potraviny-ba.html">🥩 Analýzy potravín</a></li>
+        <li><a href="krmiva-ba.html">🌾 Analýzy krmív</a></li>
+        <li><a href="voda-ba.html">💧 Analýzy vody</a></li>
+        <li><a href="certifikacia-ba.html">📜 Certifikácia osôb</a></li>
+        <li><a href="cennik-ba.html">💳 Cenník kadáverov</a></li>
+        <li><a href="oddelenia-ba.html" class="active">📂 Oddelenia a laboratóriá</a></li>
+        <li><a href="#">🏅 Akreditácia</a></li>
+      </ul>
+    </div>
+    <div class="side-box">
+  <div class="side-box-title">Kontakt VPÚ v Bratislave </div>
+  <div class="side-contact">
+    <strong>Botanická 15, 842 52 Bratislava</strong>
+    <br>
+    Tel: <a href="tel:+421238108212">+ 421 2 38 108 212</a><br>
+    <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a><br><br>
+    <strong>Otváracie hodiny</strong><br>
+    Pondelok – Piatok<br>8:00 – 15:00
+  </div>
+    </div>
+  </aside>
+
+  <main id="main" class="content" tabindex="-1">
+    <div class="pg-title">
+      <h1>📂 Oddelenia a laboratóriá</h1>
+      <p>Adresár oddelení a laboratórií Veterinárneho a potravinového ústavu v Bratislave. Kliknutím na telefónne číslo alebo e-mail sa priamo spojíte s príslušným pracoviskom.</p>
+    </div>
+
+    <div class="infobox">
+      <span class="ico">ℹ️</span>
+      <div>Centrálny príjem vzoriek: <strong><a href="tel:+421238108221">+421 2 38108 221</a></strong></div>
+    </div>
+
+    <div class="dept-search-wrap" style="margin-top:16px;">
+      <label for="dept-search" style="display:block;font-size:14px;font-weight:600;margin-bottom:5px;">Vyhľadať oddelenie alebo pracovníka:</label>
+      <div class="input-row">
+        <input type="search" id="dept-search" placeholder="Napr. virológia, Valentová, príjem..." oninput="filterDept(this.value)" aria-label="Vyhľadávanie v adresári">
+        <button aria-label="Hľadať">🔍</button>
+      </div>
+    </div>
+
+  <div class="dept-section">
+    <div class="dept-section-title">🏢 Úsek riaditeľa</div>
+    <table class="dept-table" role="table">
+      <thead><tr><th>Oddelenie / laboratórium</th><th>Kontaktná osoba</th><th>Telefón · E-mail</th></tr></thead>
+      <tbody>
+    <tr class="dept-row" data-search="riaditeľka vpú v ba mvdr. k. strišková, phd.">
+      <td class="nazov">Riaditeľka VPÚ v BA</td>
+      <td class="osoba">MVDr. K. Strišková, PhD.</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108212">+421 2 38108 212</a></div><div class="tel">📱 <a href="tel:421905387954">421 905 38 7954</a></div><div class="mail">✉️ <a href="mailto:striskova@svuba.sk">striskova@svuba.sk</a></div><div class="mail">✉️ <a href="mailto:riaditel@svuba.sk">riaditel@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="odborná zástupkyňa riaditeľa ing. y. vojsová">
+      <td class="nazov">Odborná zástupkyňa riaditeľa</td>
+      <td class="osoba">Ing. Y. Vojsová</td>
+      <td class="contact-cell"><div class="tel">📱 <a href="tel:421917313572">421 917 313 572</a></div><div class="mail">✉️ <a href="mailto:yvojsova@svuba.sk">yvojsova@svuba.sk</a></div></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="dept-section">
+    <div class="dept-section-title">📋 Útvar riadenia kvality</div>
+    <table class="dept-table" role="table">
+      <thead><tr><th>Oddelenie / laboratórium</th><th>Kontaktná osoba</th><th>Telefón · E-mail</th></tr></thead>
+      <tbody>
+    <tr class="dept-row" data-search="manažér kvality ing. j. minárová">
+      <td class="nazov">Manažér kvality</td>
+      <td class="osoba">Ing. J. Minárová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108219">+421 2 38108 219</a></div><div class="tel">📱 <a href="tel:421905899567">421 905 899 567</a></div><div class="mail">✉️ <a href="mailto:minarova@svuba.sk">minarova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="metrológ ing. m. orlická">
+      <td class="nazov">Metrológ</td>
+      <td class="osoba">Ing. M. Orlická</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108219">+421 2 38108 219</a></div><div class="tel">📱 <a href="tel:421907426893">421 907 426 893</a></div><div class="mail">✉️ <a href="mailto:metrologia@svuba.sk">metrologia@svuba.sk</a></div></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="dept-section">
+    <div class="dept-section-title">💰 Úsek ekonomiky</div>
+    <table class="dept-table" role="table">
+      <thead><tr><th>Oddelenie / laboratórium</th><th>Kontaktná osoba</th><th>Telefón · E-mail</th></tr></thead>
+      <tbody>
+    <tr class="dept-row" data-search="kancelária a sekretariát riaditeľa s. mihalková">
+      <td class="nazov">Kancelária a sekretariát riaditeľa</td>
+      <td class="osoba">S. Mihalková</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108211">+421 2 38108 211</a></div><div class="tel">📱 <a href="tel:421905387952">421 905 387 952</a></div><div class="mail">✉️ <a href="mailto:sabina.mihalkova@svuba.sk">sabina.mihalkova@svuba.sk</a></div><div class="mail">✉️ <a href="mailto:sekretariat@svuba.sk">sekretariat@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="pokladňa s. mihalková">
+      <td class="nazov">Pokladňa</td>
+      <td class="osoba">S. Mihalková</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108218">+421 2 38108 218</a></div><div class="tel">📱 <a href="tel:421905387952">421 905 387 952</a></div><div class="mail">✉️ <a href="mailto:sabina.mihalkova@svuba.sk">sabina.mihalkova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="fakturácia s. chladná">
+      <td class="nazov">Fakturácia</td>
+      <td class="osoba">S. Chladná</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108216">+421 2 38108 216</a></div><div class="tel">📱 <a href="tel:421905387950">421 905 387 950</a></div><div class="mail">✉️ <a href="mailto:fakturacia@svuba.sk">fakturacia@svuba.sk</a></div><div class="mail">✉️ <a href="mailto:scarlet.chladna@svuba.sk">scarlet.chladna@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="mzdové účtovníctvo ing. d. míznerová">
+      <td class="nazov">Mzdové účtovníctvo</td>
+      <td class="osoba">Ing. D. Míznerová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108216">+421 2 38108 216</a></div><div class="mail">✉️ <a href="mailto:personalne@damiz.sk">personalne@damiz.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="finančné účtovníctvo d. pakanová">
+      <td class="nazov">Finančné účtovníctvo</td>
+      <td class="osoba">D. Pakanová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108216">+421 2 38108 216</a></div><div class="tel">📱 <a href="tel:421905387950">421 905 387 950</a></div><div class="mail">✉️ <a href="mailto:diana.pakanova@svuba.sk">diana.pakanova@svuba.sk</a></div></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="dept-section">
+    <div class="dept-section-title">🚛 Úsek logistiky a vnútornej správy</div>
+    <table class="dept-table" role="table">
+      <thead><tr><th>Oddelenie / laboratórium</th><th>Kontaktná osoba</th><th>Telefón · E-mail</th></tr></thead>
+      <tbody>
+    <tr class="dept-row" data-search="zásobovanie j. ács">
+      <td class="nazov">Zásobovanie</td>
+      <td class="osoba">J. Ács</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108217">+421 2 38108 217</a></div><div class="tel">📱 <a href="tel:421905241265">421 905 241 265</a></div><div class="mail">✉️ <a href="mailto:objednavky@svuba.sk">objednavky@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="logistika a vnútorná správa ">
+      <td class="nazov">Logistika a vnútorná správa</td>
+      <td class="osoba"></td>
+      <td class="contact-cell"><div class="tel">📱 <a href="tel:421905387837">421 905 387 837</a></div><div class="mail">✉️ <a href="mailto:dispecing@svuba.sk">dispecing@svuba.sk</a></div></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="dept-section">
+    <div class="dept-section-title">🔬 Odbor zdravia zvierat</div>
+    <table class="dept-table" role="table">
+      <thead><tr><th>Oddelenie / laboratórium</th><th>Kontaktná osoba</th><th>Telefón · E-mail</th></tr></thead>
+      <tbody>
+    <tr class="dept-row" data-search="vedúci odboru mgr. d. valentová">
+      <td class="nazov">Vedúci odboru</td>
+      <td class="osoba">Mgr. D. Valentová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108222">+421 2 38108 222</a></div><div class="tel">📱 <a href="tel:421905393485">421 905 393 485</a></div><div class="mail">✉️ <a href="mailto:valentova@svuba.sk">valentova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="centrálny príjem Odboru zdravia zvierat d. chrenka seďová">
+      <td class="nazov">Centrálny príjem Odboru zdravia zvierat</td>
+      <td class="osoba">D. Chrenka Seďová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108221">+421 2 38108 221</a></div><div class="mail">✉️ <a href="mailto:sedova@svuba.sk">sedova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium patológie mvdr. p. bolgáč">
+      <td class="nazov">Laboratórium patológie</td>
+      <td class="osoba">MVDr. P. Bolgáč</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108224">+421 2 38108 224</a></div><div class="tel">📱 <a href="tel:421915931471">421 915 931 471</a></div><div class="mail">✉️ <a href="mailto:bolgac@svuba.sk">bolgac@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium špeciálnej mikrobiológie mvdr. j. kuzma, phd">
+      <td class="nazov">Laboratórium špeciálnej mikrobiológie - bakteriológia</td>
+      <td class="osoba">MVDr. J. Kuzma, PhD</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108228">+421 2 38108 228</a></div><div class="tel">📱 <a href="tel:421905624809">421 905 624 809</a></div><div class="mail">✉️ <a href="mailto:kuzma@svuba.sk">kuzma@svuba.sk</a></div><div class="mail">✉️ <a href="mailto:bacteriology@svuba.sk">bacteriology@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium špeciálnej mikrobiológie mgr. d. valentová">
+      <td class="nazov">Laboratórium špeciálnej mikrobiológie - mykológia</td>
+      <td class="osoba">Mgr. D. Valentová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108222">+421 2 38108 222</a></div><div class="tel">📱 <a href="tel:421905393485">421 905 393 485</a></div><div class="mail">✉️ <a href="mailto:valentova@svuba.sk">valentova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium parazitológie mgr. d. valentová">
+      <td class="nazov">Laboratórium parazitológie</td>
+      <td class="osoba">Mgr. D. Valentová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108222">+421 2 38108 222</a></div><div class="tel">📱 <a href="tel:421905393485">421 905 393 485</a></div><div class="mail">✉️ <a href="mailto:valentova@svuba.sk">valentova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium sérologie, virológie a molekulárnej biológie mvdr. k. strišková, phd.">
+      <td class="nazov">Laboratórium sérologie, virológie a molekulárnej biológie</td>
+      <td class="osoba">MVDr. K. Strišková, PhD.</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108232">+421 2 38108 232</a></div><div class="tel">📱 <a href="tel:+421238108230">+421 2 38108 230</a></div><div class="mail">✉️ <a href="mailto:striskova@svuba.sk">striskova@svuba.sk</a></div><div class="mail">✉️ <a href="mailto:serologia@svuba.sk">serologia@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium prípravných a pomocných činností z. vaszká">
+      <td class="nazov">Laboratórium prípravných a pomocných činností</td>
+      <td class="osoba">Z. Vaszká</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108226">+421 2 38108 226</a></div><div class="mail">✉️ <a href="mailto:vaszka@svuba.sk">vaszka@svuba.sk</a></div></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="dept-section">
+    <div class="dept-section-title">🥩 Odbor bezpečnosti potravín a krmív</div>
+    <table class="dept-table" role="table">
+      <thead><tr><th>Oddelenie / laboratórium</th><th>Kontaktná osoba</th><th>Telefón · E-mail</th></tr></thead>
+      <tbody>
+    <tr class="dept-row" data-search="vedúci odboru ing. y. vojsová">
+      <td class="nazov">Vedúci odboru</td>
+      <td class="osoba">Ing. Y. Vojsová</td>
+      <td class="contact-cell"><div class="tel">📱 <a href="tel:421917313572">421 917 313 572</a></div><div class="mail">✉️ <a href="mailto:yvojsova@svuba.sk">yvojsova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="centrálny príjem Odboru bezpečnosti potravín a krmív d. chrenka seďová">
+      <td class="nazov">Centrálny príjem Odboru bezpečnosti potravín a krmív</td>
+      <td class="osoba">D. Chrenka Seďová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108221">+421 2 38108 221</a></div><div class="mail">✉️ <a href="mailto:sedova@svuba.sk">sedova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium mikrobiológie mvdr. l. kazarková">
+      <td class="nazov">Laboratórium mikrobiológie</td>
+      <td class="osoba">MVDr. L. Kazarková</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108242">+421 2 38108 242</a></div><div class="tel">📱 <a href="tel:421905387951">421 905 387 951</a></div><div class="mail">✉️ <a href="mailto:kazarkova@svuba.sk">kazarkova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium cudzorodých látok ing. r. španíková">
+      <td class="nazov">Laboratórium cudzorodých látok</td>
+      <td class="osoba">Ing. R. Španíková</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108250">+421 2 38108 250</a></div><div class="tel">📱 <a href="tel:421917494859">421 917 494 859</a></div><div class="mail">✉️ <a href="mailto:spanikova@svuba.sk">spanikova@svuba.sk</a></div><div class="mail">✉️ <a href="mailto:pesticidy@svuba.sk">pesticidy@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium aditívnych látok ing. l. martinkovičová">
+      <td class="nazov">Laboratórium aditívnych látok</td>
+      <td class="osoba">Ing. L. Martinkovičová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108260">+421 2 38108 260</a></div><div class="tel">📱 <a href="tel:421905315936">421 905 315 936</a></div><div class="mail">✉️ <a href="mailto:lmartinkovicova@svuba.sk">lmartinkovicova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium fyzikálno-chemických analýz ing. j. budajová">
+      <td class="nazov">Laboratórium fyzikálno-chemických analýz</td>
+      <td class="osoba">Ing. J. Budajová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108265">+421 2 38108 265</a></div><div class="tel">📱 <a href="tel:421905875159">421 905 875 159</a></div><div class="mail">✉️ <a href="mailto:budajova@svuba.sk">budajova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="analýza krmív a odvodených produktov ing. p. bobuš">
+      <td class="nazov">Analýza krmív a odvodených produktov</td>
+      <td class="osoba">Ing. P. Bobuš</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108267">+421 2 38108 267</a></div><div class="mail">✉️ <a href="mailto:bobus@svuba.sk">bobus@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="laboratórium senzorických analýz ing. j. budajová">
+      <td class="nazov">Laboratórium senzorických analýz</td>
+      <td class="osoba">Ing. J. Budajová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108265">+421 2 38108 265</a></div><div class="tel">📱 <a href="tel:421905875159">421 905 875 159</a></div><div class="mail">✉️ <a href="mailto:budajova@svuba.sk">budajova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="certifikačný orgán pre certifikáciu osôb ing. j. repová">
+      <td class="nazov">Certifikačný orgán pre certifikáciu osôb</td>
+      <td class="osoba">Ing. J. Repová</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421238108244">+421 2 38108 244</a></div><div class="tel">📱 <a href="tel:421905387955">421 905 387 955</a></div><div class="mail">✉️ <a href="mailto:repova@svuba.sk">repova@svuba.sk</a></div></td>
+    </tr>
+    <tr class="dept-row" data-search="referenčné laboratórium environmentálnej rádioaktivity (nitra) rndr. l. puskeiler">
+      <td class="nazov">Referenčné laboratórium environmentálnej rádioaktivity (Nitra)</td>
+      <td class="osoba">RNDr. L. Puskeiler</td>
+      <td class="contact-cell"><div class="tel">📞 <a href="tel:+421376414474">+421 37 6414 474</a></div><div class="tel">📱 <a href="tel:421915083224">421 915 083 224</a></div><div class="mail">✉️ <a href="mailto:puskeiler@svuba.sk">puskeiler@svuba.sk</a></div></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
+  </main>
+</div></div>
+
+<div class="feedback-bar"><div class="inner"><p>Pomohla vám táto stránka?</p><div class="feedback-btns"><button class="fb-btn">👍 Áno, pomohla</button><button class="fb-btn">👎 Nie, nepomohla</button></div></div></div>
+
+<footer class="site-footer"><div class="footer-top"><div class="inner">
+  <div><h4>Štátny veterinárny a potravinový ústav</h4><p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>IČO: 42355613<br><a href="mailto:info@svpu.sk">info@svpu.sk</a></p><div class="footer-logos"><div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div></div></div>
+  <div><h4>Pracoviská</h4><ul><li><a href="vpu-ba.html">VPÚ v Bratislave</a></li><li><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a></li><li><a href="vpu-ke.html">VPÚ v Košiciach</a></li><li><a href="vpu-zv.html">VÚ v Zvolene</a></li></ul></div>
+  <div><h4>Informácie</h4><ul><li><a href="o-nas.html">O nás</a></li><li><a href="aktuality.html">Aktuality</a></li><li><a href="kontakt.html">Kontakty</a></li></ul></div>
+  <div><h4>Povinné zverejňovanie</h4><ul><li><a href="#">Prístupnosť webu</a></li><li><a href="#">Ochrana osobných údajov</a></li><li><a href="#">Cookies</a></li></ul></div>
+</div></div><div class="footer-bottom"><div class="inner"><span>© 2026 Štátny veterinárny a potravinový ústav. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span><span>🇸🇰 gov.sk</span></div></div></footer>
+
+<script src="main.js"></script>
+<script>
+function filterDept(q) {
+  var ql = q.toLowerCase();
+  document.querySelectorAll('.dept-row').forEach(function(row) {
+    row.style.display = row.dataset.search.includes(ql) ? '' : 'none';
+  });
+  document.querySelectorAll('.dept-section').forEach(function(sec) {
+    var visible = Array.from(sec.querySelectorAll('.dept-row')).some(function(r){ return r.style.display !== 'none'; });
+    sec.style.display = visible ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

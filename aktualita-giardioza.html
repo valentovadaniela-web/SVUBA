@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informácie o giardióze – VPÚ v Bratislave – ŠVPÚ</title>
+<meta name="description" content="Giardióza u psov a mačiek – informácie o diagnostike a vyšetrení vo VPÚ v Bratislave.">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== Doplnkové štýly pre článok – neprepisujú style.css ===== */
+
+.article-hdr {
+  background: #f5f5f5;
+  border-top: 4px solid var(--navy, #0b2d6e);
+  padding: 24px 0 20px;
+}
+.article-hdr .inner {
+  max-width: 1200px;   /* alebo presne to, čo má .page-inner */
+  margin: 0 auto;
+  padding: 0 20px;     /* kľúčové – zarovnanie s obsahom */
+}
+.article-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--navy, #0b2d6e);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 3px 11px;
+  border-radius: 2px;
+  width: fit-content;
+}
+.article-hdr h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+  max-width: 780px;
+}
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--grey4, #595959);
+  flex-wrap: wrap;
+}
+
+.article-img {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 22px;
+  background: #ddeaf5;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  color: #b0c8df;
+  overflow: hidden;
+}
+.article-img img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.article-perex {
+  font-size: 17px;
+  line-height: 1.65;
+  border-left: 4px solid var(--navy, #0b2d6e);
+  padding-left: 16px;
+  margin-bottom: 22px;
+}
+
+.article-text { font-size: 16px; line-height: 1.75; }
+.article-text p { margin-bottom: 16px; }
+.article-text h2 {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 26px 0 10px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #e0e0e0;
+}
+.article-text ul { list-style: none; margin: 0 0 16px; padding: 0; }
+.article-text ul li {
+  padding: 7px 0 7px 26px;
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.article-text ul li:last-child { border-bottom: none; }
+.article-text ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--navy, #0b2d6e);
+  font-size: 12px;
+  top: 9px;
+}
+
+.article-highlight {
+  background: #eef3fb;
+  border: 1px solid #c5d8f0;
+  border-left: 5px solid var(--navy, #0b2d6e);
+  border-radius: 3px;
+  padding: 16px 18px;
+  margin: 20px 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.article-highlight strong {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--navy, #0b2d6e);
+  margin-bottom: 5px;
+}
+
+.article-warning {
+  background: #fff8e1;
+  border: 1px solid #f2a900;
+  border-left: 5px solid #f2a900;
+  border-radius: 3px;
+  padding: 14px 16px;
+  margin: 20px 0;
+  font-size: 15px;
+  line-height: 1.7;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.article-warning .w-ico { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+.article-cta {
+  background: var(--navy, #0b2d6e);
+  color: #fff;
+  border-radius: 3px;
+  padding: 20px 22px;
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.article-cta__text { font-size: 15px; font-weight: 600; line-height: 1.4; }
+.article-cta__text small { display: block; font-size: 13px; font-weight: 400; opacity: 0.85; margin-top: 3px; }
+.article-cta a.cta-btn {
+  background: #fff;
+  color: var(--navy, #0b2d6e);
+  padding: 9px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.article-cta a.cta-btn:hover { background: #eef3fb; }
+
+.article-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 28px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.article-nav a {
+  color: var(--navy, #0b2d6e);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+.article-nav a:hover { text-decoration: underline; }
+
+.related-list { list-style: none; padding: 0; margin: 0; }
+.related-list li { border-bottom: 1px solid #e5e5e5; padding: 8px 0; }
+.related-list li:first-child { padding-top: 0; }
+.related-list li:last-child { border-bottom: none; }
+.related-list a { color: var(--ink, #1a1a1a); text-decoration: none; font-size: 13px; display: block; line-height: 1.4; }
+.related-list a:hover { color: var(--navy, #0b2d6e); text-decoration: underline; }
+.related-list .rel-date { font-size: 11px; color: var(--grey4, #595959); margin-bottom: 2px; display: block; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+
+<div class="sec-nav">
+  <div class="inner">
+    <div class="egov">
+      <span class="sk-badge">SK</span>
+      <span>Oficiálna stránka</span>
+      <button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn" aria-controls="gov-info">
+        <strong>e-Gov verejnej správy</strong> ▾
+      </button>
+    </div>
+    <div class="lang-wrap">
+      <a href="#" class="active">Slovenčina</a>
+      <a href="#">English</a>
+    </div>
+  </div>
+</div>
+<div class="gov-info" id="gov-info" role="region" aria-label="Informácie o stránke">
+  <div class="inner">
+    <div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR. <a href="https://www.slovensko.sk/sk/agendy/agenda/_organy-verejnej-moci" target="_blank" rel="noopener">Zoznam orgánov verejnej moci.</a></p></div>
+    <div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény webového sídla.</p></div>
+  </div>
+</div>
+
+<header class="site-hdr" role="banner">
+  <div class="hdr-inner">
+    <div class="hdr-main">
+      <a href="index.html" class="logo" aria-label="Štátny veterinárny a potravinový ústav – domovská stránka">
+        <img src="logo.jpg" class="logo-img" alt="Logo Štátny veterinárny a potravinový ústav">
+        <div class="logo-text">
+          <strong>Štátny veterinárny a potravinový ústav</strong>
+          <small>svpu.sk</small>
+        </div>
+      </a>
+      <div class="hdr-search" role="search" aria-label="Vyhľadávanie">
+        <input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie">
+        <button aria-label="Vyhľadať">🔍 Hľadať</button>
+      </div>
+    </div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia">
+    <div class="inner"><ul>
+      <li><a href="org.html">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ v Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li>
+      <li><a href="aktuality.html" class="active">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="vpu-ba.html#aktuality">Aktuality z VPÚ v Bratislave</a><a href="vpu-dk.html#aktuality">Aktuality z VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html#aktuality">Aktuality z VPÚ v Košiciach</a><a href="vpu-zv.html#aktuality">Aktuality z VÚ v Zvolene</a></div></li>
+      <li><a href="o-nas.html">O nás</a></li>
+      <li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li>
+    </ul></div>
+  </nav>
+</header>
+
+<div class="hero-banner hero-slim" role="img" aria-label="Laboratórna diagnostika ŠVPÚ">
+  <img src="hero.jpg" alt="">
+  <div class="hero-overlay"></div>
+</div>
+
+<nav class="breadcrumb" aria-label="Ste tu">
+  <ol>
+    <li><a href="index.html">Domov</a></li>
+    <li><a href="aktuality.html">Aktuality zo ŠVPÚ</a></li>
+    <li><span class="cur" aria-current="page">Informácie o giardióze</span></li>
+  </ol>
+</nav>
+
+<!-- Hlavička článku – plná šírka, nad page-bg -->
+<div class="article-hdr">
+  <div class="inner">
+    <span class="article-category">🐾 Zdravie zvierat · VPÚ v Bratislave</span>
+    <h1>Informácie o giardióze</h1>
+    <div class="article-meta">
+      <span>📅 25. februára 2026</span>
+      <span>✍️ VPÚ v Bratislave</span>
+      <span>⏱️ Čas čítania: ~3 min</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BG + PAGE INNER – identická štruktúra ako zvyšok webu -->
+<div class="page-bg"><div class="page-inner">
+
+  <!-- SIDEBAR VĽAVO -->
+  <aside class="sidebar">
+
+    <div class="side-box side-nav">
+      <div class="side-box-title">Aktuality</div>
+      <ul>
+        <li><a href="aktuality.html">📰 Všetky aktuality</a></li>
+        <li><a href="vpu-ba.html#aktuality" class="active">📍 Aktuality VPÚ v Bratislave</a></li>
+        <li><a href="vpu-dk.html#aktuality">📍 Aktuality VPÚ v Dolnom Kubíne</a></li>
+        <li><a href="vpu-ke.html#aktuality">📍 Aktuality VPÚ v Košiciach</a></li>
+        <li><a href="vpu-zv.html#aktuality">📍 Aktuality VÚ v Zvolene</a></li>
+      </ul>
+    </div>
+
+    <div class="side-box">
+      <div class="side-box-title">Rýchle akcie</div>
+      <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+        <a class="btn-gold" href="vysetrenia-ba.html" style="justify-content:center;font-size:13px;padding:7px 14px;">🐾 Vyšetrenia zvierat</a>
+        <a class="btn-secondary" href="ziadanky-ba.html" style="justify-content:center;font-size:13px;padding:7px 14px;">📋 Žiadanky a tlačivá</a>
+      </div>
+    </div>
+
+    <div class="side-box">
+      <div class="side-box-title">Kontakt VPÚ v Bratislave</div>
+      <div class="side-contact">
+        <strong>Botanická 15, 842 52 Bratislava</strong><br>
+        Tel: <a href="tel:+421238108212">+421 2 38 108 212</a><br>
+        <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a><br><br>
+        <strong>Otváracie hodiny</strong><br>
+        Pondelok – Piatok<br>8:00 – 15:00
+      </div>
+    </div>
+
+    <div class="side-box">
+      <div class="side-box-title">Súvisiace aktuality</div>
+      <div style="padding:10px 14px">
+        <ul class="related-list">
+          <li><span class="rel-date">15. 3. 2026</span><a href="#">Antimikrobiálna aktivita medu</a></li>
+          <li><span class="rel-date">16. 2. 2026</span><a href="#">Zvozné linky – zmena harmonogramu</a></li>
+          <li><span class="rel-date">9. 2. 2026</span><a href="#">Senzorické skúšky – termíny 2026</a></li>
+          <li><span class="rel-date">1. 1. 2026</span><a href="#">Nový cenník likvidácie kadáverov</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main id="main" class="content" tabindex="-1">
+
+    <div class="article-img">
+      <img src="Giardioza v ba.png" alt="Giardia intestinalis"
+           onerror="this.parentElement.innerHTML='🦠'">
+    </div>
+    <!--
+      AKO VYMENIŤ OBRÁZOK:
+      src="Giardioza v ba.png" → zmeňte na cestu k vášmu súboru.
+      Odporúčaná veľkosť: 900 × 300 px, JPG alebo WebP.
+      Voliteľný popis: <p style="font-size:13px;color:#595959;margin-top:-14px;margin-bottom:18px;font-style:italic">Popis obrázka. Foto: VPÚ BA</p>
+    -->
+
+    <p class="article-perex">
+      V posledných týždňoch sa objavili informácie o zvýšenom výskyte giardiózy v Bratislave.
+    </p>
+
+    <div class="article-text">
+
+      <p>Ako pracovisko Veterinárneho a potravinového ústavu v Bratislave (VPÚ) vnímame zvýšenú pozornosť okolo tejto diagnózy. Giardióza, ochorenie spôsobené parazitom <em>Giardia intestinalis</em>, patrí k častým príčinám hnačiek u psov a mačiek. Naším cieľom nie je vyvolávať paniku, ale poskytnúť chovateľom odborné a spoľahlivé zázemie.</p>
+
+      <h2>Prečo je dôležité nepodceňovať diagnostiku?</h2>
+
+      <p>Giardie sú mikroskopické prvoky, ktoré nie sú viditeľné voľným okom. Ich záchyt môže byť náročný, keďže vylučovanie cýst je nepravidelné a pri jednorazovom vyšetrení môžu uniknúť pozornosti. Príznaky pritom nemusia byť výrazné – často ide len o občasnú mäkkú stolicu, hlien, plynatosť alebo kolísavé tráviace ťažkosti. Niektoré zvieratá zostávajú bez príznakov, no napriek tomu infekciu šíria.</p>
+
+      <div class="article-highlight">
+        <strong>Z praxe VPÚ v Bratislave</strong>
+        Giardie zachytávame najmä u mladých zvierat do 2 rokov a u jedincov pochádzajúcich z útulkov alebo z prostredia s vyššou koncentráciou zvierat. U starších zvierat ide skôr o sporadický nález.
+      </div>
+
+      <h2>Prečo sa obrátiť na VPÚ?</h2>
+
+      <p>Vo VPÚ v Bratislave máme dlhoročné skúsenosti s mikroskopickou diagnostikou črevných parazitov. Využívame flotáciu ako overenú a spoľahlivú metódu na záchyt cýst giardií v truse. Kľúčom k úspešnej diagnostike je správny odber vzorky a v prípade potreby aj jej opakovanie, čím sa výrazne zvyšuje pravdepodobnosť záchytu.</p>
+
+      <div class="article-warning">
+        <span class="w-ico">⚠️</span>
+        <span><strong>Dôležité upozornenie:</strong> Bežné „odčervenie" nie je proti giardiám účinné. Používajú sa iné účinné látky alebo odlišné dávkovanie, preto je potvrdenie diagnózy zásadné pre správne nastavenie liečby.</span>
+      </div>
+
+      <h2>Ako postupovať?</h2>
+
+      <p>Ak máte podozrenie, alebo ak vaše zviera vykazuje čo i len mierne tráviace ťažkosti:</p>
+
+      <ul>
+        <li>odoberte vzorky trusu aspoň z troch rôznych dní (nemusia byť po sebe)</li>
+        <li>vzorky uchovávajte v chlade a doručte ich naraz – znižuje sa tým riziko falošne negatívneho výsledku, keďže vylučovanie cýst je nepravidelné</li>
+        <li>kontaktujte svojho veterinárneho lekára alebo priamo VPÚ</li>
+        <li>zvážte opakované vyšetrenie, najmä pri pretrvávajúcich problémoch alebo po liečbe</li>
+      </ul>
+
+      <p>Vyšetrenie má význam nielen pri klinických príznakoch, ale aj preventívne – najmä u mladých zvierat alebo pred zaradením do kolektívu.</p>
+
+      <p>My vo VPÚ sme tu pre vás ako partner v starostlivosti o zdravie vašich zvierat. Presná diagnostika je základom účinnej liečby a kontroly šírenia infekcie. Včasné vyšetrenie vám ušetrí čas, opakované problémy aj zbytočné náklady na neúčinnú terapiu.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <div class="article-cta__text">
+        Máte záujem o vyšetrenie na giardiu?
+        <small>Kontaktujte nás alebo pošlite vzorky podľa pokynov na odber.</small>
+      </div>
+      <a href="kontakt.html#ba" class="cta-btn">Kontaktovať VPÚ v Bratislave →</a>
+    </div>
+
+    <div class="article-nav">
+      <a href="aktuality.html">← Späť na aktuality</a>
+      <a href="vysetrenia-ba.html">Vyšetrenia zvierat →</a>
+    </div>
+
+  </main>
+
+</div></div><!-- /page-inner /page-bg -->
+
+<div class="feedback-bar" role="complementary" aria-label="Hodnotenie stránky">
+  <div class="inner">
+    <p>Pomohla vám táto stránka?</p>
+    <div class="feedback-btns">
+      <button class="fb-btn" aria-label="Stránka mi pomohla">👍 Áno, pomohla</button>
+      <button class="fb-btn" aria-label="Stránka mi nepomohla">👎 Nie, nepomohla</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="inner">
+      <div>
+        <h4>Štátny veterinárny a potravinový ústav</h4>
+        <p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>IČO: 42355613<br>
+        E-mail: <a href="mailto:info@svpu.sk">info@svpu.sk</a></p>
+        <p style="margin-top:10px;">Zriadený Ministerstvom pôdohospodárstva a rozvoja vidieka SR.</p>
+        <div class="footer-logos"><div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div></div>
+      </div>
+      <div>
+        <h4>Pracoviská</h4>
+        <ul>
+          <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+          <li><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a></li>
+          <li><a href="vpu-ke.html">VPÚ v Košiciach</a></li>
+          <li><a href="vpu-zv.html">VÚ v Zvolene</a></li>
+          <li><a href="gr.html">Generálne riaditeľstvo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informácie</h4>
+        <ul>
+          <li><a href="o-nas.html">O nás</a></li>
+          <li><a href="aktuality.html">Aktuality</a></li>
+          <li><a href="kontakt.html">Kontakty</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Povinné zverejňovanie</h4>
+        <ul>
+          <li><a href="#">Povinne zverejňované dokumenty</a></li>
+          <li><a href="#">Prístupnosť webu</a></li>
+          <li><a href="#">Ochrana osobných údajov</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Slobodný prístup k informáciám</a></li>
+          <li><a href="#">Sťažnosti a podnety</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="inner">
+      <span>© 2026 Štátny veterinárny a potravinový ústav. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span>
+      <span>🇸🇰 gov.sk</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

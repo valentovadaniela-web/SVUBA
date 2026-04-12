@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harmonogram zvozných liniek – Štátny veterinárny a potravinový ústav</title>
+<meta name="description" content="Harmonogram zvozných liniek – ŠVPÚ. Laboratórna diagnostika, kontrola potravín a veterinárne vyšetrenia.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+
+<div class="sec-nav">
+  <div class="inner">
+    <div class="egov">
+      <span class="sk-badge">SK</span>
+      <span>Oficiálna stránka</span>
+      <button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn" aria-controls="gov-info">
+        <strong>e-Gov verejnej správy</strong> ▾
+      </button>
+    </div>
+    <div class="lang-wrap">
+      <a href="#" class="active">Slovenčina</a>
+      <a href="#">English</a>
+    </div>
+  </div>
+</div>
+<div class="gov-info" id="gov-info" role="region" aria-label="Informácie o stránke">
+  <div class="inner">
+    <div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR. Officiálne stránky využívajú najmä doménu gov.sk. <a href="https://www.slovensko.sk/sk/agendy/agenda/_organy-verejnej-moci" target="_blank" rel="noopener">Zoznam orgánov verejnej moci.</a></p></div>
+    <div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény webového sídla.</p></div>
+  </div>
+</div>
+
+<header class="site-hdr" role="banner">
+  <div class="hdr-inner">
+    <div class="hdr-main">
+      <a href="index.html" class="logo" aria-label="Štátny veterinárny a potravinový ústav – domovská stránka">
+        <img src="logo.jpg" class="logo-img" alt="Logo Štátny veterinárny a potravinový ústav">
+        <div class="logo-text">
+          <strong>Štátny veterinárny a potravinový ústav</strong>
+          <small>svpu.sk</small>
+        </div>
+      </a>
+      <div class="hdr-search" role="search" aria-label="Vyhľadávanie na stránke">
+        <input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie">
+        <button aria-label="Vyhľadať">🔍 Hľadať</button>
+      </div>
+    </div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia">
+    <div class="inner"><ul><li><a href="org.html">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ vo Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li><li><a href="aktuality.html">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="aktuality.html#ba">Aktuality z VPÚ v Bratislave</a><a href="aktuality.html#dk">Aktuality z VPÚ v Dolnom Kubíne</a><a href="aktuality.html#ke">Aktuality z VPÚ v Košiciach</a><a href="aktuality.html#zv">Aktuality z VÚ v Zvolene</a></div></li><li><a href="o-nas.html">O nás</a></li><li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li></ul></div>
+  </nav>
+</header>
+<div class="hero-banner hero-slim" role="img" aria-label="Laboratórna diagnostika ŠVPÚ">
+  <img src="hero.jpg" alt="">
+  <div class="hero-overlay"></div>
+</div>
+<nav class="breadcrumb" aria-label="Ste tu"><ol><li><a href="index.html">Domov</a></li><li><span class="cur" aria-current="page">Harmonogram zvozných liniek</span></li></ol></nav>
+<div class="page-bg"><div class="page-inner" style="flex-direction:column;">
+<main id="main" class="content" style="max-width:900px;width:100%;" tabindex="-1">
+  <div class="pg-title">
+    <h1>🚐 Odberné miesta a harmonogram zvozných liniek</h1>
+    <p>Prevádzkujeme pravidelné zvozné linky z odberných miest pre VPÚ v Bratislave. Časy sú orientačné — aktuálne zmeny overte telefonicky alebo e-mailom.</p>
+  </div>
+
+  <div class="infobox infobox-warn" style="margin-bottom:20px;">
+    <span class="ico">⚠️</span>
+    <div>Harmonogram môže byť zmenený. Pre overenie kontaktujte príjem vzoriek:
+      <a href="tel:+421238108221">+421 2 38108 221</a> alebo
+      <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a></span></a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       INTERAKTÍVNA MAPA ZVOZNÝCH LINIEK
+       ═══════════════════════════════════════════════ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+  <style>
+    /* Mapa */
+    .map-section { margin-bottom: 28px; }
+    .map-section h2 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+
+    #zvoz-map {
+      width: 100%; height: 460px;
+      border: 1px solid #D0DCF0; border-radius: 6px;
+      z-index: 1;
+    }
+
+    /* Legenda nad mapou */
+    .map-legend {
+      display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+      margin-bottom: 10px; font-size: 13px;
+    }
+    .map-legend-item { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+    .legend-line {
+      display: inline-block; width: 32px; height: 4px; border-radius: 2px;
+    }
+    .legend-dot {
+      display: inline-block; width: 13px; height: 13px; border-radius: 50%;
+      border: 2px solid #fff; box-shadow: 0 0 0 1px #999;
+    }
+
+    /* Popup */
+    .zvoz-popup { min-width: 200px; font-family: inherit; }
+    .zvoz-popup h3 {
+      font-size: 14px; font-weight: 700; margin: 0 0 8px;
+      padding-bottom: 6px; border-bottom: 2px solid #1A3C6B;
+      color: #1A3C6B;
+    }
+    .zvoz-popup .linka-badge {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      padding: 1px 7px; border-radius: 3px; color: #fff; margin-bottom: 8px;
+    }
+    .zvoz-popup table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .zvoz-popup td { padding: 3px 4px; }
+    .zvoz-popup td:first-child { font-weight: 600; color: #444; white-space: nowrap; }
+    .zvoz-popup td:last-child { font-weight: 700; color: #1A3C6B; }
+    .zvoz-popup tr:nth-child(even) td { background: #f5f8ff; }
+    .zvoz-popup .vpú-note { font-size: 11px; color: #888; margin-top: 6px; font-style: italic; }
+
+    /* Filter tlačidlá */
+   /* základ tlačidiel */
+.map-filter button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 2px;
+}
+
+/* aktívne tlačidlo */
+.map-filter button.active {
+  background: #2563eb;   /* modrá */
+  color: white;
+  border-color: #2563eb;
+}
+
+/* hover efekt */
+.map-filter button:hover {
+  background: #e5e7eb;
+}
+
+    @media(max-width:600px){ #zvoz-map { height: 320px; } }
+  </style>
+
+  <div class="map-section">
+    <h2>🗺️ Mapa zvozných liniek</h2>
+
+    <div class="map-legend">
+      <div class="map-legend-item"><div class="legend-dot" style="background:#1A3C6B"></div> VPÚ Bratislava</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:#E84040"></div> Zastávka Linky 1</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:#2E8B57"></div> Zastávka Linky 2</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:#F5A623"></div> Prekladisko</div>
+      </div>
+
+    <!-- FILTER LINIEK -->
+<div class="map-filter" role="group" aria-label="Filtrovať trasy">
+  <button class="f-all active" onclick="setFilter('all', this)">Všetky trasy</button>
+  <button class="f-l1" onclick="setFilter('1', this)">Linka 1</button>
+  <button class="f-l2" onclick="setFilter('2', this)">Linka 2</button>
+</div>
+
+<!-- FILTER DNÍ -->
+<div class="map-filter" role="group" aria-label="Filtrovať dni">
+  <button class="d-all active" onclick="setDayFilter('all', this)">Všetky dni</button>
+  <button onclick="setDayFilter('Pondelok', this)">Pon</button>
+  <button onclick="setDayFilter('Utorok', this)">Ut</button>
+  <button onclick="setDayFilter('Streda', this)">Str</button>
+  <button onclick="setDayFilter('Štvrtok', this)">Štv</button>
+</div>
+
+    <div id="zvoz-map" aria-label="Interaktívna mapa zvozných liniek"></div>
+    <p style="font-size:12px;color:#888;margin-top:6px">Kliknite na zastávku pre zobrazenie časov. Časy uvádzajú odchod vodiča.</p>
+  </div>
+
+  <script>
+  // ═══════════════════════════════════════════════
+  // DÁTA ZO XLSX – editujte podľa potreby
+  // ═══════════════════════════════════════════════
+  const STOPS_RAW = [
+    // linka, den, nazov, cas, lat, lng, typ
+    [1,"Pondelok","VPÚ v Bratislave","10:00",48.14739896619376,17.071649565309514,"vpú"],
+    [1,"Pondelok","RVPS Piešťany","11:30",48.605883288070785,17.834628134134544,"stop"],
+    [1,"Pondelok","RVPS Senica","13:00",48.68135541451646,17.347816404780428,"stop"],
+    [1,"Pondelok","RVPS Malacky","13:45",48.432293581427764,17.02811757037276,"stop"],
+    [1,"Pondelok","VET Malacky","13:55",48.431269822180205,17.019964553175452,"stop"],
+    [1,"Pondelok","VPÚ v Bratislave","14:45",48.14739896619376,17.071649565309514,"vpú"],
+    [2,"Pondelok","VPÚ v Bratislave","10:00",48.14739896619376,17.071649565309514,"vpú"],
+    [2,"Pondelok","Malacky Častá","11:00",48.432293581427764,17.02811757037276,"stop"],
+    [2,"Pondelok","RVPS Trnava","12:30",48.37418448723334,17.617028489419795,"stop"],
+    [2,"Pondelok","RVPS Senec","13:00",48.21394984043081,17.39849394893644,"stop"],
+    [2,"Pondelok","VPÚ v Bratislave","13:45",48.14739896619376,17.071649565309514,"vpú"],
+    [1,"Utorok","VPÚ v Bratislave","07:30",48.14739896619376,17.071649565309514,"vpú"],
+    [1,"Utorok","VET Šamorín","08:00",48.03164163937588,17.312004910304847,"stop"],
+    [1,"Utorok","RVPS Dunajská Streda","09:00",47.99424612691778,17.616317439661007,"stop"],
+    [1,"Utorok","Istermeat Dunajská Streda","09:10",47.98419998347815,17.63070348187846,"stop"],
+    [1,"Utorok","RVPS Komárno","10:00",47.76020748041733,18.12274699917388,"stop"],
+    [1,"Utorok","RVPS Nové Zámky","11:00",47.998946470853305,18.16097637035015,"stop"],
+    [1,"Utorok","RVPS Šaľa","11:30",48.153780165200345,17.880139255013763,"stop"],
+    [1,"Utorok","RVPS Galanta","12:00",48.192137285903605,17.722471456868547,"stop"],
+    [1,"Utorok","RVPS Trnava","12:30",48.37418448723334,17.617028489419795,"stop"],
+    [1,"Utorok","RVPS Senec (Malacky)","13:00",48.21394984043081,17.39849394893644,"stop"],
+    [1,"Utorok","VPÚ v Bratislave","14:00",48.14739896619376,17.071649565309514,"vpú"],
+    [2,"Utorok","VPÚ v Bratislave","07:15",48.14739896619376,17.071649565309514,"vpú"],
+    [2,"Utorok","RVPS Nitra","09:00",48.3095264311172,18.09886788200516,"stop"],
+    [2,"Utorok","Prekladisko Zvolen","11:00",48.56610576782776,19.126271095510297,"preklad"],
+    [2,"Utorok","RLER Nitra","12:00",48.307227283944506,18.093168339664643,"stop"],
+    [2,"Utorok","VPÚ v Bratislave","14:00",48.14739896619376,17.071649565309514,"vpú"],
+    [1,"Streda","VPÚ v Bratislave","07:15",48.14739896619376,17.071649565309514,"vpú"],
+    [1,"Streda","Hyza Topoľčany","08:45",48.56123009132406,18.138112070926645,"stop"],
+    [1,"Streda","RVPS Topoľčany","09:00",48.560849782324425,18.138414955035028,"stop"],
+    [1,"Streda","RVPS Bánovce nad Bebravou","09:45",48.722392330802,18.247556797371224,"stop"],
+    [1,"Streda","RVPS Trenčín","10:30",48.88960675828648,18.03386821272457,"stop"],
+    [1,"Streda","RVPS Nové Mesto nad Váhom","11:00",48.763198331141076,17.83072916668454,"stop"],
+    [1,"Streda","RVPS Senica","13:00",48.68135541451646,17.347816404780428,"stop"],
+    [1,"Streda","RVPS Malacky","13:45",48.432293581427764,17.02811757037276,"stop"],
+    [1,"Streda","VET Malacky","13:55",48.431269822180205,17.019964553175452,"stop"],
+    [1,"Streda","VPÚ v Bratislave","14:45",48.14739896619376,17.071649565309514,"vpú"],
+    [2,"Streda","VPÚ v Bratislave","07:15",48.14739896619376,17.071649565309514,"vpú"],
+    [2,"Streda","Prekladisko Zvolen","11:00",48.56610576782776,19.126271095510297,"preklad"],
+    [2,"Streda","RVPS Levice","12:00",48.21539299577534,18.595036626180804,"stop"],
+    [2,"Streda","VPÚ v Bratislave","14:30",48.14739896619376,17.071649565309514,"vpú"],
+    [1,"Štvrtok","VPÚ v Bratislave","07:30",48.14739896619376,17.071649565309514,"vpú"],
+    [1,"Štvrtok","VET Šamorín","08:30",48.03164163937588,17.312004910304847,"stop"],
+    [1,"Štvrtok","RVPS Dunajská Streda","09:00",47.99424612691778,17.616317439661007,"stop"],
+    [1,"Štvrtok","Istermeat Dunajská Streda","09:00",47.98419998347815,17.63070348187846,"stop"],
+    [1,"Štvrtok","RVPS Galanta","10:00",48.192137285903605,17.722471456868547,"stop"],
+    [1,"Štvrtok","Malacky Častá","11:00",48.432293581427764,17.02811757037276,"stop"],
+    [1,"Štvrtok","RVPS Trnava","12:00",48.37418448723334,17.617028489419795,"stop"],
+    [1,"Štvrtok","RVPS Senec","12:30",48.21394984043081,17.39849394893644,"stop"],
+    [1,"Štvrtok","VPÚ v Bratislave","13:45",48.14739896619376,17.071649565309514,"vpú"],
+    [2,"Štvrtok","VPÚ v Bratislave","07:15",48.14739896619376,17.071649565309514,"vpú"],
+    [2,"Štvrtok","RVPS Nitra","09:00",48.3095264311172,18.09886788200516,"stop"],
+    [2,"Štvrtok","Prekladisko Zvolen","11:00",48.56610576782776,19.126271095510297,"preklad"],
+    [2,"Štvrtok","RLER Nitra","12:30",48.307227283944506,18.093168339664643,"stop"],
+    [2,"Štvrtok","VPÚ v Bratislave","14:00",48.14739896619376,17.071649565309514,"vpú"],
+  ];
+
+  const COLOR_L1 = "#E84040";
+  const COLOR_L2 = "#2E8B57";
+  const COLOR_VPU = "#1A3C6B";
+  const COLOR_PREKLAD = "#F5A623";
+
+  let activeLineFilter = "all";
+  let activeDayFilter = "all";
+
+  // Zoskupenie zastávok podľa mena – zoznam (linka, den, cas)
+  function groupByName(data) {
+    const map = {};
+    data.forEach(([linka, den, nazov, cas, lat, lng, typ]) => {
+      const key = `${nazov}|${lat}|${lng}`;
+      if (!map[key]) map[key] = { nazov, lat, lng, typ, linky: {} };
+      if (!map[key].linky[linka]) map[key].linky[linka] = {};
+      if (!map[key].linky[linka][den]) map[key].linky[linka][den] = [];
+      map[key].linky[linka][den].push(cas);
+      // Typ: ak má viacero liniek, môže byť prekladisko
+      if (typ === "preklad") map[key].typ = "preklad";
+      if (typ === "vpú") map[key].typ = "vpú";
+    });
+    return Object.values(map);
+  }
+
+  // Vytvor popup HTML
+  function makePopup(stop) {
+    const linkyKeys = Object.keys(stop.linky).sort();
+    const linkaBadges = linkyKeys.map(l => {
+      const c = l == 1 ? COLOR_L1 : COLOR_L2;
+      return `<span class="linka-badge" style="background:${c}">Linka ${l}</span>`;
+    }).join(" ");
+
+    let rows = "";
+    const dni = ["Pondelok","Utorok","Streda","Štvrtok","Piatok"];
+    linkyKeys.forEach(l => {
+      const denData = stop.linky[l];
+      dni.forEach(den => {
+        if (denData[den]) {
+          const casy = [...new Set(denData[den])].join(", ");
+          rows += `<tr><td>${den}</td><td>L${l}: ${casy}</td></tr>`;
+        }
+      });
+    });
+
+    const isVpu = stop.typ === "vpú";
+    const note = isVpu ? `<p class="vpú-note">Štartovné/cieľové pracovisko</p>` : "";
+
+    return `<div class="zvoz-popup">
+      <h3>${stop.nazov}</h3>
+      <div>${linkaBadges}</div>
+      <table style="margin-top:8px">${rows}</table>
+      ${note}
+    </div>`;
+  }
+
+  // Marker ikona
+  function makeIcon(color, size = 12) {
+    return L.divIcon({
+      className: "",
+      html: `<div style="
+        width:${size}px;height:${size}px;border-radius:50%;
+        background:${color};border:2px solid #fff;
+        box-shadow:0 1px 4px rgba(0,0,0,.35);
+        cursor:pointer;
+      "></div>`,
+      iconAnchor: [size/2, size/2],
+      popupAnchor: [0, -(size/2 + 4)],
+    });
+  }
+
+  // Čiary pre každú linku – skupiny bodov podľa dní
+  function buildRouteLines(data, linka) {
+    const dni = ["Pondelok","Utorok","Streda","Štvrtok"];
+    const lines = [];
+    dni.forEach(den => {
+      const pts = data
+        .filter(r => r[0] === linka && r[1] === den)
+        .map(r => [r[4], r[5]]);
+      if (pts.length >= 2) lines.push(pts);
+    });
+    return lines;
+  }
+
+  // INIT MAPY
+  document.addEventListener("DOMContentLoaded", () => {
+    const map = L.map("zvoz-map", {
+      center: [48.35, 17.8],
+      zoom: 8,
+      zoomControl: true,
+    });
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '© <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      maxZoom: 17,
+    }).addTo(map);
+
+    const grouped = groupByName(STOPS_RAW);
+
+    /* ── ak chceš zobraziť spojnice zmeň v nasledujúcom odstavci weight na 4 a opacity na 0,7 ── */
+
+    // Polylines
+    const polyL1 = [], polyL2 = [];
+    buildRouteLines(STOPS_RAW, 1).forEach(pts => {
+      polyL1.push(L.polyline(pts, { color: COLOR_L1, weight: 0, opacity: 0.7, dashArray: null }));
+    });
+    buildRouteLines(STOPS_RAW, 2).forEach(pts => {
+      polyL2.push(L.polyline(pts, { color: COLOR_L2, weight: 0, opacity: 0.7, dashArray: null }));
+    });
+
+    // Markery
+    const markersL1 = [], markersL2 = [], markersBoth = [];
+
+    grouped.forEach(stop => {
+      const linky = Object.keys(stop.linky).map(Number);
+      const hasL1 = linky.includes(1);
+      const hasL2 = linky.includes(2);
+
+      if (stop.typ === "vpú") {
+        // VPÚ – jeden tmavomodrý bod, patrí obom linkám
+        const m = L.marker([stop.lat, stop.lng], { icon: makeIcon(COLOR_VPU, 16) })
+          .bindPopup(makePopup(stop), { maxWidth: 260 });
+        markersL1.push(m);
+        markersL2.push(m);
+      } else if (stop.typ === "preklad") {
+        // Prekladisko – oranžový bod
+        const m = L.marker([stop.lat, stop.lng], { icon: makeIcon(COLOR_PREKLAD, 14) })
+          .bindPopup(makePopup(stop), { maxWidth: 260 });
+        markersL2.push(m);
+      } else if (hasL1 && hasL2) {
+        // Zastávka na oboch linkách – dva body mierne posunuté vedľa seba
+        const offset = 0.008;
+        const m1 = L.marker([stop.lat, stop.lng - offset], { icon: makeIcon(COLOR_L1, 12) })
+          .bindPopup(makePopup(stop), { maxWidth: 260 });
+        const m2 = L.marker([stop.lat, stop.lng + offset], { icon: makeIcon(COLOR_L2, 12) })
+          .bindPopup(makePopup(stop), { maxWidth: 260 });
+        markersL1.push(m1);
+        markersL2.push(m2);
+        markersBoth.push(m1, m2);
+      } else if (hasL1) {
+        const m = L.marker([stop.lat, stop.lng], { icon: makeIcon(COLOR_L1, 12) })
+          .bindPopup(makePopup(stop), { maxWidth: 260 });
+        markersL1.push(m);
+      } else {
+        const m = L.marker([stop.lat, stop.lng], { icon: makeIcon(COLOR_L2, 12) })
+          .bindPopup(makePopup(stop), { maxWidth: 260 });
+        markersL2.push(m);
+      }
+    });
+
+    // Skupiny vrstiev
+    const allLayers = [
+      ...polyL1, ...polyL2,
+      ...markersL1, ...markersL2, ...markersBoth
+    ];
+    // Odstráň duplikáty
+    const uniqueLayers = [...new Set(allLayers)];
+    uniqueLayers.forEach(l => l.addTo(map));
+function updateMap() {
+  // odstráň všetko z mapy
+  uniqueLayers.forEach(l => map.removeLayer(l));
+
+  let toShow = [];
+
+  if (activeLineFilter === "all") {
+    toShow = uniqueLayers;
+  } else if (activeLineFilter === "1") {
+    toShow = [...markersL1];
+  } else if (activeLineFilter === "2") {
+    toShow = [...markersL2];
+  }
+
+  // filter podľa dní
+  if (activeDayFilter !== "all") {
+    toShow = toShow.filter(marker => {
+      const popup = marker.getPopup()?.getContent() || "";
+      return popup.includes(activeDayFilter);
+    });
+  }
+
+  toShow.forEach(l => l.addTo(map));
+}
+    // Filter linky
+window.setFilter = function(which, btn) {
+  activeLineFilter = which;
+
+  btn.parentElement.querySelectorAll("button")
+    .forEach(b => b.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  updateMap();
+};
+
+// Filter dni
+window.setDayFilter = function(day, btn) {
+  activeDayFilter = day;
+
+  btn.parentElement.querySelectorAll("button")
+    .forEach(b => b.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  updateMap();
+};
+  });
+  </script>
+
+
+    <style>
+    .harm-wrap { overflow-x: auto; }
+    .harm-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+      background: #fff; border: 1px solid #D0DCF0; border-radius: 6px; overflow: hidden;
+    }
+    .harm-table th {
+      background: #1A3C6B; color: #fff;
+      padding: 11px 16px; text-align: center;
+      font-size: 13px; font-weight: 700;
+    }
+    .harm-table th.col-mesto { text-align: left; min-width: 180px; }
+    .harm-table th.col-den { min-width: 80px; }
+    .harm-table td {
+      padding: 10px 16px; border-bottom: 1px solid #EEF2F8;
+      font-size: 14px; color: #1D1D1B;
+    }
+    .harm-table td.mesto { font-weight: 600; }
+    .harm-table td.cas {
+      text-align: center; font-weight: 700;
+      color: #1A3C6B; white-space: nowrap;
+    }
+    .harm-table td.prazdne { text-align: center; color: #ccc; }
+    .harm-table tbody tr:last-child td { border-bottom: none; }
+    .harm-table tbody tr:hover td { background: #F5F8FF; }
+    .harm-table tbody tr:nth-child(even) td { background: #FAFBFF; }
+    .harm-table tbody tr:nth-child(even):hover td { background: #F0F5FF; }
+    .den-tag {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      background: rgba(255,255,255,.15); border-radius: 3px;
+      padding: 1px 6px; margin-left: 4px; vertical-align: middle;
+    }
+    .harm-note { font-size: 13px; color: #666; margin-top: 12px; font-style: italic; }
+  </style>
+
+  <div class="harm-wrap">
+    <table class="harm-table" role="table" aria-label="Harmonogram zvozných liniek">
+      <thead>
+        <tr>
+          <th class="col-mesto">Odberné miesto</th>
+          <th class="col-den">Pon</span></th>
+          <th class="col-den">Ut</span></th>
+           <th class="col-den">Str</span></th>
+          <th class="col-den">Štv</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mesto">Dunajská Streda</td>
+          <td class="prazdne">—</td>
+          <td class="cas">9:00</td>
+          <td class="prazdne">—</td>
+          <td class="cas">9:00</td>
+        </tr>
+        <tr>
+          <td class="mesto">Galanta</td>
+          <td class="prazdne">—</td>
+          <td class="cas">12:00</td>
+          <td class="prazdne">—</td>
+          <td class="cas">10:00</td>
+        </tr>
+        <tr>
+          <td class="mesto">Senica</td>
+          <td class="cas">13:00</td>
+          <td class="prazdne">—</td>
+          <td class="cas">13:00</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Trnava</td>
+          <td class="cas">12:30</td>
+          <td class="cas">12:30</td>
+          <td class="prazdne">—</td>
+          <td class="cas">12:00</td>
+        </tr>
+        <tr>
+          <td class="mesto">Malacky</td>
+          <td class="cas">13:45</td>
+          <td class="prazdne">—</td>
+          <td class="cas">13:45</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Komárno</td>
+          <td class="prazdne">—</td>
+          <td class="cas">10:00</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Šaľa</td>
+          <td class="prazdne">—</td>
+          <td class="cas">11:30</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Piešťany</td>
+          <td class="cas">11:30</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Levice</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+          <td class="cas">12:30</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Nitra</td>
+          <td class="prazdne">—</td>
+          <td class="cas">9:00</td>
+          <td class="prazdne">—</td>
+          <td class="cas">9:00</td>
+        </tr>
+        <tr>
+          <td class="mesto">Senec</td>
+          <td class="cas">13:00</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+          <td class="cas">12:30</td>
+        </tr>
+        <tr>
+          <td class="mesto">Topoľčany</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+          <td class="cas">9:00</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Bánovce nad Bebravou</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+          <td class="cas">9:45</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Trenčín</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+          <td class="cas">10:30</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Nové Mesto nad Váhom</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+          <td class="cas">11:00</td>
+          <td class="prazdne">—</td>
+        </tr>
+        <tr>
+          <td class="mesto">Nové Zámky</td>
+          <td class="prazdne">—</td>
+          <td class="cas">11:00</td>
+          <td class="prazdne">—</td>
+          <td class="prazdne">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="harm-note">Časy uvádzajú odchod vodiča z odberného miesta. Vzorky odovzdajte najneskôr 15 minút pred odchodom.</p>
+
+  <div class="card-grid" style="margin-top:20px;">
+    <div class="card">
+      <h3>📋 Ako odovzdať vzorky</h3>
+      <p>Vzorky priložte s vyplnenou žiadankou alebo podajte e-žiadanku online vopred. Zabaľte do nepriepustného obalu a označte menom a dátumom odberu.</p>
+    </div>
+    <div class="card">
+      <h3>📞 Koordinácia zvozných liniek</h3>
+      <p>Pri zmene trasy alebo pre dohodnutie individuálneho odvozu kontaktujte dispečing:<br>
+      <a href="tel:+421905387837">+421 905 387 837</a><br>
+      <a href="/cdn-cgi/l/email-protection#1e7a776d6e7b7d7770795e6d686b7c7f306d75"><span class="__cf_email__" data-cfemail="f3979a808396909a9d94b38085869192dd8098">[email&#160;protected]</span></a></p>
+    </div>
+    <div class="card">
+      <h3>⚠️ Upozorňujeme</h3>
+      <p>VPÚ v Bratislave si vyhradzuje právo zmeny trasy, vynechania zvozného miesta, prípadne zrušenia zvoznej linky z dôvodu nepriaznivej poveternostnej alebo dopravnej situácie bez predchádzajúceho upozornenia.
+Vzorky určené na prevoz na zvozné miesto iného VPÚ výrazne označte.
+Pri zasielaní pošty vodič zvoznej linky nemá oprávnenie preberať doporučenú poštu.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+    <a class="btn-secondary" href="index.html">← Späť na domov</a>
+    <a class="btn-gold" href="https://eziadanky.svpu.sk:4433" target="_blank" rel="noopener" style="font-size:13px;padding:8px 16px;">📋 Podať e-žiadanku</a>
+  </div>
+</main></div></div>
+<div class="feedback-bar" role="complementary" aria-label="Hodnotenie stránky">
+  <div class="inner">
+    <p>Pomohla vám táto stránka?</p>
+    <div class="feedback-btns">
+      <button class="fb-btn" aria-label="Stránka mi pomohla">👍 Áno, pomohla</button>
+      <button class="fb-btn" aria-label="Stránka mi nepomohla">👎 Nie, nepomohla</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="inner">
+      <div>
+        <h4>Štátny veterinárny a potravinový ústav</h4>
+        <p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>
+        IČO: 42355613<br>
+        E-mail: <a href="/cdn-cgi/l/email-protection#d0b9beb6bf90a3a6a0a5fea3bb"><span class="__cf_email__" data-cfemail="137a7d757c53606563663d6078">[email&#160;protected]</span></a></p>
+        <p style="margin-top:10px;">Zriadený Ministerstvom pôdohospodárstva a rozvoja vidieka SR.</p>
+        <div class="footer-logos">
+          <div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div>
+        </div>
+      </div>
+      <div>
+        <h4>Pracoviská</h4>
+        <ul>
+          <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+          <li><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a></li>
+          <li><a href="vpu-ke.html">VPÚ v Košiciach</a></li>
+          <li><a href="vpu-zv.html">VÚ v Zvolene</a></li>
+          <li><a href="gr.html">Generálne riaditeľstvo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Služby</h4>
+        <ul>
+          <li><a href="vysetrenia.html">Vyšetrenia zvierat</a></li>
+          <li><a href="#">Analýzy potravín</a></li>
+          <li><a href="#">Analýzy krmív</a></li>
+          <li><a href="#">Analýzy vody</a></li>
+          <li><a href="#">Certifikácia osôb</a></li>
+          <li><a href="#">Cenník a ponuka</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Povinné zverejňovanie</h4>
+        <ul>
+          <li><a href="#">Povinne zverejňované dokumenty</a></li>
+          <li><a href="#">Prístupnosť webu</a></li>
+          <li><a href="#">Ochrana osobných údajov</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Slobodný prístup k informáciám</a></li>
+          <li><a href="#">Sťažnosti a podnety</a>

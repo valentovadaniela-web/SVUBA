@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aktuality – Štátny veterinárny a potravinový ústav</title>
+<meta name="description" content="Aktuality zo Štátneho veterinárneho a potravinového ústavu — VPÚ Bratislava, Dolný Kubín, Košice, Zvolen.">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Aktuality — rozšírené štýly nad základné .news-card */
+  .news-section-hdr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--grey2);
+  }
+  .news-section-hdr h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0;
+  }
+  .news-section-hdr .nsh-badge {
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 12px;
+    padding: 2px 10px;
+  }
+  .news-section-hdr:first-of-type { margin-top: 0; }
+
+  /* Rozšírená featured karta — nová aktualita */
+  .news-card-featured {
+    background: #fff;
+    border: 2px solid var(--navy);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    text-decoration: none;
+    color: var(--black);
+    display: block;
+    transition: box-shadow .15s;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .news-card-featured:hover {
+    box-shadow: 0 4px 16px rgba(26,60,107,.14);
+  }
+  .news-card-featured .ncf-new {
+    position: absolute;
+    top: -1px;
+    right: 16px;
+    background: #2E7D32;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .news-card-featured .nc-date {
+    font-size: 13px;
+    color: var(--grey4);
+    margin-bottom: 6px;
+  }
+  .news-card-featured h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.35;
+    padding-right: 60px;
+  }
+  .news-card-featured p {
+    font-size: 14px;
+    color: var(--grey4);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .news-card-featured .ncf-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .ncf-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--navy-light);
+    color: var(--navy);
+  }
+  .ncf-tag.tag-new { background: #E8F5E9; color: #2E7D32; }
+  .news-card-featured .nc-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 6px 14px;
+    transition: background .12s;
+  }
+  .news-card-featured:hover .nc-more { background: var(--navy-dark); }
+
+  /* Štandardná news-card — trochu väčšia */
+  .news-card .nc-date { font-size: 12px; }
+  .news-card h3 { font-size: 14px; line-height: 1.4; }
+  .news-card p { font-size: 13px; }
+  .news-card .nc-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 2px;
+    background: var(--grey1);
+    color: var(--grey4);
+    margin-bottom: 5px;
+  }
+
+  /* Filter tabs */
+  .aktuality-filter {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .af-btn {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 2px solid var(--grey2);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--grey4);
+    cursor: pointer;
+    font-family: var(--font);
+    transition: all .12s;
+  }
+  .af-btn:hover { border-color: var(--navy); color: var(--navy); }
+  .af-btn.on { border-color: var(--navy); background: var(--navy); color: #fff; }
+
+  @media (max-width: 640px) {
+    .news-card-featured h3 { padding-right: 0; font-size: 15px; }
+    .news-card-featured .ncf-new { display: none; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+
+<div class="sec-nav">
+  <div class="inner">
+    <div class="egov">
+      <span class="sk-badge">SK</span>
+      <span>Oficiálna stránka</span>
+      <button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn" aria-controls="gov-info">
+        <strong>e-Gov verejnej správy</strong> ▾
+      </button>
+    </div>
+    <div class="lang-wrap">
+      <a href="#" class="active">Slovenčina</a>
+      <a href="#">English</a>
+    </div>
+  </div>
+</div>
+<div class="gov-info" id="gov-info" role="region" aria-label="Informácie o stránke">
+  <div class="inner">
+    <div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR.</p></div>
+    <div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény.</p></div>
+  </div>
+</div>
+
+<header class="site-hdr" role="banner">
+  <div class="hdr-inner">
+    <div class="hdr-main">
+      <a href="index.html" class="logo" aria-label="Štátny veterinárny a potravinový ústav – domovská stránka">
+        <img src="logo.jpg" class="logo-img" alt="Logo Štátny veterinárny a potravinový ústav">
+        <div class="logo-text">
+          <strong>Štátny veterinárny a potravinový ústav</strong>
+          <small>svpu.sk</small>
+        </div>
+      </a>
+      <div class="hdr-search" role="search">
+        <input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie">
+        <button aria-label="Vyhľadať">🔍 Hľadať</button>
+      </div>
+    </div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia">
+    <div class="inner"><ul>
+      <li><a href="org.html">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ vo Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li>
+      <li><a href="aktuality.html" class="active">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="aktuality.html#ba">Aktuality z VPÚ v Bratislave</a><a href="aktuality.html#dk">Aktuality z VPÚ v Dolnom Kubíne</a><a href="aktuality.html#ke">Aktuality z VPÚ v Košiciach</a><a href="aktuality.html#zv">Aktuality z VÚ v Zvolene</a></div></li>
+      <li><a href="o-nas.html">O nás</a></li>
+      <li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li>
+    </ul></div>
+  </nav>
+</header>
+
+<div class="hero-banner hero-slim" role="img" aria-label="Aktuality ŠVPÚ">
+  <img src="hero.jpg" alt="">
+  <div class="hero-overlay"></div>
+</div>
+
+<nav class="breadcrumb" aria-label="Ste tu">
+  <ol>
+    <li><a href="index.html">Domov</a></li>
+    <li><span class="cur" aria-current="page">Aktuality</span></li>
+  </ol>
+</nav>
+
+<div class="page-bg"><div class="page-inner">
+
+  <aside class="sidebar">
+    <div class="side-box side-nav">
+      <div class="side-box-title">Aktuality podľa zložky</div>
+      <ul>
+        <li><a href="#vsetky" class="active">📋 Všetky aktuality</a></li>
+        <li><a href="#ba">🏛 VPÚ v Bratislave</a></li>
+        <li><a href="#dk">🏛 VPÚ v Dolnom Kubíne</a></li>
+        <li><a href="#ke">🏛 VPÚ v Košiciach</a></li>
+        <li><a href="#zv">🏛 VÚ vo Zvolene</a></li>
+      </ul>
+    </div>
+    <div class="side-box">
+      <div class="side-box-title">Rýchle akcie</div>
+      <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+        <a class="btn-gold" href="https://eziadanky.svpu.sk:4433" target="_blank" rel="noopener" style="font-size:13px;padding:7px 14px;justify-content:center;">📋 E-žiadanka</a>
+        <a class="btn-secondary" href="kontakt.html" style="font-size:13px;padding:7px 14px;justify-content:center;">📞 Kontakt</a>
+      </div>
+    </div>
+  </aside>
+
+  <main id="main" class="content" tabindex="-1">
+    <div class="pg-title">
+      <h1>Aktuality</h1>
+      <p>Novinky a správy zo Štátneho veterinárneho a potravinového ústavu a jeho pracovísk.</p>
+    </div>
+
+    <!-- Filter -->
+    <div class="aktuality-filter" role="group" aria-label="Filtrovanie aktualít">
+      <button class="af-btn on" onclick="filterAktuality(this,'all')">Všetky</button>
+      <button class="af-btn" onclick="filterAktuality(this,'ba')">VPÚ Bratislava</button>
+      <button class="af-btn" onclick="filterAktuality(this,'dk')">VPÚ Dolný Kubín</button>
+      <button class="af-btn" onclick="filterAktuality(this,'ke')">VPÚ Košice</button>
+      <button class="af-btn" onclick="filterAktuality(this,'zv')">VÚ Zvolen</button>
+    </div>
+
+    <!-- ===== FEATURED — NOVÁ AKTUALITA ===== -->
+    <div id="vsetky" data-loc="ba">
+      <a class="news-card-featured" href="index.html">
+        <span class="ncf-new">🆕 Nové</span>
+        <div class="nc-date">28. marca 2026 · VPÚ v Bratislave</div>
+        <h3>Nová webová stránka ŠVPÚ</h3>
+        <div class="ncf-tags">
+          <span class="ncf-tag tag-new">Nová stránka</span>
+          <span class="ncf-tag">Prehľadnejšia</span>
+          <span class="ncf-tag">Užitočnejšia</span>
+        </div>
+        <p>Pozývame Vás na prehliadku nových webových stránok ŠVPÚ. Dúfame, že tu nájdete to, čo potrebujete a tešíme sa na spoluprácu.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+    </div>
+
+    <!-- ===== VPÚ BRATISLAVA ===== -->
+    <div class="news-section-hdr" id="ba">
+      <h2>VPÚ v Bratislave</h2>
+      <span class="nsh-badge">BA</span>
+    </div>
+    <div class="news-grid" data-loc="ba">
+      <a class="news-card" href="aktualita-akvarium.html" data-loc="ba">
+        <span class="nc-tag">Novinka</span>
+        <div class="nc-date">28. marca 2026</div>
+        <h3>Rozbory akváriovej vody – VPÚ v Bratislave</h3>
+        <p>Viete, čo skutočne zabíja vaše ryby? Spúšťame laboratórne rozbory akváriovej vody. VPÚ v Bratislave rozširuje svoju ponuku o špecializované analytické balíčky pre akvaristov.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+      <a class="news-card" href="aktualita-MIC.html" data-loc="ba">
+        <span class="nc-tag">Novinka</span>
+        <div class="nc-date">15. marca 2026</div>
+        <h3>Antimikrobiálna aktivita medu</h3>
+        <p>Slovensko je prvá krajina EÚ, ktorá ponúka akreditovanú metódu stanovenia antibakteriálnej aktivity medu.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+      <a class="news-card" href="aktualita-giardioza.html" data-loc="ba">
+        <span class="nc-tag">Parazitológia</span>
+        <div class="nc-date">25. februára 2026</div>
+        <h3>Informácie o giardióze</h3>
+        <p>V posledných týždňoch sa v médiách objavili informácie o zvýšenom výskyte giardiózy.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+      <a class="news-card" href="harmonogram.html" data-loc="ba">
+        <span class="nc-tag">Zmena</span>
+        <div class="nc-date">16. februára 2026</div>
+        <h3>Zvozné linky - zmena harmonogramu</h3>
+        <p>Od pondelka 16.2.2026 sa mení harmonogram zvoznej linky VPÚ v Bratislave.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+      <a class="news-card" href="aktualita-senzorické-skusky.html" data-loc="ba">
+        <span class="nc-tag">Informácia</span>
+        <div class="nc-date">9. februára 2026</div>
+        <h3>Senzorické skúšky</h3>
+        <p>Možnosť absolvovať senzorické skúšky v termíne 17.3. - 27.3.2026.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+    </div>    
+
+    <!-- ===== VPÚ DOLNÝ KUBÍN ===== -->
+    <div class="news-section-hdr" id="dk">
+      <h2>VPÚ v Dolnom Kubíne</h2>
+      <span class="nsh-badge">DK</span>
+    </div>
+    <div class="news-grid" data-loc="dk">
+      <a class="news-card" href="#" data-loc="dk">
+        <span class="nc-tag">Parazitológia</span>
+        <div class="nc-date">10. marca 2026</div>
+        <h3>Jarný nárast výskytu babeziózy u psov v Oravskom regióne</h3>
+        <p>Upozorňujeme chovateľov psov na zvýšenú aktivitu kliešťov a riziko babeziózy. Odporúčame pravidelnú antiparazitárnu ochranu.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+      <a class="news-card" href="#" data-loc="dk">
+        <span class="nc-tag">Informácia</span>
+        <div class="nc-date">18. januára 2026</div>
+        <h3>Zmena prevádzkových hodín v januári a februári 2026</h3>
+        <p>Informujeme o dočasnej zmene otváracích hodín výdajne výsledkov na pracovisku v Dolnom Kubíne.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+    </div>
+
+    <!-- ===== VPÚ KOŠICE ===== -->
+    <div class="news-section-hdr" id="ke">
+      <h2>VPÚ v Košiciach</h2>
+      <span class="nsh-badge">KE</span>
+    </div>
+    <div class="news-grid" data-loc="ke">
+      <a class="news-card" href="#" data-loc="ke">
+        <span class="nc-tag">Mykológia</span>
+        <div class="nc-date">12. marca 2026</div>
+        <h3>Nová metodika detekcie aflatoxínov v krmivách pre hydinu</h3>
+        <p>Zavádzame citlivejšiu LC-MS/MS metodiku pre stanovenie aflatoxínov B1 a G1 v krmivách — pod hranicou legislatívnych limitov EÚ.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+      <a class="news-card" href="#" data-loc="ke">
+        <span class="nc-tag">Akreditácia</span>
+        <div class="nc-date">20. januára 2026</div>
+        <h3>Úspešná obnova akreditácie podľa ISO/IEC 17025</h3>
+        <p>Laboratórium VPÚ Košice úspešne prešlo dohľadovým auditom Slovenskou národnou akreditačnou službou.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+    </div>
+
+    <!-- ===== VÚ ZVOLEN ===== -->
+    <div class="news-section-hdr" id="zv">
+      <h2>VÚ vo Zvolene</h2>
+      <span class="nsh-badge">ZV</span>
+    </div>
+    <div class="news-grid" data-loc="zv">
+      <a class="news-card" href="#" data-loc="zv">
+        <span class="nc-tag">Vírológia</span>
+        <div class="nc-date">5. marca 2026</div>
+        <h3>Rozšírenie PCR panelu pre vtáčiu chrípku — nové subtypy H5N1 a H7</h3>
+        <p>VÚ vo Zvolene rozširuje diagnostické možnosti o ďalšie subtypy vírusu vtáčej chrípky v rámci národného monitorovacieho programu.</p>
+        <span class="nc-more">Čítať viac →</span>
+      </a>
+    </div>
+
+  </main>
+</div></div>
+
+<div class="feedback-bar" role="complementary">
+  <div class="inner">
+    <p>Pomohla vám táto stránka?</p>
+    <div class="feedback-btns">
+      <button class="fb-btn">👍 Áno, pomohla</button>
+      <button class="fb-btn">👎 Nie, nepomohla</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="inner">
+      <div>
+        <h4>Štátny veterinárny a potravinový ústav</h4>
+        <p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>IČO: 42355613<br>
+        E-mail: <a href="mailto:info@svpu.sk">info@svpu.sk</a></p>
+        <p style="margin-top:10px;">Zriadený Ministerstvom pôdohospodárstva a rozvoja vidieka SR.</p>
+        <div class="footer-logos"><div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div></div>
+      </div>
+      <div>
+        <h4>Pracoviská</h4>
+        <ul>
+          <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+          <li><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a></li>
+          <li><a href="vpu-ke.html">VPÚ v Košiciach</a></li>
+          <li><a href="vpu-zv.html">VÚ v Zvolene</a></li>
+          <li><a href="gr.html">Generálne riaditeľstvo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Služby</h4>
+        <ul>
+          <li><a href="vysetrenia-ba.html">Vyšetrenia zvierat</a></li>
+          <li><a href="potraviny-ba.html">Analýzy potravín</a></li>
+          <li><a href="krmiva-ba.html">Analýzy krmív</a></li>
+          <li><a href="voda-ba.html">Analýzy vody</a></li>
+          <li><a href="certifikacia-ba.html">Certifikácia osôb</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Povinné zverejňovanie</h4>
+        <ul>
+          <li><a href="#">Povinne zverejňované dokumenty</a></li>
+          <li><a href="#">Prístupnosť webu</a></li>
+          <li><a href="#">Ochrana osobných údajov</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Slobodný prístup k informáciám</a></li>
+          <li><a href="#">Sťažnosti a podnety</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="inner">
+      <span>© 2026 Štátny veterinárny a potravinový ústav. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span>
+      <span>🇸🇰 gov.sk</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function filterAktuality(btn, loc) {
+  document.querySelectorAll('.af-btn').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+  // Sekcii hlavičky
+  document.querySelectorAll('.news-section-hdr').forEach(function(hdr){
+    var id = hdr.id;
+    var show = loc === 'all' || id === loc;
+    hdr.style.display = show ? '' : 'none';
+    var grid = hdr.nextElementSibling;
+    if (grid) grid.style.display = show ? '' : 'none';
+  });
+  // Featured karta
+  var featured = document.querySelector('[data-loc="ba"]');
+  if (featured && featured.tagName !== 'DIV') {
+    featured.style.display = (loc === 'all' || loc === 'ba') ? '' : 'none';
+  }
+  // Featured wrapper
+  var featuredWrap = document.getElementById('vsetky');
+  if (featuredWrap) {
+    featuredWrap.style.display = (loc === 'all' || loc === 'ba') ? '' : 'none';
+  }
+}
+</script>
+</body>
+</html>

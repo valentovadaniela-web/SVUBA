@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cenník – VPÚ v Bratislave – Štátny veterinárny a potravinový ústav</title>
+<meta name="description" content="Cenník laboratórnych vyšetrení a neškodného odstránenia kadáverov VPÚ v Bratislave. Platný od 1. 1. 2026.">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Cenník – lokálne rozšírenie štýlov (nevyžaduje zmenu style.css) ── */
+
+/* ── MOBILE OVERFLOW FIX ──
+   Zabráni tomu, aby tabuľky s min-width roztrhli celú stránku na mobile.
+   html/body nesmú byť širšie ako viewport. */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* Hlavný obsah a sidebar nesmú byť širšie ako rodič */
+.page-inner, .content, .sidebar, .page-bg {
+  min-width: 0;
+  max-width: 100%;
+}
+/* Všetky table-wrap musia scrollovať interne, nie vytláčať stránku */
+.cennik-table-wrap,
+.kadaver-table-wrap {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* Tabuľky samotné nesmú byť širšie ako ich wrapper – ale zachovávame min-width
+   aby boli čitateľné (wrapper poskytne scroll) */
+.cennik-table,
+.kadaver-table {
+  table-layout: auto;
+}
+
+/* Vyhľadávanie */
+.cennik-search-wrap { position:relative; max-width:520px; margin-bottom:16px; }
+.cennik-search-wrap label { display:block; font-size:14px; font-weight:600; margin-bottom:5px; color:var(--black); }
+.cennik-search-row { display:flex; align-items:stretch; border:2px solid var(--black); border-radius:var(--radius); overflow:hidden; background:#fff; }
+.cennik-search-row input { flex:1; border:none; outline:none; padding:9px 12px; font-size:15px; font-family:var(--font); color:var(--black); }
+.cennik-search-row input:focus { background:#FFFDE7; }
+.cennik-search-row button { background:var(--navy); color:#fff; border:none; padding:9px 14px; cursor:pointer; font-size:14px; font-family:var(--font); font-weight:700; transition:background .13s; }
+.cennik-search-row button:hover { background:var(--navy-dark); }
+
+/* Filtračné čipy */
+.filter-chips { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:16px; }
+.chip { padding:5px 13px; border-radius:20px; border:2px solid var(--grey2); background:#fff; font-size:13px; font-weight:600; cursor:pointer; font-family:var(--font); color:var(--grey4); transition:all .15s; }
+.chip:hover { border-color:var(--navy); color:var(--navy); }
+.chip[aria-pressed="true"] { background:var(--navy); color:#fff; border-color:var(--navy); }
+
+/* Výsledky info */
+.result-info { font-size:13px; color:var(--grey4); margin-bottom:10px; }
+.result-info strong { color:var(--black); }
+
+/* Tabuľka laboratórnych vyšetrení */
+.cennik-table-wrap { background:#fff; border:1px solid var(--grey2); border-radius:var(--radius); overflow-x:auto; -webkit-overflow-scrolling:touch; margin-bottom:8px; }
+.cennik-table { width:100%; border-collapse:collapse; min-width:560px; }
+.cennik-table thead th { background:var(--navy); color:#fff; padding:11px 14px; text-align:left; font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; white-space:nowrap; }
+.cennik-table thead th:last-child { text-align:right; white-space:nowrap; }
+.cennik-table tbody tr { border-bottom:1px solid var(--grey2); transition:background .1s; }
+.cennik-table tbody tr:last-child { border-bottom:none; }
+.cennik-table tbody tr:hover { background:var(--navy-light); }
+.cennik-table td { padding:10px 14px; font-size:13.5px; vertical-align:middle; color:var(--black); }
+.cennik-table td:last-child { text-align:right; font-weight:700; color:var(--navy); white-space:nowrap; }
+.cennik-table td.code { font-family:'Courier New',monospace; font-size:12px; color:var(--grey4); width:90px; }
+.cat-badge { display:inline-block; padding:2px 8px; border-radius:3px; font-size:11px; font-weight:700; white-space:nowrap; }
+.cat-Bakteriologia  { background:#E3F0FD; color:#1565C0; }
+.cat-Patologia      { background:#FEF0E6; color:#B34700; }
+.cat-Parazitologia  { background:#E8FDF3; color:#1B6B45; }
+.cat-Serologia      { background:#F3E8FD; color:#6A1B9A; }
+.cat-Virologia      { background:#FDE8F4; color:#880E4F; }
+.cat-Mol            { background:#FDFCE8; color:#6B5B00; }
+.cat-Mykologia      { background:#E8FDF8; color:#00695C; }
+
+/* Stránkovanie */
+.pag { display:flex; align-items:center; justify-content:center; gap:4px; margin:16px 0 8px; flex-wrap:wrap; }
+.pag-btn { min-width:36px; height:36px; border-radius:var(--radius); border:2px solid var(--grey2); background:#fff; font-family:var(--font); font-size:13px; font-weight:600; cursor:pointer; color:var(--black); padding:0 8px; transition:all .13s; }
+.pag-btn:hover:not(:disabled) { border-color:var(--navy); color:var(--navy); }
+.pag-btn[aria-current="page"] { background:var(--navy); color:#fff; border-color:var(--navy); }
+.pag-btn:disabled { opacity:.35; cursor:default; }
+.pag-info { font-size:13px; color:var(--grey4); padding:0 8px; }
+
+/* Tabuľka kadáverov */
+.kadaver-table-wrap { background:#fff; border:1px solid var(--grey2); border-radius:var(--radius); overflow-x:auto; }
+.kadaver-table { width:100%; border-collapse:collapse; min-width:560px; }
+.kadaver-table thead th { background:var(--navy); color:#fff; padding:11px 14px; text-align:center; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+.kadaver-table thead th:first-child { text-align:left; }
+.kadaver-table tbody tr:nth-child(even) { background:var(--grey1); }
+.kadaver-table tbody tr:hover { background:var(--navy-light); }
+.kadaver-table td { padding:9px 14px; font-size:13.5px; border-bottom:1px solid var(--grey2); text-align:center; color:var(--black); }
+.kadaver-table td:first-child { text-align:left; font-weight:600; color:var(--navy); }
+.kadaver-table tr:last-child td { border-bottom:none; }
+.kadaver-table td.price-cell { font-weight:700; color:var(--navy); }
+.kadaver-table td.hl { background:#FFF3CD !important; font-weight:700; color:#5C4000; }
+
+/* Kalkulačka */
+.calc-box { background:#fff; border:1px solid var(--grey2); border-radius:var(--radius); border-top:3px solid var(--navy); padding:20px 22px; margin-bottom:16px; }
+.calc-box h3 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:16px; }
+.calc-row { display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; }
+.calc-group { display:flex; flex-direction:column; gap:5px; }
+.calc-group label { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--grey4); }
+.calc-group input { padding:9px 12px; border:2px solid var(--black); border-radius:var(--radius); font-family:var(--font); font-size:15px; width:150px; outline:none; transition:border-color .15s; }
+.calc-group input:focus { border-color:var(--navy); background:#FFFDE7; }
+.calc-result { background:var(--navy); color:#fff; border-radius:var(--radius); padding:14px 20px; margin-top:16px; display:none; }
+.calc-result.visible { display:block; }
+.calc-result .lbl { font-size:12px; opacity:.65; margin-bottom:3px; }
+.calc-result .val { font-size:28px; font-weight:700; }
+.calc-result .sub { font-size:13px; opacity:.6; margin-top:2px; }
+
+/* Prázdny stav */
+.empty-state { text-align:center; padding:40px 20px; color:var(--grey3); font-size:15px; }
+
+/* Záložky (tabs) */
+
+
+
+
+
+
+
+/* Scroll hint pre tabuľky na mobile */
+.table-scroll-hint {
+  display: none;
+  font-size: 12px;
+  color: var(--grey4);
+  text-align: right;
+  margin-bottom: 4px;
+}
+
+@media(max-width:640px){
+  /* Laboratórny cenník – skryť kód, zmenšiť */
+  .cennik-table td.code { display:none; }
+  .cennik-table td { padding:8px 10px; font-size:13px; }
+  .cennik-table thead th { padding:9px 10px; font-size:11px; }
+
+  /* Kalkulačka */
+  .calc-group input { width:100%; box-sizing:border-box; }
+  .calc-row { flex-direction:column; }
+  .calc-box { padding:16px; }
+
+  /* Kadaver tabuľka – na mobile prepnúť na 2-stĺpcový layout (rieši JS) */
+  .kadaver-table-mobile { display:block; }
+  .kadaver-table-desktop { display:none; }
+  .table-scroll-hint { display:none; } /* nepotrebný pri 2-stĺpcovom */
+
+  /* 2-stĺpcová kadaver tabuľka */
+  .kad-mobile { width:100%; border-collapse:collapse; }
+  .kad-mobile th { background:var(--navy); color:#fff; padding:9px 14px;
+                   font-size:12px; font-weight:700; text-transform:uppercase; }
+  .kad-mobile td { padding:8px 14px; border-bottom:1px solid var(--grey2);
+                   font-size:14px; }
+  .kad-mobile td:first-child { font-weight:600; color:var(--navy); }
+  .kad-mobile td:last-child { font-weight:700; color:var(--navy); text-align:right; }
+  .kad-mobile tr:nth-child(even) td { background:var(--grey1,#f5f5f5); }
+  .kad-mobile td.hl { background:#FFF3CD !important; font-weight:700; color:#5C4000; }
+
+  /* Filtračné čipy */
+  .chip { font-size:12px; padding:4px 10px; }
+
+  /* Vyhľadávanie */
+  .cennik-search-wrap { max-width:100%; }
+}
+@media(min-width:641px){
+  .kadaver-table-mobile { display:none; }
+  .kadaver-table-desktop { display:block; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+
+<div class="sec-nav">
+  <div class="inner">
+    <div class="egov">
+      <span class="sk-badge">SK</span>
+      <span>Oficiálna stránka</span>
+      <button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn" aria-controls="gov-info">
+        <strong>e-Gov verejnej správy</strong> ▾
+      </button>
+    </div>
+    <div class="lang-wrap">
+      <a href="#" class="active" aria-current="true" hreflang="sk">Slovenčina</a>
+      <a href="#" hreflang="en">English</a>
+    </div>
+  </div>
+</div>
+<div class="gov-info" id="gov-info" role="region" aria-label="Informácie o stránke">
+  <div class="inner">
+    <div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR. <a href="https://www.slovensko.sk/sk/agendy/agenda/_organy-verejnej-moci" target="_blank" rel="noopener">Zoznam orgánov verejnej moci.</a></p></div>
+    <div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény webového sídla.</p></div>
+  </div>
+</div>
+
+<header class="site-hdr" role="banner">
+  <div class="hdr-inner">
+    <div class="hdr-main">
+      <a href="index.html" class="logo" aria-label="Štátny veterinárny a potravinový ústav – domovská stránka">
+        <img src="logo.jpg" class="logo-img" alt="Logo Štátny veterinárny a potravinový ústav">
+        <div class="logo-text">
+          <strong>Štátny veterinárny a potravinový ústav</strong>
+          <small>svpu.sk</small>
+        </div>
+      </a>
+      <div class="hdr-search" role="search" aria-label="Vyhľadávanie na stránke">
+        <input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie">
+        <button aria-label="Vyhľadať">🔍 Hľadať</button>
+      </div>
+    </div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia">
+    <div class="inner"><ul>
+      <li><a href="org.html" class="active">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ v Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li>
+      <li><a href="aktuality.html">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="aktuality.html#ba">Aktuality z VPÚ v Bratislave</a><a href="aktuality.html#dk">Aktuality z VPÚ v Dolnom Kubíne</a><a href="aktuality.html#ke">Aktuality z VPÚ v Košiciach</a><a href="aktuality.html#zv">Aktuality z VÚ v Zvolene</a></div></li>
+      <li><a href="o-nas.html">O nás</a></li>
+      <li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li>
+    </ul></div>
+  </nav>
+</header>
+
+<div class="hero-banner hero-slim" role="img" aria-label="Laboratórna diagnostika ŠVPÚ">
+  <img src="hero.jpg" alt="">
+  <div class="hero-overlay"></div>
+</div>
+
+<nav class="breadcrumb" aria-label="Ste tu">
+  <ol>
+    <li><a href="index.html">Domov</a></li>
+    <li><a href="org.html">Organizačné zložky</a></li>
+    <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+    <li><span class="cur" aria-current="page">Cenník a ponuka</span></li>
+  </ol>
+</nav>
+
+<div class="page-bg">
+  <div class="page-inner">
+
+    <aside class="sidebar" aria-label="Navigácia VPÚ v Bratislave">
+      <div class="side-box side-nav">
+        <div class="side-box-title">VPÚ v Bratislave</div>
+        <ul>
+          <li><a href="vysetrenia-ba.html">🐾 Vyšetrenia zvierat</a></li>
+          <li><a href="potraviny-ba.html">🥩 Analýzy potravín</a></li>
+          <li><a href="krmiva-ba.html">🌾 Analýzy krmív</a></li>
+          <li><a href="voda-ba.html">💧 Analýzy vody</a></li>
+          <li><a href="certifikacia-ba.html">📜 Certifikácia osôb</a></li>
+          <li><a href="cennik-ba.html" class="active" aria-current="page">💳 Cenník a ponuka</a></li>
+          <li><a href="ziadanky-ba.html">📋 Žiadanky a tlačivá</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeBj4fLlCZCAVWU7Hg-fzLbCYLsqsn-uKCklpErWqdO3Y9DLg/viewform?usp=header">📊 Dotazník spokojnosti</a></li>
+          <li><a href="oddelenia-ba.html">📂 Oddelenia a laboratóriá</a></li>
+          <li><a href="Osvedcenie_o_akreditacii.pdf">🏅 Akreditácia</a></li>
+        </ul>
+      </div>
+      <div class="side-box">
+   <div class="side-box-title">Kontakt VPÚ v Bratislave </div>
+  <div class="side-contact">
+    <strong>Botanická 15, 842 52 Bratislava</strong>
+    <br>
+    Tel: <a href="tel:+421238108212">+ 421 2 38 108 212</a><br>
+    <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a><br><br>
+    <strong>Otváracie hodiny</strong><br>
+    Pondelok – Piatok<br>8:00 – 15:00
+  </div>
+      </div>
+    </aside>
+
+    <main id="main" class="content" tabindex="-1">
+
+      <div class="pg-title">
+        <h1>Cenník neškodného odstránenia kadáverov</h1>
+        <p>VPÚ v Bratislave – platný od 1. januára 2026. Ceny sú vrátane DPH (23 %).</p>
+      </div>
+
+      <div class="infobox" role="note">
+        <span class="ico" aria-hidden="true">ℹ️</span>
+        <div><strong>Ceny laboratórnych vyšetrení sú dostupné na vyžiadanie.</strong> Kontaktujte nás na <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a> alebo tel. <a href="tel:+421238108212">+421 2 38 108 212</a>. Na platbu môžete použiť aj <strong>platobný terminál</strong> v priestoroch Centrálneho príjmu vzoriek.</div>
+      </div>
+      <!-- ════════════════════════════════════════
+           PANEL 2 — KADÁVERY
+           ════════════════════════════════════════ -->
+      <div id="panel-kad">
+
+        <div class="infobox infobox-warn" role="note">
+          <span class="ico" aria-hidden="true">⚠️</span>
+          <div>Uvedené ceny sú <strong>vrátane DPH (23 %)</strong>. Platba v hotovosti alebo kartou pri prevzatí zvieraťa.</div>
+        </div>
+
+        <div class="calc-box" id="calc-section">
+          <h3>Kalkulačka ceny odvozu</h3>
+          <div class="calc-row">
+            <div class="calc-group">
+              <label for="calc-kg">Hmotnosť zvieraťa (kg)</label>
+              <input type="number" id="calc-kg" min="1" max="100" placeholder="napr. 25" aria-describedby="calc-hint" oninput="doCalc()">
+            </div>
+          </div>
+          <p id="calc-hint" class="sr-only">Zadajte hmotnosť v kilogramoch od 1 do 100</p>
+          <div class="calc-result" id="calc-result" role="status" aria-live="polite" aria-atomic="true">
+            <div class="lbl">Cena vrátane DPH (23 %)</div>
+            <div class="val" id="calc-val"></div>
+            <div class="sub" id="calc-sub"></div>
+          </div>
+        </div>
+
+        <!-- Desktop: 10-stĺpcová tabuľka -->
+        <div class="kadaver-table-wrap kadaver-table-desktop">
+          <table class="kadaver-table" id="kad-table">
+            <caption class="sr-only">Cenník neškodného odstránenia uhynutého zvieraťa, platný od 1. 1. 2026</caption>
+            <thead>
+              <tr>
+                <th scope="col">Hmotnosť</th><th scope="col">Cena s DPH</th>
+                <th scope="col">Hmotnosť</th><th scope="col">Cena s DPH</th>
+                <th scope="col">Hmotnosť</th><th scope="col">Cena s DPH</th>
+                <th scope="col">Hmotnosť</th><th scope="col">Cena s DPH</th>
+                <th scope="col">Hmotnosť</th><th scope="col">Cena s DPH</th>
+              </tr>
+            </thead>
+            <tbody id="kad-tbody"></tbody>
+          </table>
+        </div>
+
+        <!-- Mobile: 2-stĺpcová tabuľka -->
+        <div class="kadaver-table-mobile">
+          <table class="kad-mobile" id="kad-table-mobile">
+            <caption class="sr-only">Cenník neškodného odstránenia uhynutého zvieraťa, platný od 1. 1. 2026</caption>
+            <thead>
+              <tr>
+                <th scope="col">Hmotnosť zvieraťa</th>
+                <th scope="col">Cena s DPH</th>
+              </tr>
+            </thead>
+            <tbody id="kad-tbody-mobile"></tbody>
+          </table>
+        </div>
+
+      </div>
+      <!-- / tabpanels -->
+
+    </main>
+  </div>
+</div>
+
+<div class="feedback-bar" role="complementary" aria-label="Hodnotenie stránky">
+  <div class="inner">
+    <p>Pomohla vám táto stránka?</p>
+    <div class="feedback-btns">
+      <button class="fb-btn" aria-label="Stránka mi pomohla">👍 Áno, pomohla</button>
+      <button class="fb-btn" aria-label="Stránka mi nepomohla">👎 Nie, nepomohla</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="inner">
+      <div>
+        <h4>Štátny veterinárny a potravinový ústav</h4>
+        <p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>IČO: 42355613<br><a href="/cdn-cgi/l/email-protection#0b62656d644b787d7b7e257860"><span class="__cf_email__" data-cfemail="7d14131b123d0e0b0d08530e16">[email&#160;protected]</span></a></p>
+        <p style="margin-top:10px;">Zriadený Ministerstvom pôdohospodárstva a rozvoja vidieka SR.</p>
+        <div class="footer-logos"><div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div></div>
+      </div>
+      <div>
+        <h4>Pracoviská</h4>
+        <ul>
+          <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+          <li><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a></li>
+          <li><a href="vpu-ke.html">VPÚ v Košiciach</a></li>
+          <li><a href="vpu-zv.html">VÚ v Zvolene</a></li>
+          <li><a href="gr.html">Generálne riaditeľstvo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Služby</h4>
+        <ul>
+          <li><a href="vysetrenia-ba.html">Vyšetrenia zvierat</a></li>
+          <li><a href="potraviny-ba.html">Analýzy potravín</a></li>
+          <li><a href="krmiva-ba.html">Analýzy krmív</a></li>
+          <li><a href="voda-ba.html">Analýzy vody</a></li>
+          <li><a href="certifikacia-ba.html">Certifikácia osôb</a></li>
+          <li><a href="cennik-ba.html">Cenník a ponuka</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Povinné zverejňovanie</h4>
+        <ul>
+          <li><a href="#">Povinne zverejňované dokumenty</a></li>
+          <li><a href="#">Prístupnosť webu</a></li>
+          <li><a href="#">Ochrana osobných údajov</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Slobodný prístup k informáciám</a></li>
+          <li><a href="#">Sťažnosti a podnety</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="inner">
+      <span>© 2026 Štátny veterinárny a potravinový ústav. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span>
+      <span>🇸🇰 gov.sk</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
+<script>
+const KADAVER = [{"kg": 1, "price": 7}, {"kg": 2, "price": 8}, {"kg": 3, "price": 9}, {"kg": 4, "price": 11}, {"kg": 5, "price": 12}, {"kg": 6, "price": 13}, {"kg": 7, "price": 14}, {"kg": 8, "price": 15}, {"kg": 9, "price": 16}, {"kg": 10, "price": 17}, {"kg": 11, "price": 19}, {"kg": 12, "price": 20}, {"kg": 13, "price": 21}, {"kg": 14, "price": 22}, {"kg": 15, "price": 23}, {"kg": 16, "price": 24}, {"kg": 17, "price": 25}, {"kg": 18, "price": 27}, {"kg": 19, "price": 28}, {"kg": 20, "price": 29}, {"kg": 21, "price": 30}, {"kg": 22, "price": 31}, {"kg": 23, "price": 32}, {"kg": 24, "price": 33}, {"kg": 25, "price": 34}, {"kg": 26, "price": 36}, {"kg": 27, "price": 37}, {"kg": 28, "price": 38}, {"kg": 29, "price": 39}, {"kg": 30, "price": 40}, {"kg": 31, "price": 41}, {"kg": 32, "price": 42}, {"kg": 33, "price": 44}, {"kg": 34, "price": 45}, {"kg": 35, "price": 46}, {"kg": 36, "price": 47}, {"kg": 37, "price": 48}, {"kg": 38, "price": 49}, {"kg": 39, "price": 50}, {"kg": 40, "price": 51}, {"kg": 41, "price": 53}, {"kg": 42, "price": 54}, {"kg": 43, "price": 55}, {"kg": 44, "price": 56}, {"kg": 45, "price": 57}, {"kg": 46, "price": 58}, {"kg": 47, "price": 59}, {"kg": 48, "price": 61}, {"kg": 49, "price": 62}, {"kg": 50, "price": 63}, {"kg": 51, "price": 64}, {"kg": 52, "price": 65}, {"kg": 53, "price": 66}, {"kg": 54, "price": 67}, {"kg": 55, "price": 68}, {"kg": 56, "price": 70}, {"kg": 57, "price": 71}, {"kg": 58, "price": 72}, {"kg": 59, "price": 73}, {"kg": 60, "price": 74}, {"kg": 61, "price": 75}, {"kg": 62, "price": 76}, {"kg": 63, "price": 78}, {"kg": 64, "price": 79}, {"kg": 65, "price": 80}, {"kg": 66, "price": 81}, {"kg": 67, "price": 82}, {"kg": 68, "price": 83}, {"kg": 69, "price": 84}, {"kg": 70, "price": 86}, {"kg": 71, "price": 87}, {"kg": 72, "price": 88}, {"kg": 73, "price": 89}, {"kg": 74, "price": 90}, {"kg": 75, "price": 91}, {"kg": 76, "price": 92}, {"kg": 77, "price": 93}, {"kg": 78, "price": 95}, {"kg": 79, "price": 96}, {"kg": 80, "price": 97}, {"kg": 81, "price": 98}, {"kg": 82, "price": 99}, {"kg": 83, "price": 100}, {"kg": 84, "price": 101}, {"kg": 85, "price": 103}, {"kg": 86, "price": 104}, {"kg": 87, "price": 105}, {"kg": 88, "price": 106}, {"kg": 89, "price": 107}, {"kg": 90, "price": 108}, {"kg": 91, "price": 109}, {"kg": 92, "price": 110}, {"kg": 93, "price": 112}, {"kg": 94, "price": 113}, {"kg": 95, "price": 114}, {"kg": 96, "price": 115}, {"kg": 97, "price": 116}, {"kg": 98, "price": 117}, {"kg": 99, "price": 118}, {"kg": 100, "price": 120}];
+
+function renderKadaver(){
+  // Desktop: 10-stĺpcová tabuľka
+  const tbody = document.getElementById('kad-tbody');
+  if(tbody){
+    const perRow = 5;
+    let rows = '';
+    for(let i=0; i<KADAVER.length; i+=perRow){
+      const group = KADAVER.slice(i,i+perRow);
+      let cells = '';
+      group.forEach(e=>{
+        cells += `<td id="kkg${e.kg}"><strong>${e.kg} kg</strong></td><td id="kp${e.kg}" class="price-cell">${e.price} €</td>`;
+      });
+      for(let j=group.length; j<perRow; j++) cells += '<td></td><td></td>';
+      rows += `<tr>${cells}</tr>`;
+    }
+    tbody.innerHTML = rows;
+  }
+  // Mobile: 2-stĺpcová tabuľka
+  const tbodyM = document.getElementById('kad-tbody-mobile');
+  if(tbodyM){
+    let rows = '';
+    KADAVER.forEach(e=>{
+      rows += `<tr><td id="mkkg${e.kg}">${e.kg} kg</td><td id="mkp${e.kg}" class="price-cell">${e.price} €</td></tr>`;
+    });
+    tbodyM.innerHTML = rows;
+  }
+}
+
+function doCalc(){
+  const kg  = parseFloat(document.getElementById('calc-kg').value);
+  const res = document.getElementById('calc-result');
+  document.querySelectorAll('#kad-table td.hl, #kad-table-mobile td.hl').forEach(el=>el.classList.remove('hl'));
+  if(isNaN(kg)||kg<1||kg>100){ res.classList.remove('visible'); return; }
+  const rounded = Math.round(kg);
+  const entry = KADAVER.find(e=>e.kg===rounded) ||
+    KADAVER.reduce((a,b)=>Math.abs(b.kg-kg)<Math.abs(a.kg-kg)?b:a);
+  if(!entry){ res.classList.remove('visible'); return; }
+  document.getElementById('calc-val').textContent = entry.price + '\u00a0€';
+  document.getElementById('calc-sub').textContent = 'Pre zviera s hmotnosťou ' + entry.kg + '\u00a0kg';
+  res.classList.add('visible');
+  ['kkg','kp'].forEach(pfx=>{
+    const c = document.getElementById(pfx + entry.kg);
+    if(c){ c.classList.add('hl'); c.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+  });
+  ['mkkg','mkp'].forEach(pfx=>{
+    const c = document.getElementById(pfx + entry.kg);
+    if(c){ c.classList.add('hl'); }
+  });
+}
+
+// Inicializácia
+renderKadaver();
+</script>
+</body>
+</html>

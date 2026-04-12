@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certifikácia osôb – VPÚ v Bratislave – ŠVPÚ</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.co-section{margin-bottom:32px;}
+.co-section h2{font-size:17px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--navy-light);padding-bottom:8px;margin-bottom:14px;scroll-margin-top:80px;}
+.co-section h3{font-size:15px;font-weight:700;color:var(--navy);margin:16px 0 8px;}
+.co-section p,.co-section li{font-size:14px;line-height:1.65;color:#1D1D1B;}
+.co-section ul{margin:0 0 12px 20px;}
+.co-section ul li{margin-bottom:5px;}
+.cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;}
+.cc-card{background:#F5F8FF;border:1px solid #D0DCF0;border-radius:6px;padding:14px 16px;}
+.cc-card .role{font-size:11px;font-weight:700;color:var(--navy-mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.cc-card .name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.cc-card .detail{font-size:13px;color:#444;line-height:1.7;}
+.cc-card a{color:var(--navy);text-decoration:none;}
+.cc-card a:hover{text-decoration:underline;}
+@media(max-width:600px){.cc-grid{grid-template-columns:1fr;}}
+.sc-card{border:1px solid #D0DCF0;border-radius:6px;margin-bottom:16px;overflow:hidden;}
+.sc-hdr{background:var(--navy);color:#fff;padding:14px 18px;}
+.sc-lbl{font-size:11px;opacity:.75;margin-bottom:3px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.sc-tit{font-size:16px;font-weight:700;}
+.sc-body{padding:16px 18px;font-size:14px;line-height:1.65;background:#fff;}
+.sc-body ul{margin:8px 0 10px 18px;}
+.sc-body li{margin-bottom:4px;}
+.sc-norms{background:#F5F8FF;border-radius:4px;padding:10px 14px;margin-top:12px;font-size:13px;color:#555;line-height:1.7;}
+.sc-norms strong{color:var(--navy);font-size:11px;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em;}
+.ps{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
+.ps-n{min-width:32px;height:32px;background:var(--navy);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;}
+.ps-t{padding-top:5px;font-size:14px;line-height:1.65;}
+.ps-t strong{display:block;color:var(--navy);margin-bottom:3px;}
+.vt{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+.vt th{background:var(--navy);color:#fff;padding:8px 12px;text-align:left;font-size:13px;}
+.vt td{padding:8px 12px;border-bottom:1px solid #E8EFF8;}
+.vt tr:last-child td{border-bottom:none;}
+.vt tr:nth-child(odd) td{background:#F9FBFF;}
+.warn-b{background:#FFF8E1;border-left:4px solid #F9A825;border-radius:0 4px 4px 0;padding:12px 16px;font-size:14px;margin:12px 0;line-height:1.65;}
+.warn-b strong{color:#E65100;}
+.ok-b{background:#F1F8F1;border-left:4px solid #2E7D32;padding:12px 16px;font-size:14px;margin:12px 0;line-height:1.65;}
+.doc-wrap{border:1px solid #D0DCF0;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+.doc-hdr{padding:8px 14px;background:#E8EFF8;border-bottom:1px solid #D0DCF0;font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;}
+.doc-list{list-style:none;margin:0;padding:0;}
+.doc-list li{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid #F0F4F8;font-size:14px;}
+.doc-list li:last-child{border-bottom:none;}
+.doc-list li:hover{background:#F5F8FF;}
+.d-ico{font-size:18px;flex-shrink:0;}
+.d-inf{flex:1;}
+.d-nm{font-weight:600;color:var(--navy);}
+.d-mt{font-size:12px;color:#777;margin-top:1px;}
+.d-btn{background:var(--navy);color:#fff;border:none;border-radius:3px;padding:5px 12px;font-size:12px;text-decoration:none;white-space:nowrap;}
+.tag-ak{display:inline-flex;align-items:center;gap:6px;background:#E8F5E9;color:#2E7D32;border:1px solid #A5D6A7;border-radius:4px;padding:5px 12px;font-size:13px;font-weight:600;margin-bottom:14px;}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+<div class="sec-nav"><div class="inner"><div class="egov"><span class="sk-badge">SK</span><span>Oficiálna stránka</span><button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn"><strong>e-Gov verejnej správy</strong> ▾</button></div><div class="lang-wrap"><a href="#" class="active">Slovenčina</a><a href="#">English</a></div></div></div>
+<div class="gov-info" id="gov-info"><div class="inner"><div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR.</p></div><div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény.</p></div></div></div>
+<header class="site-hdr" role="banner"><div class="hdr-inner">
+  <div class="hdr-main">
+    <a href="index.html" class="logo"><img src="logo.jpg" class="logo-img" alt="Logo ŠVPÚ"><div class="logo-text"><strong>Štátny veterinárny a potravinový ústav</strong><small>svpu.sk</small></div></a>
+    <div class="hdr-search" role="search"><input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie"><button aria-label="Vyhľadať">🔍 Hľadať</button></div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia"><div class="inner"><ul>
+    <li><a href="org.html" class="active">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ v Zvolene</a></div></li>
+    <li><a href="aktuality.html">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="vpu-ba.html#aktuality">VPÚ v Bratislave</a><a href="vpu-dk.html#aktuality">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html#aktuality">VPÚ v Košiciach</a><a href="vpu-zv.html#aktuality">VÚ v Zvolene</a></div></li>
+    <li><a href="o-nas.html">O nás</a></li>
+    <li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li>
+  </ul></div></nav>
+</div></header>
+<div class="hero-banner hero-slim" role="img" aria-label="VPÚ v Bratislave – laboratórna diagnostika"><img src="hero.jpg" alt=""><div class="hero-overlay"></div></div>
+<nav class="breadcrumb" aria-label="Ste tu"><ol>
+  <li><a href="index.html">Domov</a></li>
+  <li><a href="org.html">Organizačné zložky</a></li>
+  <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+  <li><span class="cur" aria-current="page">Certifikácia osôb</span></li>
+</ol></nav>
+<div class="page-bg"><div class="page-inner">
+  <aside class="sidebar"><div class="side-box side-nav">
+      <div class="side-box-title">VPÚ v Bratislave</div>
+      <ul>
+        <li><a href="vysetrenia-ba.html">🐾 Vyšetrenia zvierat</a></li>
+        <li><a href="potraviny-ba.html">🥩 Analýzy potravín</a></li>
+        <li><a href="krmiva-ba.html">🌾 Analýzy krmív</a></li>
+        <li><a href="voda-ba.html">💧 Analýzy vody</a></li>
+        <li><a href="certifikacia-ba.html" class="active">📜 Certifikácia osôb</a></li>
+        <li><a href="cennik-ba.html">💳 Cenník a ponuka</a></li>
+        <li><a href="oddelenia-ba.html">📂 Oddelenia a laboratóriá</a></li>
+      </ul>
+    </div>
+    <div class="side-box">
+      <div class="side-box-title">Kontakt – CO</div>
+      <div class="side-contact">
+        <strong>Certifikačný orgán</strong><br>
+        Botanická 15, 842 52 Bratislava<br><br>
+        <strong>Ing. Jana Repová</strong><br>vedúca CO<br>
+        <a href="tel:+421238108245">+421 2 38108 245</a><br>
+        <a href="tel:+421905387955">+421 905 387 955</a><br>
+        <a href="mailto:repova@svuba.sk">repova@svuba.sk</a>
+      </div>
+    </div>
+    <div class="side-box">
+      <div class="side-box-title">Obsah stránky</div>
+      <ul style="padding:10px 14px;font-size:13px;list-style:none;margin:0;display:flex;flex-direction:column;gap:5px;">
+        <li><a href="#identifikacia" style="color:var(--navy);">1. Identifikácia CO</a></li>
+        <li><a href="#nestrannost" style="color:var(--navy);">2. Politika nestrannosti</a></li>
+        <li><a href="#proces" style="color:var(--navy);">3. Certifikačný proces</a></li>
+        <li><a href="#schemy" style="color:var(--navy);">4. Certifikačné schémy</a></li>
+        <li><a href="#staznosti" style="color:var(--navy);">5. Sťažnosti a odvolania</a></li>
+        <li><a href="#overenie" style="color:var(--navy);">6. Overenie platnosti certifikátu</a></li>
+        <li><a href="#formulare" style="color:var(--navy);">7. Formuláre</a></li>
+        <li><a href="#poplatky" style="color:var(--navy);">8. Poplatky za certifikáciu</a></li>
+        <li><a href="#dokumentacia" style="color:var(--navy);">9. Zmena dokumentácie</a></li>
+      </ul>
+    </div></aside>
+  <main id="main" class="content" tabindex="-1">
+  <div class="pg-title">
+    <h1>📜 Certifikácia osôb</h1>
+    <p>Certifikačný orgán pre certifikáciu osôb vykonávajúcich senzorické posudzovanie potravinárskych a poľnohospodárskych výrobkov a vína. Certifikácia prebieha podľa schém CS I./2024 (potraviny) a CS II./2024 (víno).</p>
+  </div>
+  <div class="tag-ak">✅ Akreditovaný SNAS podľa ISO/IEC 17024:2012</div>
+
+  <div class="co-section" id="identifikacia">
+    <h2>1. Identifikácia certifikačného orgánu</h2>
+    <ul>
+      <li>Vznikol v roku 2005 za účelom posudzovania kompetentnosti osôb vykonávajúcich senzorické posudzovanie potravinárskych a poľnohospodárskych výrobkov a vína.</li>
+      <li>Je akreditovaný Slovenskou národnou akreditačnou službou (SNAS) v súlade s normou ISO/IEC 17024:2012.</li>
+      <li>Je súčasťou VPÚ v Bratislave, organizačnej zložky ŠVPÚ so sídlom Jánoškova 1611/58, 026 01 Dolný Kubín.</li>
+    </ul>
+    <div class="cc-grid">
+      <div class="cc-card">
+        <div class="role">Vedúca certifikačného orgánu</div>
+        <div class="name">Ing. Jana Repová</div>
+        <div class="detail"><a href="tel:+421238108245">+421 2 38108 245</a><br><a href="tel:+421905387955">+421 905 387 955</a><br><a href="mailto:repova@svuba.sk">repova@svuba.sk</a></div>
+      </div>
+      <div class="cc-card">
+        <div class="role">Manažér kvality</div>
+        <div class="name">Ing. Jana Minárová</div>
+        <div class="detail"><a href="tel:+421238108219">+421 2 38108 219</a><br><a href="tel:+421905899567">+421 905 899 567</a><br><a href="mailto:minarova@svuba.sk">minarova@svuba.sk</a></div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:#666;"><strong>Adresa:</strong> Botanická 15, 842 52 Bratislava &nbsp;·&nbsp; Vydané: Január 2026</p>
+  </div>
+
+  <div class="co-section" id="nestrannost">
+    <h2>2. Politika nestrannosti pri certifikačných činnostiach</h2>
+    <p>Politika nestrannosti bola vyhlásená vrcholovým manažmentom CO v januári 2026. Certifikačný orgán je nestranný, finančne nezávislý a pracovníci nie sú pod vplyvom obchodných, finančných alebo iných záujmov.</p>
+    <h3>Vyhlásenie generálneho riaditeľa ŠVPÚ <small style="font-weight:400;color:#666;font-size:12px;">(22. 1. 2026)</small></h3>
+    <ul>
+      <li>Vytvorím podmienky pre plnenie akreditačných kritérií v súlade s STN EN ISO/IEC 17024:2013 a zabezpečím prístup manažéra kvality k vrcholovému vedeniu.</li>
+      <li>Chápem dôležitosť nestrannosti pri vykonávaní certifikačných činností a riadení konfliktu záujmov.</li>
+      <li>Certifikačný orgán a jeho pracovníci sa nezaoberajú žiadnymi aktivitami, ktoré by mohli znížiť dôveru v certifikačnú činnosť.</li>
+      <li>Zachovám dôvernosť informácií získaných v procese certifikácie osôb.</li>
+    </ul>
+    <h3>Vyhlásenie riaditeľky VPÚ v Bratislave <small style="font-weight:400;color:#666;font-size:12px;">(22. 1. 2026)</small></h3>
+    <ul>
+      <li>Do certifikačnej činnosti nebudem zasahovať; vytvorím podmienky v personálnej, ekonomickej, technickej a informačnej oblasti v zmysle normy STN EN ISO/IEC 17024:2013.</li>
+      <li>Certifikačný orgán je nestranný, finančne nezávislý a pracovníci nie sú pod vplyvom záujmov ovplyvňujúcich objektivitu.</li>
+      <li>Zachovám dôvernosť informácií získaných v procese certifikácie osôb.</li>
+    </ul>
+    <h3>Vyhlásenie vedúcej Certifikačného orgánu <small style="font-weight:400;color:#666;font-size:12px;">(22. 1. 2026)</small></h3>
+    <ul>
+      <li>Služby certifikačného orgánu sú dostupné všetkým záujemcom bez reštrikčných podmienok; postupy sú uplatňované nediskriminačným spôsobom.</li>
+      <li>Za vykonávanú činnosť v oblasti certifikácie nesiem plnú zodpovednosť; pracovníci nebudú odmeňovaní podľa počtu certifikovaných osôb.</li>
+      <li>Všetci pracovníci sú oboznámení s aktuálne platnými dokumentmi a Príručkou kvality a sú zaviazaní dôvernosťou informácií.</li>
+    </ul>
+  </div>
+
+  <div class="co-section" id="proces">
+    <h2>3. Certifikačný proces</h2>
+    <p>CO posudzuje kompetentnosť kandidátov podľa dvoch schém: <strong>CS I./2024</strong> (potraviny) a <strong>CS II./2024</strong> (víno). Proces v oboch schémach začína podaním žiadosti.</p>
+    <div class="ps"><div class="ps-n">1</div><div class="ps-t"><strong>Podanie žiadosti</strong>Kandidát vyplní a podpíše žiadosť a doručí ju CO osobne, poštou alebo e-mailom. Podpísaním potvrdzuje dodržanie pravidiel certifikácie a záväzok uhradiť poplatok za skúšky.</div></div>
+    <div class="ps"><div class="ps-n">2</div><div class="ps-t"><strong>Kontrola a pozvánka</strong>CO skontroluje žiadosť. Ak je kompletná, zašle pozvánku na skúšky s termínom, miestom a študijnými materiálmi (min. 2 týždne pred skúškami).</div></div>
+    <div class="ps"><div class="ps-n">3</div><div class="ps-t"><strong>Výber a výcvik</strong>Kandidát sa oboznámi so základmi senzorickej analýzy a absolvuje písomný test (20 otázok, max. 4 nesprávne odpovede). Kandidát, ktorý neuspeje v teste, sa nemôže zúčastniť praktických skúšok.</div></div>
+    <div class="ps"><div class="ps-n">4</div><div class="ps-t"><strong>Praktické senzorické skúšky</strong>Kandidát absolvuje praktické skúšky spôsobilosti. Každý kandidát má právo opakovať dve skúšky. Výsledky určujú stupeň a dĺžku platnosti certifikátu.</div></div>
+    <div class="ps"><div class="ps-n">5</div><div class="ps-t"><strong>Vydanie certifikátu</strong>CO vydá Certifikát spôsobilosti vo formáte A4 aj A7. Platnosť závisí od dosiahnutého stupňa.</div></div>
+    <h3>Platnosť certifikátu podľa výsledkov</h3>
+    <table class="vt">
+      <thead><tr><th>Schéma</th><th>Stupeň</th><th>Platnosť</th><th>Poznámka</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="2">CS I./2024 – Potraviny</td><td>Stupeň I.</td><td>3 roky</td><td rowspan="2">Pri opakovaní 2 skúšok: 3 roky</td></tr>
+        <tr><td>Stupeň II.</td><td>5 rokov</td></tr>
+        <tr><td rowspan="3">CS II./2024 – Víno</td><td>Stupeň I.</td><td>1 rok</td><td rowspan="3">Pri opakovaní 2 skúšok: 1 rok</td></tr>
+        <tr><td>Stupeň II.</td><td>3 roky</td></tr>
+        <tr><td>Stupeň III.</td><td>5 rokov</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Recertifikácia</strong> sa realizuje rovnakým spôsobom ako prvotná certifikácia. Certifikovaná osoba, ktorej platnosť certifikátu uplynula, musí splniť všetky požiadavky ako záujemcovia prvýkrát.</p>
+    <p><strong>Dozor a pozastavenie/zrušenie certifikátu:</strong> CO sleduje plnenie certifikačných požiadaviek. V prípade pozastavenia alebo zrušenia musí kandidát certifikát vrátiť (oba formáty A4 aj A7). CO informuje certifikovanú osobu písomne.</p>
+    <div class="warn-b"><strong>Upozornenie — faktory ovplyvňujúce vnímanie chutí a vôní:</strong> stav zubov a stomatologické protézy, niektoré špecifické alergie, choroby dýchacích ciest a prebiehajúca liečba, niektoré druhy liekov. V prípade výskytu týchto faktorov sa odporúča poradiť s lekárom pred prihlásením.</div>
+    <p style="font-size:13px;color:#666;font-style:italic;">Certifikačný proces platný od: 27. 7. 2024. Formálne aktualizácie textu: 15. 1. 2026.</p>
+  </div>
+
+  <div class="co-section" id="schemy">
+    <h2>4. Certifikačné schémy</h2>
+    <div class="sc-card">
+      <div class="sc-hdr"><div class="sc-lbl">CS I./2024</div><div class="sc-tit">Senzorické posudzovanie potravinárskych a poľnohospodárskych výrobkov</div></div>
+      <div class="sc-body">
+        <p><strong>Predmet certifikácie:</strong> potravinárske a poľnohospodárske výrobky, suroviny a krmivá. Certifikované osoby budú spôsobilé vykonávať senzorické posudzovanie u producentov, výrobcov, distribútorov a na súťažiach.</p>
+        <h3 style="font-size:14px;margin:12px 0 6px;">Požadovaná kompetentnosť</h3>
+        <ul>
+          <li>Znalosť základných pojmov a definícií senzorickej analýzy — písomný test,</li>
+          <li>správne rozoznávanie farieb — Ishiharov test farbosleposti,</li>
+          <li>schopnosť rozoznávať a rozlišovať základné a vedľajšie chute,</li>
+          <li>schopnosť rozoznávať pachy a intenzitu pachov,</li>
+          <li>schopnosť rozlišovať farebné odtiene a ich intenzitu,</li>
+          <li>schopnosť opisu textúry a rozlíšenia intenzity textúry.</li>
+        </ul>
+        <h3 style="font-size:14px;margin:12px 0 6px;">Praktické skúšky — 11 čiastkových skúšok</h3>
+        <ul>
+          <li>Skúška č. 1 — podľa Ishiharu</li>
+          <li>Skúšky č. 2–4 — rozlíšenie farieb (žltá–zelená–modrá; červená–fialová–modrá; svetlosivá–tmavosivá)</li>
+          <li>Skúška č. 5 — odhalenie ageuzie (porucha chuti)</li>
+          <li>Skúška č. 6 — odhalenie anosmie (porucha čuchu)</li>
+          <li>Skúška č. 7 — trojuholníková skúška</li>
+          <li>Skúšky č. 8–9 — poradové skúšky intenzity chutí a pachov</li>
+          <li>Skúška č. 10 — poradová skúška intenzity textúry</li>
+          <li>Skúška č. 11 — skúška opisu textúry</li>
+        </ul>
+        <div class="sc-norms"><strong>Súvisiace normy</strong>ISO 3972:2011 · STN EN ISO 4120:2021 · STN EN ISO 5492:2010 · STN EN ISO 5495:2008 · STN ISO 5496:2012 · ČSN ISO 6658:2022 · ISO 8586:2023 · ČSN ISO 8587:2008 · STN EN ISO 8589:2010 · ČSN ISO 11037:2012</div>
+        <p style="font-size:12px;color:#666;margin-top:8px;">Schéma platná od 27. 7. 2024. Formálne aktualizácie textu: 2. 2. 2026.</p>
+      </div>
+    </div>
+    <div class="sc-card">
+      <div class="sc-hdr"><div class="sc-lbl">CS II./2024</div><div class="sc-tit">Senzorické posudzovanie vína</div></div>
+      <div class="sc-body">
+        <p><strong>Predmet certifikácie:</strong> víno. Certifikované osoby budú spôsobilé vykonávať senzorické posudzovanie vín u producentov, distribútorov a na súťažiach. <strong>Podmienka: minimálne 18 rokov.</strong></p>
+        <h3 style="font-size:14px;margin:12px 0 6px;">Požadovaná kompetentnosť</h3>
+        <ul>
+          <li>Znalosť základných pojmov senzorickej analýzy a hodnotenia vína — písomný test,</li>
+          <li>správne rozoznávanie farieb — Ishiharov test,</li>
+          <li>schopnosť rozoznávať chute vo vode a vo víne,</li>
+          <li>schopnosť rozoznávať intenzitu chutí a pachov vo víne,</li>
+          <li>schopnosť rozlišovať intenzitu farby vín,</li>
+          <li>schopnosť určenia intenzity zákalu.</li>
+        </ul>
+        <h3 style="font-size:14px;margin:12px 0 6px;">Praktické skúšky odborné — víno (9 čiastkových skúšok)</h3>
+        <ul>
+          <li>Skúška rozlíšenia základných chutí vo vode</li>
+          <li>Skúška rozlíšenia intenzity chutí vo víne trojuholníkovým testom</li>
+          <li>Párová pamäťová skúška rozlíšenia intenzity chuti vo víne</li>
+          <li>Poradová skúška rozlíšenia intenzity vône vo víne</li>
+          <li>Poradová skúška rozlíšenia intenzity sladkej chuti vo víne</li>
+          <li>Poradová skúška rozlíšenia intenzity farby bieleho vína</li>
+          <li>Poradová skúška rozlíšenia intenzity farby červeného vína</li>
+          <li>Poradová skúška na určenie intenzity zákalu</li>
+          <li>Pamäťová skúška určenia dvoch druhov vín</li>
+        </ul>
+        <div class="sc-norms"><strong>Súvisiace normy</strong>ISO 3591:1977 · STN EN ISO 4120:2021 · STN EN ISO 5492:2010 · STN EN ISO 5495:2008 · ČSN ISO 6658:2022 · ISO 8586:2023 · ČSN ISO 8587:2008 · STN EN ISO 8589:2010</div>
+        <p style="font-size:12px;color:#666;margin-top:8px;">Schéma platná od 27. 7. 2024. Formálne aktualizácie textu: 15. 1. 2026.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="co-section" id="staznosti">
+    <h2>5. Sťažnosti a odvolania</h2>
+    <h3>Politika riešenia sťažností a odvolaní</h3>
+    <p>Politika VPÚ v Bratislave je zameraná na to, aby sa všetky podania riešili konštruktívne, nestranne a včas — v súlade so zásadami zodpovednosti, nestrannosti, dôvernosti a objektívnosti. Rozhodnutia preskúmali osoby, ktoré neboli zapojené do pôvodného rozhodnutia. Vydané: Január 2026.</p>
+    <h3>Postup podania odvolania</h3>
+    <p>Odvolanie je písomné podanie oprávnenej osoby voči rozhodnutiu CO, ktorým sa domáha preskúmania alebo zmeny rozhodnutia.</p>
+    <p><strong>Čo musí odvolanie obsahovať:</strong> meno, priezvisko a adresu odvolávateľa; označenie rozhodnutia, proti ktorému sa odvolanie podáva; stručný dôvod a čo odvolávateľ požaduje. Musí byť vlastnoručne podpísané.</p>
+    <p><strong>Spôsoby podania:</strong></p>
+    <ul>
+      <li>Listinne — poštou alebo osobne: VPÚ v Bratislave, Certifikačný orgán, Botanická 15, 842 52 Bratislava</li>
+      <li>Elektronicky — e-mailom: <a href="mailto:repova@svuba.sk">repova@svuba.sk</a> (s jednoznačnou identifikáciou odvolávateľa)</li>
+    </ul>
+    <p><strong>Lehoty:</strong> Bezodkladne, najneskôr do 30 dní. V zložitých prípadoch maximálne 60 dní (odvolávateľ bude informovaný). Osoby, ktoré sa podieľali na pôvodnom rozhodnutí, sa na vybavovaní odvolania nepodieľajú.</p>
+    <h3>Postup podania sťažnosti</h3>
+    <p>Sťažnosťou podľa zákona č. 9/2010 Z.z. sa domáhate ochrany svojich práv alebo poukazujete na konkrétne nedostatky.</p>
+    <p><strong>Čo musí sťažnosť obsahovať:</strong> meno, priezvisko a adresu sťažovateľa; predmet sťažnosti a stručný opis problému; komu sťažnosť smeruje; čo sťažovateľ požaduje. Musí byť vlastnoručne podpísaná.</p>
+    <p><strong>Spôsoby podania:</strong></p>
+    <ul>
+      <li>Listinne — poštou alebo osobne: VPÚ v Bratislave, Certifikačný orgán, Botanická 15, 842 52 Bratislava</li>
+      <li>Elektronicky — cez webovú stránku: <a href="https://www.svpu.sk/svpu/staznosti-podnety" target="_blank" rel="noopener">svpu.sk/svpu/staznosti-podnety</a></li>
+    </ul>
+    <p><strong>Lehoty:</strong> Bezodkladne, najneskôr do 60 dní. V zložitých prípadoch maximálne o 30 dní navyše (sťažovateľ bude informovaný o predĺžení).</p>
+  </div>
+
+  <div class="co-section" id="overenie">
+    <h2>6. Overenie platnosti certifikátu</h2>
+    <p>V súlade s článkom 7.2.1 normy STN EN ISO/IEC 17024:2013 certifikačný orgán na základe podanej žiadosti overí a poskytne informácie o tom, či konkrétna fyzická osoba je držiteľom aktuálneho, platného certifikátu a o rozsahu udelenej certifikácie.</p>
+    <h3>Podmienky podania žiadosti</h3>
+    <ul>
+      <li>Žiadosť musí byť písomná, v listinnej alebo elektronickej forme.</li>
+      <li>Listinná forma — vlastnoručne podpísaná — poštou alebo osobne na adresu CO.</li>
+      <li>Elektronická forma — e-mailom: <a href="mailto:repova@svuba.sk">repova@svuba.sk</a>. Musí umožňovať jednoznačnú identifikáciu žiadateľa.</li>
+      <li>Anonymné žiadosti nebudú spracované.</li>
+    </ul>
+    <h3>Žiadosť musí obsahovať</h3>
+    <ul>
+      <li>Meno a priezvisko osoby, ku ktorej sa overenie požaduje,</li>
+      <li>dátum narodenia.</li>
+    </ul>
+    <p>Informácie budú poskytované v súlade s platnými právnymi predpismi vrátane predpisov o ochrane osobných údajov.</p>
+  </div>
+
+  <div class="co-section" id="formulare">
+    <h2>7. Formuláre</h2>
+    <p>Vyplnenú žiadosť doručte CO osobne, poštou alebo e-mailom na <a href="mailto:repova@svuba.sk">repova@svuba.sk</a>.</p>
+    <div class="doc-wrap">
+      <div class="doc-hdr">Žiadosti o certifikáciu</div>
+      <ul class="doc-list">
+        <li><span class="d-ico">📝</span><div class="d-inf"><div class="d-nm">Žiadosť — CS I./2024 (potraviny) — DOCX</div><div class="d-mt">Senzorické posudzovanie potravinárskych a poľnohospodárskych výrobkov</div></div><a href="ziadost_certifikacia.docx" class="d-btn">⬇ DOCX</a></li>
+        <li><span class="d-ico">📄</span><div class="d-inf"><div class="d-nm">Žiadosť — CS I./2024 (potraviny) — PDF</div><div class="d-mt">Senzorické posudzovanie potravinárskych a poľnohospodárskych výrobkov</div></div><a href="ziadost_certifikacia.pdf" class="d-btn">⬇ PDF</a></li>
+        <li><span class="d-ico">📝</span><div class="d-inf"><div class="d-nm">Žiadosť — CS II./2024 (víno) — DOCX</div><div class="d-mt">Senzorické posudzovanie vína · Min. vek 18 rokov</div></div><a href="ziadost_certifikacia.docx" class="d-btn">⬇ DOCX</a></li>
+        <li><span class="d-ico">📄</span><div class="d-inf"><div class="d-nm">Žiadosť — CS II./2024 (víno) — PDF</div><div class="d-mt">Senzorické posudzovanie vína · Min. vek 18 rokov</div></div><a href="ziadost_certifikacia.pdf" class="d-btn">⬇ PDF</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="co-section" id="poplatky">
+    <h2>8. Poplatky za certifikáciu</h2>
+    <div class="infobox"><span class="ico">ℹ️</span><div>Poplatky za certifikáciu sú dostupné <strong>na vyžiadanie</strong>. Kontaktujte vedúcu CO: <a href="mailto:repova@svuba.sk">repova@svuba.sk</a> alebo <a href="tel:+421238108245">+421 2 38108 245</a>.</div></div>
+  </div>
+
+  <div class="co-section" id="dokumentacia">
+    <h2>9. Zmena v externe riadenej dokumentácii</h2>
+    <div class="ok-b">✅ <strong>ISO 8586:2023 — implementácia zmien</strong><br>
+    V súvislosti s vydaním novej verzie normy ISO 8586:2023 Certifikačný orgán ubezpečuje zákazníkov, že z posúdenia tejto aktualizácie nevyplynuli žiadne podstatné zmeny ovplyvňujúce certifikačný proces. Zmeny sú len okrajové — všetky postupy a podmienky skúšania kandidátov zostávajú nezmenené.</div>
+    <p>Výbory pre schému schválili implementáciu zmien do certifikačných schém CS I./2022 a CS II./2022 a do procesu skúšania do 31. 12. 2024. Certifikáty vydané pred týmto dátumom sú platné počas celej doby účinnosti.</p>
+    <p style="font-size:13px;color:#666;font-style:italic;">Vydané: 27. 5. 2024 — Výbory pre certifikačné schémy.</p>
+  </div>
+
+  <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+    <a class="btn-secondary" href="vpu-ba.html">← Späť na VPÚ v Bratislave</a>
+    <a class="btn-gold" href="mailto:repova@svuba.sk">✉ Kontaktovať CO</a>
+  </div>
+</main>
+</div></div>
+<div class="feedback-bar"><div class="inner"><p>Pomohla vám táto stránka?</p><div class="feedback-btns"><button class="fb-btn">👍 Áno, pomohla</button><button class="fb-btn">👎 Nie, nepomohla</button></div></div></div>
+<footer class="site-footer"><div class="footer-top"><div class="inner">
+  <div><h4>Štátny veterinárny a potravinový ústav</h4><p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>IČO: 42355613<br><a href="mailto:info@svpu.sk">info@svpu.sk</a></p></div>
+  <div><h4>Pracoviská</h4><ul><li><a href="vpu-ba.html">VPÚ v Bratislave</a></li><li><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a></li><li><a href="vpu-ke.html">VPÚ v Košiciach</a></li><li><a href="vpu-zv.html">VÚ v Zvolene</a></li></ul></div>
+  <div><h4>Informácie</h4><ul><li><a href="o-nas.html">O nás</a></li><li><a href="aktuality.html">Aktuality</a></li><li><a href="kontakt.html">Kontakty</a></li></ul></div>
+  <div><h4>Povinné zverejňovanie</h4><ul><li><a href="#">Prístupnosť webu</a></li><li><a href="#">Ochrana osobných údajov</a></li><li><a href="#">Cookies</a></li></ul></div>
+</div></div><div class="footer-bottom"><div class="inner"><span>© 2026 ŠVPÚ. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span><span>🇸🇰 gov.sk</span></div></div></footer>
+<script src="main.js"></script>
+</body></html>

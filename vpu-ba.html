@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="sk">
+<style>
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.news-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: 0.2s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* obrázok */
+.nc-img {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.nc-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* text */
+.nc-date {
+  font-size: 13px;
+  color: #0077cc;
+  margin: 10px 12px 0;
+}
+
+.news-card h3 {
+  font-size: 16px;
+  margin: 6px 12px;
+}
+
+.news-card p {
+  font-size: 14px;
+  color: #444;
+  margin: 0 12px 10px;
+}
+
+.nc-more {
+  display: inline-block;
+  margin: 0 12px 12px;
+  color: #0077cc;
+  font-size: 14px;
+}
+</style>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VPÚ v Bratislave – Štátny veterinárny a potravinový ústav</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+<div class="sec-nav">
+  <div class="inner">
+    <div class="egov">
+      <span class="sk-badge">SK</span>
+      <span>Oficiálna stránka</span>
+      <button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn" aria-controls="gov-info">
+        <strong>e-Gov verejnej správy</strong> ▾
+      </button>
+    </div>
+    <div class="lang-wrap">
+      <a href="#" class="active">Slovenčina</a>
+      <a href="#">English</a>
+    </div>
+  </div>
+</div>
+<div class="gov-info" id="gov-info" role="region" aria-label="Informácie o stránke">
+  <div class="inner">
+    <div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR. <a href="https://www.slovensko.sk/sk/agendy/agenda/_organy-verejnej-moci" target="_blank" rel="noopener">Zoznam orgánov verejnej moci.</a></p></div>
+    <div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény webového sídla.</p></div>
+  </div>
+</div>
+<header class="site-hdr" role="banner">
+  <div class="hdr-inner">
+    <div class="hdr-main">
+      <a href="index.html" class="logo" aria-label="Štátny veterinárny a potravinový ústav – domovská stránka">
+        <img src="logo.jpg" class="logo-img" alt="Logo Štátny veterinárny a potravinový ústav">
+        <div class="logo-text">
+          <strong>Štátny veterinárny a potravinový ústav</strong>
+          <small>svpu.sk</small>
+        </div>
+      </a>
+      <div class="hdr-search" role="search" aria-label="Vyhľadávanie">
+        <input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie">
+        <button aria-label="Vyhľadať">🔍 Hľadať</button>
+      </div>
+    </div>
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia">
+    <div class="inner"><ul><li><a href="org.html" class="active">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ v Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li><li><a href="aktuality.html">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="vpu-ba.html#aktuality">Aktuality z VPÚ v Bratislave</a><a href="vpu-dk.html#aktuality">Aktuality z VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html#aktuality">Aktuality z VPÚ v Košiciach</a><a href="vpu-zv.html#aktuality">Aktuality z VÚ v Zvolene</a></div></li><li><a href="o-nas.html">O nás</a></li><li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ v Zvolene</a></div></li></ul></div>
+  </nav>
+</header>
+<div class="hero-banner hero-slim" role="img" aria-label="Laboratórna diagnostika ŠVPÚ"><img src="hero.jpg" alt=""><div class="hero-overlay"></div></div>
+<nav class="breadcrumb" aria-label="Ste tu"><ol><li><a href="index.html">Domov</a></li><li><a href="org.html">Organizačné zložky</a></li><li><span class="cur" aria-current="page">VPÚ v Bratislave</span></li></ol></nav>
+<div class="page-bg"><div class="page-inner">
+  <aside class="sidebar">
+<div class="side-box side-nav"><div class="side-box-title">VPÚ v Bratislave</div><ul><li>
+  <a href="vysetrenia-ba.html">🐾 Vyšetrenia zvierat</a></li><li>
+  <a href="potraviny-ba.html">🥩 Analýzy potravín</a></li><li>
+  <a href="krmiva-ba.html">🌾 Analýzy krmív</a></li><li>
+  <a href="voda-ba.html">💧 Analýzy vody</a></li><li>
+  <a href="certifikacia-ba.html">📜 Certifikácia osôb</a></li><li>
+  <a href="cennik-ba.html">💳 Cenník a ponuka</a></li><li>
+  <a href="ziadanky-ba.html">📋 Žiadanky a tlačivá</a></li><li>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBj4fLlCZCAVWU7Hg-fzLbCYLsqsn-uKCklpErWqdO3Y9DLg/viewform?usp=header">📊 Dotazník spokojnosti</a></li><li>
+  <a href="oddelenia-ba.html">📂 Oddelenia a laboratóriá</a></li>
+          <li><a href="Osvedcenie_o_akreditacii.pdf">🏅 Akreditácia</a></li></ul></div><div class="side-box">
+  <div class="side-box-title">Kontakt VPÚ v Bratislave </div>
+  <div class="side-contact">
+    <strong>Botanická 15, 842 52 Bratislava</strong>
+    <br>
+    Tel: <a href="tel:+421238108212">+ 421 2 38 108 212</a><br>
+    <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a><br><br>
+    <strong>Otváracie hodiny</strong><br>
+    Pondelok – Piatok<br>8:00 – 15:00
+  </div>
+</div>
+  </aside>
+  <main id="main" class="content" tabindex="-1">
+    <div class="pg-title">
+      <h1>Veterinárny a potravinový ústav v Bratislave</h1>
+      <p>VPÚ v Bratislave vykonáva senzorické, mikrobiologické, hydrobiologické, chemické a molekulárno-biologické skúšky v potravinách, krmivách, vode a materiáloch prichádzajúcich do styku s potravinami. Poskytuje laboratórnu diagnostiku chorôb zvierat a certifikáciu osôb.</p>
+    </div>
+    <div class="infobox">
+      <span class="ico">ℹ️</span>
+      <div><strong>Otváracie hodiny:</strong> Pondelok – Piatok, 8:00–15:00 &nbsp;·&nbsp; <strong>Adresa:</strong> Botanická 15, 842 52 Bratislava</div>
+    </div>
+
+    <h2 style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:12px;">Naše služby</h2>
+    <div class="service-grid">
+      <a class="service-tile active" href="vysetrenia-ba.html"><span class="tile-icon">🐾</span><span class="tile-label">Vyšetrenia zvierat</span></a>
+      <a class="service-tile" href="potraviny-ba.html"><span class="tile-icon">🥩</span><span class="tile-label">Analýzy potravín</span></a>
+      <a class="service-tile" href="krmiva-ba.html"><span class="tile-icon">🌾</span><span class="tile-label">Analýzy krmív</span></a>
+      <a class="service-tile" href="voda-ba.html"><span class="tile-icon">💧</span><span class="tile-label">Analýzy vody</span></a>
+      <a class="service-tile" href="certifikacia-ba.html"><span class="tile-icon">📜</span><span class="tile-label">Certifikácia osôb</span></a>
+    </div>
+
+    <div class="card-grid" style="margin-top:16px;">
+      <div class="card"><h3>📋 E-žiadanka</h3><p>Podajte žiadanku online na <a href="https://eziadanky.svpu.sk:4433" target="_blank" rel="noopener">eziadanky.svpu.sk</a>.</p><a class="btn-gold" href="https://eziadanky.svpu.sk:4433" target="_blank" rel="noopener" style="font-size:13px;padding:8px 16px;">→ Otvoriť e-žiadanku</a></div>
+      <div class="card"><h3>🚐 Zvozné linky</h3><p>Prevádzkujeme zvozné linky z odberných miest podľa platného harmonogramu.</p><a class="btn-secondary" href="harmonogram.html" style="font-size:13px;padding:8px 16px;">→ Zobraziť harmonogram</a></div>
+      <div class="card"><h3>🏅 Akreditácia ISO 17025</h3><p>Vydávame akreditované protokoly pre všetky vykonávané skúšky.</p><a class="btn-secondary" href="Osvedcenie_o_akreditacii.pdf" style="font-size:13px;padding:8px 16px;">→ Certifikát akreditácie</a></div>
+    </div>
+
+<h2 id="aktuality" style="font-size:18px;font-weight:700;color:var(--navy);margin:24px 0 12px;">
+  Aktuality z VPÚ v Bratislave
+</h2>
+
+<div class="news-grid" id="news-grid-ba">
+
+<a href="aktualita-MIC.html" class="news-card" data-datum="2026-03-15">
+  <div class="nc-img">
+    <img src="med_MIC.png" alt="Med">
+  </div>
+  <div class="nc-date">15. 3. 2026</div>
+  <h3>Antimikrobiálna aktivita medu</h3>
+  <p>Slovensko je prvá krajina EÚ, ktorá ponúka akreditovanú metódu stanovenia antibakteriálnej aktivity medu.</p>
+  <span class="nc-more">Prečítať celý článok →</span>
+</a>
+
+<a href="aktualita-giardioza.html" class="news-card" data-datum="2026-02-25">
+  <div class="nc-img">
+    <img src="Giardioza v ba.png" alt="Giardia">
+  </div>
+  <div class="nc-date">25. 2. 2026</div>
+  <h3>Informácie o giardióze</h3>
+  <p>V posledných týždňoch sa v médiách objavili informácie o zvýšenom výskyte giardiózy.</p>
+  <span class="nc-more">Prečítať celý článok →</span>
+</a>
+
+<a href="harmonogram.html" class="news-card" data-datum="2026-02-16">
+  <div class="nc-img">
+    <img src="zvozna_linka.jpg" alt="Doprava">
+  </div>
+  <div class="nc-date">16. 2. 2026</div>
+  <h3>Zvozné linky - zmena harmonogramu</h3>
+  <p>Od pondelka 16.2.2026 sa mení harmonogram zvoznej linky VPÚ v Bratislave.</p>
+  <span class="nc-more">Prejsť na aktuálny harmonogram →</span>
+</a>
+
+<a href="aktualita-senzorické-skusky.html" class="news-card" data-datum="2026-02-09">
+  <div class="nc-img">
+    <img src="certifikacne.skusky.png" alt="Skúšky">
+  </div>
+  <div class="nc-date">9. 2. 2026</div>
+  <h3>Senzorické skúšky</h3>
+  <p>Možnosť absolvovať senzorické skúšky v termíne 17.3. - 27.3.2026.</p>
+  <span class="nc-more">Prečítať celý článok →</span>
+</a>
+  </div>
+
+</div>
+    
+    </div>
+</div>
+<script>
+(function(){
+  var g=document.getElementById('news-grid-ba');
+  if(!g) return;
+  var c=Array.from(g.children);
+  c.sort(function(a,b){return (b.dataset.datum||'').localeCompare(a.dataset.datum||'');});
+  
+  c.forEach(function(x){g.appendChild(x);});
+})();
+</script>
+  </main>
+</div></div>
+<div class="feedback-bar" role="complementary" aria-label="Hodnotenie stránky">
+  <div class="inner">
+    <p>Pomohla vám táto stránka?</p>
+    <div class="feedback-btns">
+      <button class="fb-btn">👍 Áno, pomohla</button>
+      <button class="fb-btn">👎 Nie, nepomohla</button>
+    </div>
+  </div>
+</div>
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="inner">
+      <div>
+        <h4>Štátny veterinárny a potravinový ústav</h4>
+        <p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>IČO: 42355613<br><a href="mailto:info@svpu.sk">info@svpu.sk</a></p>
+        <p style="margin-top:10px;">Zriadený Ministerstvom pôdohospodárstva a rozvoja vidieka SR.</p>
+        <div class="footer-logos"><div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div></div>
+      </div>
+      <div>
+        <h4>Pracoviská</h4>
+        <ul>
+          <li><a href="vpu-ba.html">VPÚ v Bratislave</a></li>
+          <li><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a></li>
+          <li><a href="vpu-ke.html">VPÚ v Košiciach</a></li>
+          <li><a href="vpu-zv.html">VÚ v Zvolene</a></li>
+          <li><a href="gr.html">Generálne riaditeľstvo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informácie</h4>
+        <ul>
+          <li><a href="o-nas.html">O nás</a></li>
+          <li><a href="aktuality.html">Aktuality</a></li>
+          <li><a href="kontakt.html">Kontakty</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Povinné zverejňovanie</h4>
+        <ul>
+          <li><a href="#">Povinne zverejňované dokumenty</a></li>
+          <li><a href="#">Prístupnosť webu</a></li>
+          <li><a href="#">Ochrana osobných údajov</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Slobodný prístup k informáciám</a></li>
+          <li><a href="#">Sťažnosti a podnety</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="inner">
+      <span>© 2026 Štátny veterinárny a potravinový ústav. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span>
+      <span>🇸🇰 gov.sk</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

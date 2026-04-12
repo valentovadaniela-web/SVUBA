@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Žiadanky a tlačivá – VPÚ Bratislava – ŠVPÚ</title>
+<meta name="description" content="Žiadanky a tlačivá VPÚ v Bratislave na stiahnutie.">
+<link rel="stylesheet" href="style.css">
+<style>
+.notice-box{background:#fff8e1;border:1px solid #f2a900;border-left:5px solid #f2a900;border-radius:3px;padding:14px 16px;margin-bottom:22px;font-size:14px;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
+.notice-box .ico{font-size:20px;flex-shrink:0;margin-top:1px}
+.filter-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.ftab{padding:6px 14px;border-radius:20px;border:2px solid var(--grey2,#d6d6d6);background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:var(--grey4,#595959);font-family:var(--font,inherit);transition:all .15s}
+.ftab:hover{border-color:var(--navy,#0b2d6e);color:var(--navy,#0b2d6e)}
+.ftab.active{background:var(--navy,#0b2d6e);color:#fff;border-color:var(--navy,#0b2d6e)}
+.section-hdr{display:flex;align-items:center;gap:12px;margin:28px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--grey2,#d6d6d6)}
+.section-hdr h2{font-size:18px;font-weight:700;margin:0}
+.section-hdr .count{background:var(--navy-light,#e8f1f8);color:var(--navy,#0b2d6e);font-size:12px;font-weight:700;padding:2px 10px;border-radius:20px}
+.form-list{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
+.form-card{background:#fff;border:1px solid var(--grey2,#d6d6d6);border-radius:3px;display:flex;transition:box-shadow .15s;overflow:hidden}
+.form-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.form-card__stripe{width:5px;flex-shrink:0}
+.form-card__body{padding:13px 16px;flex:1;display:flex;align-items:center;gap:14px;min-width:0}
+.form-card__icon{font-size:28px;flex-shrink:0;line-height:1}
+.form-card__info{flex:1;min-width:0}
+.form-card__title{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--ink,#1a1a1a);line-height:1.35;overflow-wrap:break-word;word-break:break-word}
+.form-card__meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--grey4,#595959);margin-top:3px}
+.form-card__meta .badge{background:var(--grey1,#f5f5f5);border:1px solid var(--grey2,#d6d6d6);padding:1px 7px;border-radius:2px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.form-card__desc{font-size:13px;color:var(--grey4,#595959);margin-top:5px;line-height:1.5}
+.form-card__actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0;padding:13px 14px 13px 0;align-items:flex-end}
+.btn-dl{display:inline-flex;align-items:center;gap:5px;background:var(--navy,#0b2d6e);color:#fff;padding:7px 14px;border-radius:3px;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap;transition:background .15s}
+.btn-dl:hover{background:#071e4a;color:#fff}
+@media(max-width:600px){
+  .form-card__body{flex-wrap:wrap}
+  .form-card__actions{flex-direction:row;flex-wrap:wrap;padding:0 14px 13px 14px;justify-content:flex-start}
+  .section-hdr h2{font-size:16px}
+  .ftab{font-size:12px;padding:5px 10px}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Preskočiť na hlavný obsah</a>
+<div class="sec-nav"><div class="inner"><div class="egov"><span class="sk-badge">SK</span><span>Oficiálna stránka</span><button class="egov-btn" onclick="toggleGovInfo()" aria-expanded="false" id="gov-btn" aria-controls="gov-info"><strong>e-Gov verejnej správy</strong> ▾</button></div><div class="lang-wrap"><a href="#" class="active">Slovenčina</a><a href="#">English</a></div></div></div>
+<div class="gov-info" id="gov-info" role="region" aria-label="Informácie o stránke"><div class="inner"><div><h3>Doména gov.sk je oficiálna</h3><p>Toto je oficiálna webová stránka orgánu verejnej moci SR. <a href="https://www.slovensko.sk/sk/agendy/agenda/_organy-verejnej-moci" target="_blank" rel="noopener">Zoznam orgánov verejnej moci.</a></p></div><div><h3>Táto stránka je zabezpečená</h3><p>Zabezpečená stránka vždy začína <strong>https://</strong> pred názvom domény webového sídla.</p></div></div></div>
+<header class="site-hdr" role="banner">
+  <div class="hdr-inner"><div class="hdr-main">
+    <a href="index.html" class="logo" aria-label="Štátny veterinárny a potravinový ústav – domovská stránka">
+      <img src="logo.jpg" class="logo-img" alt="Logo Štátny veterinárny a potravinový ústav">
+      <div class="logo-text"><strong>Štátny veterinárny a potravinový ústav</strong><small>svpu.sk</small></div>
+    </a>
+    <div class="hdr-search" role="search" aria-label="Vyhľadávanie">
+      <input type="search" placeholder="Zadajte hľadaný výraz" aria-label="Vyhľadávanie">
+      <button aria-label="Vyhľadať">🔍 Hľadať</button>
+    </div>
+  </div></div>
+  <nav class="main-nav" role="navigation" aria-label="Hlavná navigácia">
+    <div class="inner"><ul>
+      <li><a href="org.html" class="active">Organizačné zložky ▾</a><div class="nav-dd"><a href="vpu-ba.html">VPÚ v Bratislave</a><a href="vpu-dk.html">VPÚ v Dolnom Kubíne</a><a href="vpu-ke.html">VPÚ v Košiciach</a><a href="vpu-zv.html">VÚ vo Zvolene</a><a href="gr.html">Generálne riaditeľstvo ŠVPÚ</a></div></li>
+      <li><a href="aktuality.html">Aktuality ▾</a><div class="nav-dd"><a href="aktuality.html">Aktuality zo ŠVPÚ</a><a href="vpu-ba.html#aktuality">Aktuality z VPÚ Bratislava</a></div></li>
+      <li><a href="o-nas.html">O nás</a></li>
+      <li><a href="kontakt.html">Kontakty ▾</a><div class="nav-dd"><a href="kontakt.html">Generálne riaditeľstvo ŠVPÚ</a><a href="kontakt.html#ba">VPÚ v Bratislave</a><a href="kontakt.html#dk">VPÚ v Dolnom Kubíne</a><a href="kontakt.html#ke">VPÚ v Košiciach</a><a href="kontakt.html#zv">VÚ vo Zvolene</a></div></li>
+    </ul></div>
+  </nav>
+</header>
+<div class="hero-banner hero-slim" role="img" aria-label="Laboratórna diagnostika ŠVPÚ"><img src="hero.jpg" alt=""><div class="hero-overlay"></div></div>
+<nav class="breadcrumb" aria-label="Ste tu"><ol><li><a href="index.html">Domov</a></li><li><a href="org.html">Organizačné zložky</a></li><li><a href="vpu-ba.html">VPÚ v Bratislave</a></li><li><span class="cur" aria-current="page">Žiadanky a tlačivá</span></li></ol></nav>
+
+<div class="page-bg"><div class="page-inner">
+  <aside class="sidebar">
+    <div class="side-box side-nav">
+      <div class="side-box-title">VPÚ v Bratislave</div>
+      <ul>
+        <li><a href="vysetrenia-ba.html">🐾 Vyšetrenia zvierat</a></li>
+        <li><a href="potraviny-ba.html">🥩 Analýzy potravín</a></li>
+        <li><a href="krmiva-ba.html">🌾 Analýzy krmív</a></li>
+        <li><a href="voda-ba.html">💧 Analýzy vody</a></li>
+        <li><a href="certifikacia-ba.html">📜 Certifikácia osôb</a></li>
+        <li><a href="cennik-ba.html">💳 Cenník a ponuka</a></li>
+        <li><a href="ziadanky-ba.html" class="active" aria-current="page">📋 Žiadanky a tlačivá</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeBj4fLlCZCAVWU7Hg-fzLbCYLsqsn-uKCklpErWqdO3Y9DLg/viewform?usp=header" target="_blank" rel="noopener">📊 Dotazník spokojnosti</a></li>
+        <li><a href="oddelenia-ba.html">📂 Oddelenia a laboratóriá</a></li>
+        <li><a href="Osvedcenie_o_akreditacii.pdf">🏅 Akreditácia</a></li>
+      </ul>
+    </div>
+    <div class="side-box">
+  <div class="side-box-title">Kontakt VPÚ v Bratislave </div>
+  <div class="side-contact">
+    <strong>Botanická 15, 842 52 Bratislava</strong>
+    <br>
+    Tel: <a href="tel:+421238108212">+ 421 2 38 108 212</a><br>
+    <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a><br><br>
+    <strong>Otváracie hodiny</strong><br>
+    Pondelok – Piatok<br>8:00 – 15:00
+  </div>
+    </div>
+  </aside>
+
+  <main id="main" class="content" tabindex="-1">
+    <div class="pg-title">
+      <h1>📋 Žiadanky a tlačivá</h1>
+      <p>Stiahnite si príslušnú žiadanku, vyplňte ju a priložte k vzorke pri doručení alebo zvoze.</p>
+    </div>
+
+    <div class="notice-box">
+      <span class="ico">ℹ️</span>
+      <div><strong>Online e-žiadanky sú v príprave.</strong> Momentálne sú dostupné tlačivá na stiahnutie vo formáte PDF. Vyplnenú žiadanku priložte k vzorke alebo ju zašlite vopred na <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a>.</div>
+    </div>
+
+    <div class="filter-tabs" role="group" aria-label="Filtrovať žiadanky">
+      <button class="ftab active" onclick="filterForms('all',this)">Všetky</button>
+      <button class="ftab" onclick="filterForms('zvierata',this)">🐾 Zvieratá</button>
+      <button class="ftab" onclick="filterForms('krmiva',this)">🌾 Krmivá</button>
+      <button class="ftab" onclick="filterForms('monitoring',this)">📊 Monitoring</button>
+      <button class="ftab" onclick="filterForms('potraviny',this)">🥩 Potraviny</button>
+      <button class="ftab" onclick="filterForms('certifikacia',this)">📜 Certifikácia</button>
+      <button class="ftab" onclick="filterForms('zvoz',this)">🚐 Zvoz</button>
+    </div>
+
+    <!-- VŠEOBECNÉ -->
+    <div class="section-hdr" data-section="zvierata"><h2>🐾 Vyšetrenia zvierat – všeobecné</h2><span class="count">2 tlačivá</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="zvierata">
+        <div class="form-card__stripe" style="background:#0b2d6e"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🔬</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka o laboratórne vyšetrenie – Odbor zdravia zvierat</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>Formulár č. 101 · 2 strany · aktualizácia 1.5.2025</span></div>
+            <div class="form-card__desc">Bakteriologické, parazitologické, mykologické, sérologické, virologické, PCR a iné vyšetrenia. Vrátane súhlasu GDPR.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-101-zdravie-zvierat.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+      <div class="form-card" data-cat="zvierata">
+        <div class="form-card__stripe" style="background:#0b2d6e"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🐄</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka na veterinárne laboratórne vyšetrenie (ŠVPS SR – všeobecná)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_06 · 3 strany</span></div>
+            <div class="form-card__desc">Používa sa ak nie je k dispozícii špeciálna žiadanka. Sérologické, bakteriologické, virologické, parazitologické vyšetrenia. Príloha s identifikačnými údajmi zvierat.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD06-vseobecna.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- HYDINA -->
+    <div class="section-hdr" data-section="zvierata"><h2>🐓 Vyšetrenia hydiny</h2><span class="count">2 tlačivá</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="zvierata">
+        <div class="form-card__stripe" style="background:#0b2d6e"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🐓</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka na veterinárne laboratórne vyšetrenie hydiny</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_05 · 1 strana</span></div>
+            <div class="form-card__desc">Nosnice, výkrm, reprodukčné kŕdle. Pat.-anatomické, sérologické, bakteriologické, virologické vyšetrenia.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD05-hydina.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+      <div class="form-card" data-cat="zvierata monitoring">
+        <div class="form-card__stripe" style="background:#0b2d6e"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🐔</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka na vyšetrenie hydiny – salmonelové NKP (č. sledovania 449)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_23 · 1 strana</span></div>
+            <div class="form-card__desc">Salmonelové národné kontrolné programy. Gallus gallus, morky. Pre každý kŕdeľ vyplňte samostatnú žiadanku.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD23-hydina-salmonela-NKP-449.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- OŠÍPANÉ -->
+    <div class="section-hdr" data-section="zvierata"><h2>🐷 Vyšetrenia ošípaných</h2><span class="count">3 tlačivá</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="zvierata">
+         <div class="form-card__stripe" style="background:#0b2d6e"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🏭</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka na vyšetrenie trichinel u ošípaných z bitúnkov</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_16 · 1 strana</span></div>
+            <div class="form-card__desc">Metóda magnetického miešania podľa Nariadenia (EÚ) 2015/1375.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD16-trichinella-bitunok.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+      <div class="form-card" data-cat="zvierata">
+        <div class="form-card__stripe" style="background:#0b2d6e"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🏠</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Sprievodný doklad – Trichinella (domáca zabíjačka)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_18 · 1 strana</span></div>
+            <div class="form-card__desc">Pre ošípané zabité v rámci domácej zabíjačky. Výsledok do 3 pracovných dní; bez oznámenia = negatívny nález.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD18-trichinella-domaca-zabijacka.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- ZVER -->
+    <div class="section-hdr" data-section="zvierata"><h2>🦌 Voľne žijúca zver</h2><span class="count">1 tlačivo</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="zvierata">
+        <div class="form-card__stripe" style="background:#0b2d6e"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🦌</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka na vyšetrenie trichinel u voľne žijúcej zveri</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_20 · 1 strana</span></div>
+            <div class="form-card__desc">Diviačia a iná voľne žijúca zver. Metóda magnetického miešania podľa Nariadenia (ES) č. 2015/1375.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD20-trichinella-volna-zver.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- MONITORING -->
+    <div class="section-hdr" data-section="monitoring"><h2>📊 Monitoring a kontrolné programy</h2><span class="count">3 tlačivá</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="monitoring">
+        <div class="form-card__stripe" style="background:#177a47"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">📊</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka – Koordinovaný cielený monitoring (určenie 80)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_11 · 1 strana</span></div>
+            <div class="form-card__desc">HD, ošípané, mlieko, napájacia voda, krmivo. Normálny odber 80 / opakovaný 80/89.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD11-monitoring-80.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+      <div class="form-card" data-cat="monitoring zvierata">
+        <div class="form-card__stripe" style="background:#177a47"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🦊</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka – Monitoring poľovnej zveri a rýb (určenie 87)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_12 · 1 strana</span></div>
+            <div class="form-card__desc">Chemické prvky, PCB, dioxíny, CHP. Sval, tuk, pečeň. Kapor, šťuka, zubáč a iné ryby.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD12-monitoring-zver-ryby-87.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+      <div class="form-card" data-cat="monitoring">
+        <div class="form-card__stripe" style="background:#177a47"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🧪</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka – NPKR v živých zvieratách a produktoch živočíšneho pôvodu (určenie 1)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_13 · 3 strany</span></div>
+            <div class="form-card__desc">Národný plán kontroly rezíduí. Hormóny, antibiotiká, ťažké kovy, mykotoxíny. Každá vzorka vyžaduje samostatnú žiadanku.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD13-NPKR-reziduá.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- RÁDIOHYGIENA -->
+    <div class="section-hdr" data-section="monitoring"><h2>☢️ Rádiohygienická kontrola</h2><span class="count">1 tlačivo</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="monitoring">
+        <div class="form-card__stripe" style="background:#177a47"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">☢️</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka – Rádiohygienická kontrola poľnohospodárskych produktov (určenie 5)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_14 · 1 strana</span></div>
+            <div class="form-card__desc">Hovädzie, bravčové, baranie mäso, mlieko, med včelí, huby, svalovina zveri. Podprogramy RHK a EÚ-SKM.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD14-radiohygiena-5.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- KRMIVÁ -->
+    <div class="section-hdr" data-section="krmiva"><h2>🌾 Krmivá</h2><span class="count">1 tlačivo</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="krmiva">
+        <div class="form-card__stripe" style="background:#b34700"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🌾</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka na vyšetrenie krmiva (určenie 24/413)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>10_LD_21 · 2 strany</span></div>
+            <div class="form-card__desc">Mikrobiologické, chemické a mykotoxikologické analýzy. KKZ, DKZ, kŕmne suroviny, voda na napájanie. Každá vzorka vyžaduje samostatnú žiadanku.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-LD21-krmiva-24-413.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- POTRAVINY -->
+    <div class="section-hdr" data-section="potraviny"><h2>🥩 Potraviny</h2><span class="count">1 tlačivo</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="potraviny">
+        <div class="form-card__stripe" style="background:#c0392b"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🍽️</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Protokol o prevzatí vzorky na vykonanie skúšky</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>Formulár č. 103 · 2 strany · aktualizácia 5.9.2024</span></div>
+            <div class="form-card__desc">Odbor bezpečnosti potravín a krmív. Senzorické, fyzikálno-chemické, mikrobiologické znaky, alergény, kontaminanty, rezíduá pesticídov a vet. liečiv.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-103-bezpecnost-potravin.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- CERTIFIKÁCIA -->
+    <div class="section-hdr" data-section="certifikacia"><h2>📜 Certifikácia osôb</h2><span class="count">1 tlačivo</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="certifikacia">
+        <div class="form-card__stripe" style="background:#6a1b9a"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">📜</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Ponuka – Senzorické skúšky základné (ISO 8586)</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>Informačný leták · akreditácia ISO/IEC 17024:2012</span></div>
+            <div class="form-card__desc">Informácie o senzorických skúškach základných. Prihlásenie: <a href="/cdn-cgi/l/email-protection#7d1e180f09141b14161c1e141c3d0e0b081f1c530e16"><span class="__cf_email__" data-cfemail="3a595f484e535c53515b59535b7a494c4f585b144951">[email&#160;protected]</span></a>. Viac info: <a href="aktualita-senzorické-skusky.html">aktualita o skúškach</a>.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ponuka-senzorické-skusky.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+    <!-- ZVOZ -->
+    <div class="section-hdr" data-section="zvoz"><h2>🚐 Zvoz materiálu</h2><span class="count">1 tlačivo</span></div>
+    <div class="form-list">
+      <div class="form-card" data-cat="zvoz">
+        <div class="form-card__stripe" style="background:#1a88c9"></div>
+        <div class="form-card__body">
+          <div class="form-card__icon">🚐</div>
+          <div class="form-card__info">
+            <div class="form-card__title">Žiadanka na zvoz materiálu na VPÚ v Bratislave</div>
+            <div class="form-card__meta"><span class="badge">PDF</span><span>Formulár č. 195 · 1 strana · 25.5.2018</span></div>
+            <div class="form-card__desc">Pre veterinárne ambulancie. Zvoz vzoriek a kadáverov. Obsahuje potvrdenie o prevzatí a súhlas GDPR.</div>
+          </div>
+        </div>
+        <div class="form-card__actions"><a class="btn-dl" href="ziadanka-195-zvoz-materialu.pdf" download>⬇ Stiahnuť</a></div>
+      </div>
+    </div>
+
+ 
+
+  </main>
+</div></div>
+
+<div class="feedback-bar" role="complementary" aria-label="Hodnotenie stránky">
+  <div class="inner">
+    <p>Pomohla vám táto stránka?</p>
+    <div class="feedback-btns">
+      <button class="fb-btn">👍 Áno, pomohla</button>
+      <button class="fb-btn">👎 Nie, nepomohla</button>
+    </div>
+  </div>
+</div>
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-top"><div class="inner">
+    <div><h4>Štátny veterinárny a potravinový ústav</h4><p>Jánošíkova 1611/58, 026 01 Dolný Kubín<br>IČO: 42355613<br>E-mail: <a href="/cdn-cgi/l/email-protection#ee87808881ae9d989e9bc09d85"><span class="__cf_email__" data-cfemail="b5dcdbd3daf5c6c3c5c09bc6de">[email&#160;protected]</span></a></p><p style="margin-top:10px">Zriadený Ministerstvom pôdohospodárstva a rozvoja vidieka SR.</p><div class="footer-logos"><div class="footer-eu">🇪🇺 Spolufinancované z fondov EÚ</div></div></div>
+    <div><h4>Pracoviská</h4><ul><li><a href="vpu-ba.html">VPÚ Bratislava</a></li><li><a href="vpu-dk.html">VPÚ Dolný Kubín</a></li><li><a href="vpu-ke.html">VPÚ Košice</a></li><li><a href="vpu-zv.html">VÚ Zvolen</a></li><li><a href="gr.html">Generálne riaditeľstvo</a></li></ul></div>
+    <div><h4>Informácie</h4><ul><li><a href="o-nas.html">O nás</a></li><li><a href="aktuality.html">Aktuality</a></li><li><a href="kontakt.html">Kontakty</a></li></ul></div>
+    <div><h4>Povinné zverejňovanie</h4><ul><li><a href="#">Povinne zverejňované dokumenty</a></li><li><a href="#">Prístupnosť webu</a></li><li><a href="#">Ochrana osobných údajov</a></li><li><a href="#">Cookies</a></li><li><a href="#">Slobodný prístup k informáciám</a></li><li><a href="#">Sťažnosti a podnety</a></li></ul></div>
+  </div></div>
+  <div class="footer-bottom"><div class="inner"><span>© 2026 Štátny veterinárny a potravinový ústav. Vytvorené v súlade s <a href="https://idsk.gov.sk" target="_blank" rel="noopener">IDSK 3</a>.</span><span>🇸🇰 gov.sk</span></div></div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
+<script>
+function filterForms(cat, btn) {
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.form-card').forEach(card => {
+    if (cat === 'all') { card.style.display = 
