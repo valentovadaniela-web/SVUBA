@@ -371,3 +371,152 @@ img{max-width:100%;height:auto;}
   /* Jemný biely okraj aby logo vyniklo na tmavom pozadí headera */
   box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
 }
+
+/* =====================================================
+   AQUALAB BALÍČKY — integrované do ŠVPÚ dizajnu
+   ===================================================== */
+
+/* Wrapper sekcie */
+.aqualab-section {
+  margin-bottom: 8px;
+}
+
+/* Grid balíčkov — klikateľné ako exam-item */
+.al-pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--grey2);
+  overflow: hidden;
+  background: var(--grey2); /* medzera medzi kartami */
+}
+
+/* Intro box pred gridom */
+.aqualab-intro-box {
+  background: var(--navy-light);
+  border-left: 4px solid var(--navy-mid);
+  padding: 12px 16px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--grey4);
+  border-bottom: 1px solid var(--grey2);
+}
+.aqualab-intro-box strong { color: var(--black); }
+.aqualab-intro-box a { color: var(--navy-mid); }
+
+.al-pkg-item {
+  background: #fff;
+  padding: 15px 18px;
+  cursor: pointer;
+  transition: background .12s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: none;
+  text-align: left;
+  font-family: var(--font);
+  gap: 8px;
+  position: relative;
+}
+.al-pkg-item:hover { background: #F0F4FB; }
+.al-pkg-item:hover .al-det-btn { opacity: 1; }
+.al-pkg-item:focus-visible { outline: 3px solid var(--yellow); outline-offset: -3px; }
+
+.al-pkg-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.al-pkg-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.3;
+}
+.al-pkg-for {
+  font-size: 12px;
+  color: var(--grey4);
+  margin-top: 1px;
+}
+
+/* Kategóriový štítok */
+.al-cat {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.al-cat-base   { background: var(--navy-light); color: var(--navy); }
+.al-cat-plant  { background: #E8F5E9; color: #2E7D32; }
+.al-cat-shrimp { background: #E0F2F1; color: #00695C; }
+.al-cat-vet    { background: var(--gold-light); color: #7C5200; }
+.al-cat-crit   { background: #FFEBEE; color: #B71C1C; }
+.al-cat-reef   { background: #E3F2FD; color: #1565C0; }
+
+/* Parametre ako tagy */
+.al-params {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+.al-param {
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  background: var(--grey1);
+  color: var(--grey4);
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid var(--grey2);
+}
+.al-param-warn {
+  background: #FFEBEE;
+  color: #C01900;
+  border-color: #FFCDD2;
+}
+
+.al-pkg-desc {
+  font-size: 12px;
+  color: var(--grey4);
+  line-height: 1.5;
+  border-top: 1px solid var(--grey2);
+  padding-top: 8px;
+  margin-top: 2px;
+}
+
+/* "Detail →" tlačidlo */
+.al-det-btn {
+  flex-shrink: 0;
+  align-self: flex-start;
+  padding: 4px 12px;
+  border: 2px solid var(--navy);
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  background: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .1s, background .1s;
+  font-family: var(--font);
+  white-space: nowrap;
+}
+.al-det-btn:hover { background: var(--navy); color: #fff; }
+
+/* Responzívnosť */
+@media (max-width: 700px) {
+  .al-pkg-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .al-pkg-item { padding: 13px 14px; }
+  .al-det-btn { opacity: 1; }  /* na mobile vždy viditeľné */
+}
