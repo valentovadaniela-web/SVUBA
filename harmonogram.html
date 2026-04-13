@@ -68,7 +68,7 @@
     <span class="ico">⚠️</span>
     <div>Harmonogram môže byť zmenený. Pre overenie kontaktujte príjem vzoriek:
       <a href="tel:+421238108221">+421 2 38108 221</a> alebo
-      <a href="mailto:svuba@svuba.sk">svuba@svuba.sk</a></span></a>
+      <a href="/cdn-cgi/l/email-protection#6d1e1b180f0c2d1e1b180f0c431e06"><span class="__cf_email__" data-cfemail="4231343720230231343720236c3129">[email&#160;protected]</span></a></span></a>
     </div>
   </div>
 
@@ -76,7 +76,7 @@
        INTERAKTÍVNA MAPA ZVOZNÝCH LINIEK
        ═══════════════════════════════════════════════ -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 
   <style>
     /* Mapa */
@@ -357,16 +357,29 @@
       const hasL1 = linky.includes(1);
       const hasL2 = linky.includes(2);
 
+      // Helper: get days for a specific line
+      function getDaysForLine(stop, linka) {
+        return stop.linky[linka] ? Object.keys(stop.linky[linka]) : [];
+      }
+
+      function attachDays(marker, days) {
+        marker._zvozDays = days;
+      }
+
       if (stop.typ === "vpú") {
         // VPÚ – jeden tmavomodrý bod, patrí obom linkám
+        const allDays = [...new Set([...getDaysForLine(stop, 1), ...getDaysForLine(stop, 2)])];
         const m = L.marker([stop.lat, stop.lng], { icon: makeIcon(COLOR_VPU, 16) })
           .bindPopup(makePopup(stop), { maxWidth: 260 });
+        attachDays(m, allDays);
         markersL1.push(m);
         markersL2.push(m);
       } else if (stop.typ === "preklad") {
         // Prekladisko – oranžový bod
+        const days = getDaysForLine(stop, 2);
         const m = L.marker([stop.lat, stop.lng], { icon: makeIcon(COLOR_PREKLAD, 14) })
           .bindPopup(makePopup(stop), { maxWidth: 260 });
+        attachDays(m, days);
         markersL2.push(m);
       } else if (hasL1 && hasL2) {
         // Zastávka na oboch linkách – dva body mierne posunuté vedľa seba
@@ -375,16 +388,20 @@
           .bindPopup(makePopup(stop), { maxWidth: 260 });
         const m2 = L.marker([stop.lat, stop.lng + offset], { icon: makeIcon(COLOR_L2, 12) })
           .bindPopup(makePopup(stop), { maxWidth: 260 });
+        attachDays(m1, getDaysForLine(stop, 1));
+        attachDays(m2, getDaysForLine(stop, 2));
         markersL1.push(m1);
         markersL2.push(m2);
         markersBoth.push(m1, m2);
       } else if (hasL1) {
         const m = L.marker([stop.lat, stop.lng], { icon: makeIcon(COLOR_L1, 12) })
           .bindPopup(makePopup(stop), { maxWidth: 260 });
+        attachDays(m, getDaysForLine(stop, 1));
         markersL1.push(m);
       } else {
         const m = L.marker([stop.lat, stop.lng], { icon: makeIcon(COLOR_L2, 12) })
           .bindPopup(makePopup(stop), { maxWidth: 260 });
+        attachDays(m, getDaysForLine(stop, 2));
         markersL2.push(m);
       }
     });
@@ -414,8 +431,8 @@ function updateMap() {
   // filter podľa dní
   if (activeDayFilter !== "all") {
     toShow = toShow.filter(marker => {
-      const popup = marker.getPopup()?.getContent() || "";
-      return popup.includes(activeDayFilter);
+      const days = marker._zvozDays || [];
+      return days.includes(activeDayFilter);
     });
   }
 
@@ -686,8 +703,4 @@ Pri zasielaní pošty vodič zvoznej linky nemá oprávnenie preberať doporuče
         <h4>Povinné zverejňovanie</h4>
         <ul>
           <li><a href="#">Povinne zverejňované dokumenty</a></li>
-          <li><a href="#">Prístupnosť webu</a></li>
-          <li><a href="#">Ochrana osobných údajov</a></li>
-          <li><a href="#">Cookies</a></li>
-          <li><a href="#">Slobodný prístup k informáciám</a></li>
-          <li><a href="#">Sťažnosti a podnety</a>
+          <li><a href="#">Prístupnosť webu</a></
